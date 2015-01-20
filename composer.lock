@@ -1179,12 +1179,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "f019bf437936afae989b58e36742f2c2563ccd32"
+                "reference": "335492aed7090793766e3f4128b71f63abc49646"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/f019bf437936afae989b58e36742f2c2563ccd32",
-                "reference": "f019bf437936afae989b58e36742f2c2563ccd32",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/335492aed7090793766e3f4128b71f63abc49646",
+                "reference": "335492aed7090793766e3f4128b71f63abc49646",
                 "shasum": ""
             },
             "require": {
@@ -1248,7 +1248,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2015-01-20 11:12:57"
+            "time": "2015-01-20 14:19:27"
         },
         {
             "name": "evandotpro/edp-module-layouts",
@@ -1615,16 +1615,16 @@
         },
         {
             "name": "rwoverdijk/assetmanager",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/RWOverdijk/AssetManager.git",
-                "reference": "47d29f56fc7935833adba9e18e17f777b9e8a2d6"
+                "reference": "68043e51160ab36f8eb12afbb875c7585590569f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RWOverdijk/AssetManager/zipball/47d29f56fc7935833adba9e18e17f777b9e8a2d6",
-                "reference": "47d29f56fc7935833adba9e18e17f777b9e8a2d6",
+                "url": "https://api.github.com/repos/RWOverdijk/AssetManager/zipball/68043e51160ab36f8eb12afbb875c7585590569f",
+                "reference": "68043e51160ab36f8eb12afbb875c7585590569f",
                 "shasum": ""
             },
             "require": {
@@ -1654,15 +1654,14 @@
             ],
             "authors": [
                 {
-                    "name": "Marco Pivetta",
-                    "email": "ocramius@gmail.com",
-                    "homepage": "http://ocramius.github.com/",
-                    "role": "Developer"
-                },
-                {
                     "name": "Wesley Overdijk",
                     "email": "r.w.overdijk@gmail.com",
                     "homepage": "http://blog.spoonx.nl/"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com",
+                    "homepage": "http://ocramius.github.com/"
                 }
             ],
             "description": "An assetmanager module for Zend Framework 2.",
@@ -1673,7 +1672,7 @@
                 "zend framework 2",
                 "zf2"
             ],
-            "time": "2014-05-29 15:34:41"
+            "time": "2015-01-20 13:16:43"
         },
         {
             "name": "symfony/console",
