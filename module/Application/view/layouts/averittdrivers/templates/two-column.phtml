@@ -1,0 +1,11 @@
+        <section>
+            <div class="content-inner">
+                <?php echo $this->render('lundinternational/sidebar'); ?>
+                <?php echo $templateContent; ?>
+                <?php
+                    if ($loadInclude) {
+                        include(realpath(dirname(__FILE__)) .'/../includes/' . $loadInclude);
+                    }
+                ?>
+            </div>
+        </section>

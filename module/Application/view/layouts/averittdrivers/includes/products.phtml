@@ -1,0 +1,27 @@
+                    <div class="colr">
+                        <h2 class="title">OUR PRODUCTS</h2>
+                        <ul class="product-list">
+                            <?php 
+                            $productCategories = $this->layout()->brandProductCategory->getBrandProductCategories();
+                            foreach ($productCategories as $category) {
+                            ?>
+                            <li class="product">
+                                <a href="">
+                                <?php if ($category->getProductCategory()->getAsset()) { ?>
+                                <img src="/admin/imagine/<?php echo $category->getProductCategory()->getAsset()->getHash(); ?>/161/132" alt="<?php echo $category->getProductCategory()->getDisplayName(); ?>" />
+                                <?php } else { ?>
+                                    <img src="/assets/application/lundinternational/images/No_image_available.jpg" alt="No Image Available" />
+                                <?php } ?>
+                                </a>
+                                <div class="product-description">
+                                    <h4><?php echo $category->getBrand()->getLabel(); ?> <?php echo $category->getProductCategory()->getDisplayName(); ?></h4>
+                                    <p><?php echo $category->getShortDescr(); ?></p>
+                                    <p class="action">
+                                        <a class="red" href="/products/<?php echo urlencode(strtolower($category->getBrand()->getName())); ?>/<?php echo urlencode(strtolower($category->getProductCategory()->getName())); ?>">View <?php echo strtoupper($category->getBrand()->getLabel()); ?> <?php echo $category->getProductCategory()->getDisplayName(); ?></a><br />
+                                    </p>
+                                </div>
+                            </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                    

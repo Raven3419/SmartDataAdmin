@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+    <head>
+        <title><?php echo (null !== $this->metaTitle ? $this->metaTitle : 'Lund International | AVS | LUND'); ?></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="profile" href="http://gmpg.org/xfn/11" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+        <meta name="viewport" content="width=device-width" />
+        <link href="/assets/rocket-admin/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+        <meta name="keywords" content="<?php echo (null !== $this->metaKeywords ? $this->metaKeywords : 'Lund International'); ?>" />
+        <meta name="description" content="<?php echo (null !== $this->metaDescription ? $this->metaDescription : 'Lund is a trusted brand name offering premium accessories that are stylish, functional and durable. From running boards to tonneaus, window vents to grilles and hood shields to cargo management.'); ?>" />
+        <link rel="canonical" href="http://www.lundinternational.com/" />
+        <meta name="google-site-verification"  content="4qrzZjtioVCerbcJlLwhZRALckxKjCjTdCra4Ul7cVo" />
+        <meta name="google-site-verification" content="C488ho40XJ2O-II9xXhvm0jTzQGFko6ScBvmj5AP9LM" />
+        <meta name="p:domain_verify" content="b1eb3cc8325ab3fc123003dce95a6c84"/>
+        <link rel="stylesheet" href="/assets/application/lundinternational/css/style.css" type="text/css" media="all" />
+        <?php echo $this->headLink(); ?>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+        <script src="/assets/application/lundinternational/js/script-loader.js"></script>
+        <script src="/assets/application/lundinternational/js/scripts.js"></script>
+        <script src="/assets/application/lundinternational/js/jquery.colorbox.js"></script>
+        <script src="/assets/application/lundinternational/js/jquery.tweet.js"></script>
+        <?php echo $this->headScript(); ?>
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+            <style type="text/css">.brands{filter: none;}</style>
+        <![endif]-->
+        <!-- Start Google Analytics Tracking -->
+        <script type="text/javascript">
+        var _gas = _gas || [];
+        _gas.push(['_setAccount', 'UA-12674559-1']); 
+        _gas.push(['_setDomainName', 'lundinternational.com']);
+        _gas.push(['_trackPageview']);
+        _gas.push(['_gasTrackForms']);
+        _gas.push(['_gasTrackOutboundLinks']);
+        _gas.push(['_gasTrackMaxScroll']);
+        _gas.push(['_gasTrackDownloads']);
+        _gas.push(['_gasTrackYoutube', {force: true}]);
+        _gas.push(['_gasTrackVimeo', {force: true}]);
+        _gas.push(['_gasTrackMailto']);
+        (function() {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = '/assets/application/lundinternational/js/gas.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+        </script> 
+        <!-- End Google Analytics Tracking -->
+    </head>
+    <body>
+        <header>
+            <div class="header-inner">
+                <a href="/" class="logo"><img src="/assets/application/lundinternational/images/logo-lundinternational.png" /></a>
+                <div class="header-right">
+                    <form name="Main_Site_Search" method="post" action="/products" class="search">
+                        <input type="hidden" name="querytype" value="global" />
+                        <input type="text" name="searchquery" placeholder="" />
+                        <input type="submit" name="search" value="Search" />
+                    </form>
+                    <ul class="social">
+                        <li><a class="fb" onClick="_gaq.push(['_trackEvent','Facebook','Click on Facebook','Facebook'])" target="_blank" href="http://www.facebook.com/LundInternational" title="Like us on Facebook">Facebook</a></li>
+                        <li><a class="tw" onClick="_gaq.push(['_trackEvent','Twitter','Click on Twitter','Twitter'])" target="_blank" href="http://www.twitter.com/LundInter" title="Follow us on Twitter">Twitter</a></li>
+                        <li><a class="yt" onClick="_gaq.push(['_trackEvent','Youtube','Click on Youtube','Youtube'])" target="_blank" href="http://www.youtube.com/user/LundInternational" title="Follow us on YouTube">YouTube</a></li>
+                        <li><a class="pi" onClick="_gaq.push(['_trackEvent','Pinterest','Click on Pinterest','Pinterest'])" target="_blank" href="http://pinterest.com/lundinter/" title="Follow us on Pinterest">Pinterest</a></li>
+                    </ul>
+                    <?php if ($this->cart) { ?>
+                    <a class="btn-red" style="margin-left: 10px;" href="/cart">View Cart</a>
+                    <?php } ?>
+                </div>
+            </div>
+        </header>

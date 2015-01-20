@@ -1,0 +1,137 @@
+<style>
+.empty{display:none;}
+.cart-inner {float:left; width:100%;background: rgb(255,255,255); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(252,252,252,1) 38%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(38%,rgba(252,252,252,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(252,252,252,1) 38%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(252,252,252,1) 38%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(252,252,252,1) 38%,rgba(229,229,229,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(252,252,252,1) 38%,rgba(229,229,229,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+border:1px solid #e5e5e5;
+height:30px;
+margin:10px 0;}
+.cart-inner li {
+float:left;
+position:relative;
+margin:0 auto;
+padding:5px 0 0 10px;
+font-weight:bold;
+}
+.alignleft h1 {font-weight:bold; font-size:22px;}
+.cart-inner li:first-child {width:58%; padding-left:40px;}
+.cart-inner li:nth-child(2) {width:10%;}
+.cart-inner li:nth-child(3) {width:14%;}
+.cart-inner li:nth-child(4) {width:10%;}
+.btn-smr {background: rgb(107,107,107); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(107,107,107,1) 2%, rgba(17,17,17,1) 47%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(2%,rgba(107,107,107,1)), color-stop(47%,rgba(17,17,17,1)), color-stop(76%,rgba(43,43,43,1)), color-stop(91%,rgba(28,28,28,1)), color-stop(100%,rgba(19,19,19,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(107,107,107,1) 2%,rgba(17,17,17,1) 47%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(107,107,107,1) 2%,rgba(17,17,17,1) 47%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(107,107,107,1) 2%,rgba(17,17,17,1) 47%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(107,107,107,1) 2%,rgba(17,17,17,1) 47%,rgba(43,43,43,1) 76%,rgba(28,28,28,1) 91%,rgba(19,19,19,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b6b6b', endColorstr='#131313',GradientType=0 ); /* IE6-9 */
+border-radius:7px;
+padding:5px 10px;
+color:#fff;
+text-transform:uppercase;
+font-weight:bold;
+font-size:12px;
+}.cart-details {float:left; width:100%;border-bottom:1px solid #000; padding-bottom:15px;}
+.cart-details li {float:left; padding:5px 0 0 15px;}
+.cart-details li:first-child {width:58%; padding-left:40px;}
+.cart-details li:nth-child(2) {width:10%;}
+.cart-details li:nth-child(3) {width:14%; padding-left:5px;}
+.cart-details li:nth-child(4) {width:8%;}
+.quantity {width:5px; padding:5px 15px 3px 5px;}
+.product-name sup {background:#ccc;border-radius:50%;color:#000;padding:1px 4px;cursor:pointer;margin-right:10px;}
+.totals {margin-bottom:15px;}
+.totals li {width:190px; line-height:28px;text-align:right;}
+.totals li span {text-align:right; width:42%; float:right;}
+.grand {font-size:18px; font-weight:bold;}
+.checkout {font-size:14px; margin-bottom:20px;}
+//.checkout-holder {display: -ms-flexbox;   display: -webkit-flex;   display: flex;-prefix-box-flex: 1; -webkit-flex: 1; flex: 1; -webkit-flex-direction: row;}
+.checkout-holder div:first-child {width:72%; margin-top:20px;padding-left:20px;}
+.checkout-holder div:nth-child(2) {width:25%; margin-top:20px;}
+.checkout-holder div input {margin-bottom:10px;height:19px;}
+.checkout-holder div p {font-size:14px; font-weight:bold; margin-bottom:15px;}
+@media only screen and (max-width:1100px) {
+    .cart-inner li:first-child, .cart-details li:first-child {width:50%;}
+    .checkout-holder div:first-child  {width:60%;}
+    .checkout-holder div:nth-child(2) {width:35%;}
+}
+@media only screen and (max-width:979px) {
+
+}
+@media only screen and (max-width:759px) {
+    .cart-inner li:first-child, .cart-details li:first-child {width:30%;padding-left:30px;}
+    .cart-inner li:nth-child(2), .cart-details li:nth-child(2) {width:18%;}
+    .checkout-holder {-webkit-flex-direction: column-reverse; flex-direction:column-reverse;}
+    .checkout-holder div:first-child  {width:58%;-webkit-align-self:flex-end; align-self:flex-end; margin-bottom:15px; }
+    .checkout-holder div:nth-child(2) {width:57%; -webkit-align-self:flex-end; align-self:flex-end;}
+}
+@media only screen and (max-width:479px) {
+    .col-full .alignleft {float:none;}
+    .col-full .alignright {float:none;}
+    .cart-inner li:first-child, .cart-details li:first-child {padding-left:10px; width:20%;}
+    .cart-inner li:nth-child(2), .cart-details li:nth-child(2){width:24%;}
+    .product-name sup {margin-right:0;}
+    .checkout-holder div:first-child  {width:80%;-webkit-align-self:flex-end; align-self:flex-end; margin-bottom:15px; }
+    .checkout-holder div:nth-child(2) {width:83%; -webkit-align-self:flex-end; align-self:flex-end;}
+}
+</style>
+                    <div class="col-full">
+                        <div class="alignleft">
+                            <h1 class="fgd">Shopping Cart</h1>
+                        </div>
+                        <div class="alignright">
+                            <a href="/products" class="btn-smr btn-continue-shop"><span>Continue Shopping</span></a></h1>
+                        </div>
+                        <div class="clear"></div>
+                        <?php if ($this->message) { ?>
+                        <p style="color:#ff0000;margin:25px 0;font-weight:bold;"><?php echo $this->message; ?></p>
+                        <?php } ?>
+                        <?php if (null == $this->cartItems) { ?>
+                        <p>You have no items in your shopping cart</p>
+                        <?php } else { ?>
+                        <ul class="cart-inner">
+                            <li>Product</li>
+                            <li>Unit Price</li>
+                            <li>Qty.</li>
+                            <li>Subtotal</li>
+                        </ul>
+                            <?php 
+                                $subtotal=null;
+                                $grandtotal=null;
+                            ?>
+                            <?php foreach($this->cartItems as $item) { ?>
+                        <ul class="cart-details">
+                            <li class="product-name"><sup><a href="/cart/remove/<?php echo $item->getCartItemId(); ?>">X</a></sup><?php echo $item->getDescription(); ?></li>
+                            <li>$<?php echo $item->getPrice(); ?></li>
+                            <li><?php echo $item->getQuantity(); ?> <a href="/cart/increase/<?php echo $item->getCartItemId(); ?>"><img src="/assets/application/lundinternational/images/icon_add.png" style="vertical-align:middle;" border="0" width="16" height="16" alt="Increase Quantity" /></a>/<a href="/cart/reduce/<?php echo $item->getCartItemId(); ?>"><img src="/assets/application/lundinternational/images/icon_remove.png" style="vertical-align:middle;" border="0" width="16" height="16" alt="Decrease Quantity" /></a></li>
+                            <li>$<?php echo ($item->getQuantity() * $item->getPrice()); ?></li>
+                        </ul>
+                                <?php
+                                    $tempSubtotal = $item->getQuantity()*$item->getPrice();
+                                    $subtotal = $subtotal+$tempSubtotal;
+                                    $grandtotal = $grandtotal+$subtotal;
+                                ?>
+                            <?php } ?>
+                        <div class="clear"></div>
+                        <div class="checkout-holder">
+                            <div style="display:none;">
+                                <p>If you have a discount code, enter it here:</p>
+                                <input type="text" name="discount-code"><br>
+                                <a class="btn-smr">Apply Discount</a>
+                            </div>
+                            <div class="alignright">
+                                <ul class="totals">
+                                <li>Subtotal <span class="price">$<?php echo $subtotal; ?></span></li>
+                                    <li>Shipping <span class="shipping">$0.00</span></li>
+                                    <li class="grand">Grand Total <span>$<?php echo $grandtotal; ?></span></li>
+                                </ul>
+                                <a class="btn-red checkout" href="/checkout">Continue to Checkout</a>
+                            </div>
+                        </div>
+                        <?php } ?>
+                    </div>

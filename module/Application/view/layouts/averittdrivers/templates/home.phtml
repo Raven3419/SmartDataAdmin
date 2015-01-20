@@ -1,0 +1,338 @@
+            <section class="home">
+                <div class="content-inner">
+                    <div class="brands">
+                        <ul>
+                            <li class="brandAVS"><a href="/products/avs"><img src="/assets/application/lundinternational/images/brand-logo-avs.png" /></a></li>
+                            <li class="brandLUND"><a href="/products/lund"><img src="/assets/application/lundinternational/images/brand-logo-lund.png" /></a></li>
+                            <li class="brandBelmor"><a href="http://belmor.com" target="_blank"><img src="/assets/application/lundinternational/images/brand-logo-belmor.png" /></a></li>
+                            <li class="brandAMP"><a href="http://amp-research.com" target="_blank"><img src="/assets/application/lundinternational/images/brand-logo-amp.png" /></a></li>
+                        </ul>
+                    </div>
+                    <div class="slider_module">
+                        <div class="coll">
+                            <article class="module-a">
+                                <h4 class="upper">Free customer support</h4>
+                                <h4 class="liveChat">8:30AM TO 6PM EST, Monday-Friday</h4>
+                                <h3>1-800-241-7219</h3>
+                                <div class="clear"></div>
+                                <a href="#" class="btn-red" onclick="javascript:window.open('http://dm4.contactatonce.com/CaoClientContainer.aspx?MerchantId=57316&ProviderId=3766&PlacementId=3&OriginationUrl='+encodeURIComponent(location.href),'','resizable=yes,toolbar=no,menubar=no,location=no,scrollbars=no,status=no,height=400,width=600');return false;">Live Chat</a>
+                            </article>
+                            <article class="module-a">
+                                <h1 class="title">View by Vehicle:</h1>
+                                <form method="POST" name="Vehicle_Selector" id="vehiclesearch" action="/products">
+                                    <input type="hidden" name="querytype" value="vehicle" />
+                                    <input type="hidden" name="filterstatus" value="yes" />
+                                    <select name="vehYear" id="vehYear">
+                                        <option>Select Year</option>
+                                        <?php foreach($this->years as $year) { ?>
+                                        <option><?php echo $year->getName(); ?></option>
+                                        <?php } ?>
+                                    </select>
+                                    <select name="vehMake" id="vehMake" disabled="disabled">
+                                        <option>Select Make</option>
+                                    </select>
+                                    <select name="vehModel" id="vehModel" disabled="disabled">
+                                        <option>Select Model</option>
+                                    </select>
+                                    <select name="vehSubmodel" id="vehSubmodel" disabled="disabled" style="display:none;">
+                                        <option>Select All Submodels</option>
+                                    </select>
+                                    <select name="brand" id="brand" disabled="disabled" style="display:none;">
+                                        <option value="All" selected="selected">All Brands</option>
+                                        <option value="AVS">AVS</option>
+                                        <option value="LUND">LUND</option>
+                                    </select>
+                                    <input class="dealedgesub" type="submit" name="search" value="Submit">
+                                </form>
+                            </article>
+                            <?php if ($this->testimonials) { ?>
+                            <h2 class="testimonial">What Our Customers Are Saying...</h2>
+                            <ul class="testimonials">
+                                <?php foreach ($this->testimonials as $testimonial) { ?>
+                                <li>"<?php echo $testimonial->getContent(); ?>"</li>
+                                <?php } ?>
+                            </ul>
+                            <?php } ?>
+                        </div>
+                        <div class="colr">
+                            <!--<script type="text/javascript" language="javascript">
+                                $(function() {
+                                    $('#hover_captions li').each(function(){
+                                        $(this).find('.hover_plus').first().find('p').fadeToggle();
+                                    });
+       
+                                    $('.hover_plus').mouseover(function(){
+                                        if ($(this).parent().find('p').css('display') != 'block'){
+                                            var $plus = $(this);
+                                            $(this).parent().parent().find('p').hide();
+                                            $plus.parent().find('p').fadeIn(function(){$plus.clearQueue()});
+                                        }
+                                    });
+                                }); 
+                            </script>-->
+                            <div class="flexslider">
+                                <ul class="slides" id="shover_captions">
+                                    <?php foreach ($this->sliders as $slider) { ?>
+                                    <li><?php if ($slider->getUrl()) { ?><a href="<?php echo $slider->getUrl(); ?>"><?php } ?><img alt="<?php echo $slider->getAsset()->getLabel(); ?>" src="/assets/<?php echo $slider->getAsset()->getFilePath(); ?>" border="0" /><?php if ($slider->getContent()) { ?><?php echo $slider->getContent(); ?><?php } ?><?php if ($slider->getUrl()) { ?></a><?php } ?></li>
+                                    <?php } ?>
+                                    <!--<li><a href="javascript:;"><img alt="AVS Ventvisor Truck" src="/assets/application/lundinternational/images/sliders/slider-avs-ventvisor-truck.png" border="0" /></a></li>
+                                    <li><a href="javascript:;"><img alt="AVS Ventvisor Car" src="/assets/application/lundinternational/images/sliders/slider-avs-ventvisor-car.png" border="0" /></a></li>
+                                    <li><a href="javascript:;"><img alt="Innovation. Function. Style." src="/assets/application/lundinternational/images/sliders/slider-innovation-function-style.jpg" border="0" /></a></li>
+                                    <li><a href="javascript:;"><img alt="Premium Hood and Window Protection" src="/assets/application/lundinternational/images/sliders/slider-hood-window-protection.jpg" border="0" /></a></li>
+                                    <li><a href="/great-american-giveaway"><img alt="Great-American-Giveaway" src="/assets/application/lundinternational/images/sliders/slider-great-american-giveaway.jpg" border="0" /></a></li>
+                                    <li><a href="/products/lund/storage+boxes"><img alt="Lund-Storage-Boxes" src="/assets/application/lundinternational/images/sliders/slider-storage-boxes.jpg" border="0" /></a></li>
+                                    <li><a href="/products/lund/running-boards"><img src="/assets/application/lundinternational/images/sliders/slider-lund-running-boards.jpg" alt="Lund-new-running-boards-nerf-bars-chrome-stainless-steel-for-truck"></a></li>
+    
+                                    <li><a href="/products/lund/fender+flare+elite+series">
+                                    <img src="/assets/application/lundinternational/images/sliders/slider-lund-fender-flares.jpg" alt="Lund-Fender-Flares-Chevy-Silverado">
+                                    <figure id="learnmoreff">
+                                        <img alt="Learn More" src="/assets/application/lundinternational/images/btn-learnmore.png">
+                                    </figure></a></li>
+                                    <li><a href="/products/lund/window/ventvisor+elite+-+2+pc"><img src="/assets/application/lundinternational/images/sliders/slider-lund-ventvisor-elite.jpg" alt="Lund-Vent-visor-window-deflectors-side-vents">
+                                    <figure id="learnmore7">
+                                    <img alt="Learn More" src="/assets/application/lundinternational/images/btn-learnmore.png">
+                                    </figure>
+                                    <figure id="elite">
+                                    <span class="hover_plus">+</span><p style="display: block;"> LUND Ventvisor<sup>™</sup> Elite</p>
+                                    </figure></a></li>
+                                    <li><a href="/where-to-buy">
+                                    <img src="/assets/application/lundinternational/images/sliders/slider-where-to-buy.jpg" alt="Lund-tonneau-truck-bed-cover">
+                                    <figure id="tonneau">
+                                    <span class="hover_plus">+ <p style="display: block;">LUND Genesis Elite Tri-fold Tonneau Cover</p>
+                                    </figure>
+                                    <figure id="ventvisor">
+                                    <span class="hover_plus">+</span><p> AVS The Original Ventvisor<sup>™</sup>
+                                    </p>
+                                    </figure>
+                                    <figure id="hood_shield" class="hover_">
+                                    <span class="hover_plus">+</span><p> AVS Bugflector II<sup style="font-size:10px;margin-top:-3px">®</sup>Hood Shield
+                                    </p>
+                                    </figure>
+                                    <figure id="running_boards">
+                                    <span class="hover_plus">+</span> <p>LUND 6” Chrome Straight Nerf Bars</p>
+                                    </figure>
+                                    <figure id="wheretobuy1">
+                                    <img alt="Where to Buy" src="/assets/application/lundinternational/images/btn-wheretobuy.png">
+                                    </figure></a></li>
+                                    <li><a href="/products/avs/hood+shields/aeroskin+chrome+hood+protector"><img src="/assets/application/lundinternational/images/sliders/slider-aeroskin.jpg" alt="Lund-hood-protector-hood-shield-bug-deflector">
+                                    <figure id="aeroskin">
+                                    <span class="hover_plus">+<p style="display: block;"> AVS Aeroskin<sup>™</sup> Hood Protection
+                                    </p>
+                                    </figure>
+                                    <figure id="learnmore4">
+                                    <img alt="Learn More" src="/assets/application/lundinternational/images/btn-learnmore.png">
+                                    </figure>
+                                    </a></li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="coll-home">
+                        <p>Our complete product offerings fall under three distinct brand names: AVS, LUND and BELMOR. These brands continue to set industry standards for functionality, high-performance, protective and stylish aftermarket automotive accessories. From ventvisors&trade;/side window deflectors, hood protection, fender flares, running boards and nerf bars to tonneaus and premium floor liners, our brands provide outstanding value along with industry leading warranties.</p>
+                        <div class="module-b visible">
+                            <a href="/products/avs" class="brand-logo"><img border="0" alt="AVS" src="/assets/application/lundinternational/images/avs-gray-logo.png"></a>
+                            <ul class="list-vehicles">
+                                <li>
+                                    <a href="/products/avs/window"><img src="/assets/application/lundinternational/images/featured-Ventvisors.png" /></a>
+                                    <ul>
+                                        <li><a href="/products/avs/window">Ventvisors/Side Window Deflectors</a></li>
+                                        <li class="view-styles"><a href="javascript:;">View Styles</a></li>
+                                    </ul>
+                                    <div class="product_overlay">
+                                        <ul>
+                                            <li><img src="/assets/application/lundinternational/images/AVS_ovv.jpg"/><div class="caption"><p><strong>Original Ventvisor<sup>&trade;</sup></strong><br />
+                                            Higher profile, outside mount</p></div><div class="overlay-bg"></div></li>
+                                            <li><img src="/assets/application/lundinternational/images/AVS_lpvv.jpg"/><div class="caption"><p><strong>Low-Profile Ventvisor</strong><br />
+                                            Lowest profile, outside mount</p></div><div class="overlay-bg"></div></li>
+                                            <li><img src="/assets/application/lundinternational/images/AVS_invv.jpg"/><div class="caption"><p><strong>In-Channel Ventvisor</strong><br />
+                                            Low profile, inside channel mount</p></div><div class="overlay-bg"></div></li>
+                                        </ul>
+                                        <img src="/assets/application/lundinternational/images/closeoverlay.gif" class="closeoverlay"/>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/products/avs/hood+shields"><img src="/assets/application/lundinternational/images/featured-HoodShields.png" /></a>
+                                    <ul>
+                                        <li><a href="/products/avs/hood+shields">Hood Protection</a></li>
+                                        <li class="view-styles"><a href="javascript:;">View Styles</a></li>
+                                    </ul>
+                                    <div class="product_overlay">
+                                        <ul>
+                                            <li><img src="/assets/application/lundinternational/images/AVS_bf.jpg"/><div class="caption"><p><strong>Bugflector<sup>&reg;</sup></strong><br />
+                                            Stand-off, medium profile, traditional hood shield</p></div><div class="overlay-bg"></div></li>
+                                            <li><img src="/assets/application/lundinternational/images/AVS_bf2.jpg"/><div class="caption"><p><strong>Bugflector II<sup>&reg;</sup></strong><br />
+                                            Stand-off, higher profile, full-wrap design</p></div><div class="overlay-bg"></div></li>
+                                            <li><img src="/assets/application/lundinternational/images/AVS_hf.jpg"/><div class="caption"><p><strong>Hoodflector<sup>&reg;</sup></strong><br />
+                                            Lower profile, wrap design</p></div></li>
+                                            <li style=" border-top:none"><img src="/assets/application/lundinternational/images/AVS_cf.jpg"/><div class="caption"><p><strong>Carflector<sup>&trade;</sup></strong><br />
+                                            Lower profile, wrap design (car/SUV)</p></div><div class="overlay-bg"></div></li>
+                                            <li style="border-top:none"><img src="/assets/application/lundinternational/images/AVS_as.jpg"/><div class="caption"><p><strong>Aeroskin<sup>&trade;</sup></strong><br />
+                                            Lowest profile, flush mount,<br />contour fit</p></div><div class="overlay-bg"></div></li>
+                                        </ul>
+                                        <img src="/assets/application/lundinternational/images/closeoverlay.gif" class="closeoverlay"/>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="list-links">
+                                <li><a href="/products/avs/window">Ventvisors / Side Window Deflectors</a></li>
+                                <li><a href="/products/avs/hood+shields">Hood Protection</a></li>
+                                <li><a href="/products/avs/exterior+accessories">Exterior Accessories</a></li>
+                                <li><a href="/products/avs/light+covers">Light Covers</a></li>
+                                <li><a href="/products/avs/scoops+-+vents+-+decals">Scoops / Vents / Decals</a></li>
+                                <li><a href="/products/avs/interior+accessories">Interior Accessories</a></li>
+                            </ul>
+                        </div>
+                        <div class="module-b">
+                            <a href="#" class="brand-logo"><img src="/assets/application/lundinternational/images/lund-gray-logo.png" /></a>
+                            <ul class="list-vehicles">
+                                <li>
+                                    <a href="/products/lund/window/ventvisor+elite+-+2+pc"><img src="/assets/application/lundinternational/images/featured-VVElite.jpg" /></a>
+                                    <ul>
+                                        <li><a href="/products/lund/window/ventvisor+elite+-+2+pc">Ventvisor Elite</a></li>
+                                        <li><a href="/products/lund/window/ventvisor+elite+-+2+pc">View</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/products/lund/hood+shields"><img src="/assets/application/lundinternational/images/featured-HoodShieldsLund.png" /></a>
+                                    <ul>
+                                        <li><a href="/products/lund/hood+shields">Hood Protection</a></li>
+                                        <li class="view-styles"><a href="javascript:;">View Styles</a></li>
+                                    </ul>
+                                    <div class="product_overlay">
+                                        <ul>
+                                            <li class="first"><img src="/assets/application/lundinternational/images/lund_ic.jpg"/><div class="caption"><p><strong>Interceptor</strong><br />
+                                            Full-height, fully wrapped hood shield</p></div></li>
+                                        </ul>
+                                        <img src="/assets/application/lundinternational/images/closeoverlay.gif" class="closeoverlay"/>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/products/lund/running+boards"><img src="/assets/application/lundinternational/images/featured-RunningBoards.png" /></a>
+                                    <ul>
+                                        <li><a href="/products/lund/running+boards">Running Boards</a></li>
+                                        <li><a href="/products/lund/running+boards">View</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/products/lund/tonneaus"><img src="/assets/application/lundinternational/images/featured-TonneausLund.jpg" /></a>
+                                    <ul>
+                                        <li><a href="/products/lund/tonneaus">Tonneaus</a></li>
+                                        <li><a href="/products/lund/tonneaus">View</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="/products/lund/fender+flare+elite+series"><img src="/assets/application/lundinternational/images/featured-FenderFlaresLund.jpg" /></a>
+                                    <ul>
+                                        <li><a href="/products/lund/fender+flare+elite+series">Fender Flares</a></li>
+                                        <li class="view-styles"><a href="javascript:;">View Styles</a></li>
+                                    </ul>
+                                    <div class="product_overlay">
+                                        <ul>
+                                            <li><img src="/assets/application/lundinternational/images/EX_200x175.jpg"/><div class="caption"><p><strong>EX-ExtraWide Style<sup>&trade;</sup></strong></p></div><div class="overlay-bg"></div></li>
+                                            <li><img src="/assets/application/lundinternational/images/RX_200x175.jpg"/><div class="caption"><p><strong>RX-Rivet Style<sup>&trade;</sup></strong></p></div><div class="overlay-bg"></div></li>
+                                            <li><img src="/assets/application/lundinternational/images/SX_200x175.jpg"/><div class="caption"><p><strong>SX-Sport Style<sup>&trade;</sup></strong></p></div><div class="overlay-bg"></div></li>
+                                        </ul>
+                                        <img src="/assets/application/lundinternational/images/closeoverlay.gif" class="closeoverlay"/>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="/products/lund/floor+coverings"><img src="/assets/application/lundinternational/images/featured-FloorCoverings.png" /></a>
+                                    <ul>
+                                        <li><a href="/products/lund/floor+coverings">Floor Liners</a></li>
+                                        <li><a href="/products/lund/floor+coverings">View</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="list-links">
+                                <li><a href="/products/lund/window/ventvisor+elite+-+2+pc">Ventvisor Elite</a></li>
+                                <li><a href="/products/lund/hood+shields">Hood Protection</a></li>
+                                <li><a href="/products/lund/running+boards">Running Boards</a></li>
+                                <li><a href="/products/lund/nerf+bars">Nerf Bars</a></li>
+                                <li><a href="/products/lund/tonneaus">Tonneaus</a></li>
+                                <li><a href="/products/lund/fender+flare+elite+series">Fender Flares</a></li>
+                                <li><a href="/products/lund/floor+coverings">Floor Liners</a></li>
+                                <li><a href="/products/lund/exterior+accessories">Exterior Accessories</a></li>
+                                <li><a href="/products/lund/storage+boxes">Storage Boxes</a></li>
+                                <li><a href="/products/lund/storage+tanks">Liquid Storage Tanks</a></li>
+                                <li><a href="/products/lund/cargo+management">Cargo Management</a></li>
+                                <li><a href="/products/lund/bed+accessories">Bed Accessories</a></li>
+                                <li><a href="/products/lund/grille+coverings">Grille Coverings</a></li>
+                            </ul>
+                        </div>
+                        <div class="module-b">
+                            <a href="http://belmor.com" class="brand-logo" target="_blank"><img src="/assets/application/lundinternational/images/belmor-gray-logo.png" /></a>
+                            <img src="/assets/application/lundinternational/images/home-feature-belmor.png" class="module-b-img" />
+                            <p>BELMOR products are sold at over 3000 heavy-duty truck dealerships and retail locations throughout North America. BELMOR manufactures heavy-duty truck accessories including ventvisors, hood shields, bug screens, winter fronts, rock guards and tank covers.<br /><br />
+                            <a href="http://belmor.com" target="_blank">To learn more visit their website &raquo;</a></p>
+                        </div>
+                        <div class="module-b">
+                            <a href="http://amp-research.com" class="brand-logo" target="_blank"><img src="/assets/application/lundinternational/images/amp-gray-logo.png" /></a>
+                            <img src="/assets/application/lundinternational/images/home-feature-amp.jpg" class="module-b-img" />
+                            <p>A premium automotive accessories brand offering high-performance and stylish accessories for trucks, SUVs, CUVs and passenger cars.<br /><br />
+                            <a href="http://amp-research.com" target="_blank">To learn more visit their website &raquo;</a></p>
+                        </div>
+                    </div>
+                    <div class="colr-home">
+                        <div class="module-a">
+                            <h1>Our Videos</h1>
+                            <p>Our products are easy to install – often in just minutes! Take a look at these handy videos developed to walk you through the installation process.</p>
+                            <p><a onClick="_gaq.push(['_trackEvent','Youtube','Click on Youtube','Youtube'])" href="http://www.youtube.com/user/LundInternational" target="_blank">View our YouTube Channel &raquo;</a></p>
+                            <a href="http://www.youtube.com/embed/PYB1k5ABjM8" class="youtube"><img src="http://img.youtube.com/vi/PYB1k5ABjM8/0.jpg" /></a>
+                            <a href="http://www.youtube.com/embed/OVQt6-JrP1g" class="youtube"><img src="http://img.youtube.com/vi/OVQt6-JrP1g/0.jpg" /></a>
+                        </div>
+                        <a href="/about-us/dealers-edge">
+                        <div class="module-c">
+                            <div class="module-icon" style="background-image:url(/assets/application/lundinternational/images/dealer_starBLUEscreen.png);">
+                                <h4>Become a Dealer<br>and Dealers Edge<br>Member Today</h4>
+                            </div>
+                        </div>
+                        </a>
+                        <a href="/about-us/drivers-council">
+                        <div class="module-c">
+                            <div class="module-icon" style="background-image:url(/assets/application/lundinternational/images/icon-bluecouncil.png);">
+                                <h4>Join Our<br>Drivers Council</h4>
+                                <p>Share your thoughts.</p>
+                            </div>
+                        </div>
+                        </a>
+                        <a href="/customer-care/installation">
+                        <div class="module-c">
+                            <div class="module-icon" style="background-image:url(/assets/application/lundinternational/images/icon_videoBLUEscreen.png);">
+                                <h4>Installation<br>Made Easy</h4>
+                                <p>See our videos...</p>
+                            </div>
+                        </div>
+                        </a>
+                        <a href="/customer-care/product-registration">
+                        <div class="module-c">
+                            <div class="module-icon" style="background-image:url(/assets/application/lundinternational/images/icon-warrantyBLUEscreen.png);">
+                                <h4>Lifetime Warranty<br>Register Your<br>Product Now!</h4>
+                            </div>
+                        </div>
+                        </a>
+                        <script type="text/javascript">
+                        $(function() {
+                            $(".twitter").tweet({
+                                join_text: "auto",
+                                username: ["lundinter"],
+                                avatar_size: 0,
+                                count: 2,
+                                loading_text: "loading tweets..."
+                            });     
+                        });
+                        </script>
+                        <article class="module-a twitter">
+                            <h2>Connect with AVS and LUND</h2>
+                            <ul class="social">
+                                <li><a class="fb" onClick="_gaq.push(['_trackEvent','Facebook','Click on Facebook','Facebook'])" target="_blank" href="http://www.facebook.com/LundInternational" title="Like us on Facebook">Facebook</a></li>
+                    <li><a class="tw" onClick="_gaq.push(['_trackEvent','Twitter','Click on Twitter','Twitter'])" target="_blank" href="http://www.twitter.com/LundInter" title="Follow us on Twitter">Twitter</a></li>
+                    <li><a class="yt" onClick="_gaq.push(['_trackEvent','Youtube','Click on Youtube','Youtube'])" target="_blank" href="http://www.youtube.com/user/LundInternational" title="Follow us on YouTube">YouTube</a></li>
+                    <li><a class="pi" onClick="_gaq.push(['_trackEvent','Pinterest','Click on Pinterest','Pinterest'])" target="_blank" href="http://pinterest.com/lundinter/" title="Follow us on Pinterest">Pinterest</a></li>
+                            </ul>
+                            <br>
+                            <p><strong>Recent Tweets</strong></p>
+                        </article>
+                    </div>
+                </div>
+            </section>

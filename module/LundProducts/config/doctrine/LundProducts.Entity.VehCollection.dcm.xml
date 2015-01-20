@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundProducts\Entity\VehCollection" table="veh_collection">
+        <id name="vehCollectionId" column="veh_collection_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <many-to-one field="vehMake" target-entity="LundProducts\Entity\VehMake" fetch="EAGER">
+            <join-column name="veh_make_id" referenced-column-name="veh_make_id"/>
+        </many-to-one>
+        <many-to-one field="vehModel" target-entity="LundProducts\Entity\VehModel" fetch="EAGER">
+            <join-column name="veh_model_id" referenced-column-name="veh_model_id"/>
+        </many-to-one>
+        <many-to-one field="vehSubmodel" nullable="true" target-entity="LundProducts\Entity\VehSubmodel" fetch="EAGER">
+            <join-column name="veh_submodel_id" referenced-column-name="veh_submodel_id"/>
+        </many-to-one>
+        <many-to-one field="vehYear" target-entity="LundProducts\Entity\VehYear" fetch="EAGER">
+            <join-column name="veh_year_id" referenced-column-name="veh_year_id"/>
+        </many-to-one>
+        <many-to-many field="part" target-entity="LundProducts\Entity\Parts" mapped-by="vehCollections" />
+        <one-to-many field="vehCollections" target-entity="LundProducts\Entity\PartVehCollection" mapped-by="vehCollection">
+            <order-by>
+                <order-by-field name="sequence" direction="ASC" />
+            </order-by>
+        </one-to-many>
+        <field name="makeId" column="make_id" type="integer" nullable="true" />
+        <field name="modelId" column="model_id" type="integer" nullable="true" />
+        <field name="submodelId" column="submodel_id" type="integer" nullable="true" />
+        <field name="bodyTypeId" column="body_type_id" type="integer" nullable="true" />
+        <field name="bodyType" column="body_type" type="string" length="255" nullable="true" />
+        <field name="bodyNumDoorsId" column="body_num_doors_id" type="integer" nullable="true" />
+        <field name="bedTypeId" column="bed_type_id" type="integer" nullable="true" />
+        <field name="bedType" column="bed_type" type="string" length="255" nullable="true" />
+    </entity>
+</doctrine-mapping>

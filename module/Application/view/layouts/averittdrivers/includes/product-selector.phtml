@@ -1,0 +1,130 @@
+                    <script type="text/javascript" src="/assets/application/lundinternational/js/jquery.pages.js"></script>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $("div.holder").jPages({
+                                containerID : "paginatedcontent",
+                                perPage: 9
+                            });
+                        });
+                    </script>
+                    <div class="colr-products">
+                        <div class="left">
+                            <?php if ($this->vehicle) { ?>
+                            <form name="Vehicle_Filter" id="vehiclefilterform" method="post" action="<?php echo $this->serverUrl(true); ?>">
+                            <input type="hidden" name="searchquery" value="<?php echo $this->searchquery; ?>" />
+                            <input type="hidden" name="querytype" value="<?php echo $this->querytype; ?>" />
+                            <input type="hidden" name="filterstatus" id="filterstatus" value="<?php echo ($this->filtervehicle ? $this->filtervehicle : ''); ?>" />
+                            <p>My Vehicle: <?php echo $this->vehicle[0]->getVehYear()->getName(); ?> <?php echo $this->vehicle[0]->getVehMake()->getName(); ?> <?php echo $this->vehicle[0]->getVehModel()->getName(); ?> <a class="redLink" id="editvehicle" href="#">edit</a><br />
+                            <input type="checkbox" id="vehiclefilter" name="vehiclefilter" value="1"<?php echo ($this->filtervehicle != 'no' ? ' checked="checked"' : ''); ?> /> Only show products guaranteed to fit my vehicle
+                            </p>
+                            </form>
+                            <?php } else { ?>
+                            <p>Browsing products for all vehicles<br />
+                            <a class="redLink" href="#">Select your vehicle</a></p>
+                            <?php } ?>
+                        </div>
+                        <div class="right">
+                            <div class="holder"></div>
+                        </div>
+                    </div>
+                    <div class="colr">
+                        <div class="module-b">
+                            <h1 class="title">Products for <?php echo $this->selYear; ?> <?php echo $this->selMake; ?> <?php echo $this->selModel; ?><?php echo ($this->subModel ? ' ' . $this->subModel : ''); ?></h1>
+                            <ul class="list-vehicles-products" id="paginatedcontent">
+                                <?php foreach ($this->productLines as $productLine) { ?>
+                                    <?php $asset = $this->productLineAssetService->getProductLineAssetsByProductLine($productLine); ?>
+                                <li>
+                                    <a href="/products/<?php echo urlencode(strtolower($productLine->getBrand()->getName())); ?>/<?php echo urlencode(strtolower($productLine->getProductCategory()->getName())); ?>/<?php echo urlencode(strtolower($productLine->getName())); ?>">
+                                    <?php if (is_array($asset) && count($asset) > 0) { ?>
+                                        <img src="/admin/imagine/<?php echo $asset[0]->getAsset()->getHash(); ?>/209/142" alt="<?php echo $productLine->getDisplayName(); ?>" />
+                                    <?php } else { ?>
+                                        <img src="/assets/application/lundinternational/images/No_image_available-mid.jpg" />
+                                    <?php } ?>
+                                    </a>
+                                    <ul>
+                                        <li><a href="/products/<?php echo urlencode(strtolower($productLine->getBrand()->getName())); ?>/<?php echo urlencode(strtolower($productLine->getProductCategory()->getName())); ?>/<?php echo urlencode(strtolower($productLine->getName())); ?>"><?php echo $productLine->getDisplayName(); ?></a></li>
+                                        <li><a href="/products/<?php echo urlencode(strtolower($productLine->getBrand()->getName())); ?>/<?php echo urlencode(strtolower($productLine->getProductCategory()->getName())); ?>/<?php echo urlencode(strtolower($productLine->getName())); ?>">View</a></li>
+                                    </ul>
+                                    <ol class="star-rating small-star">
+                                        <?php
+                                            $productReviews = $this->productReviewService->getProductReviewsByProductLine($productLine);
+                                            if (null != $productReviews) {
+                                                $iterator = 0;
+                                                $rating   = 0;
+                                                $perc     = null;
+                                                $stars    = null;
+                                                foreach($productReviews as $review) {
+                                                    $iterator++;
+                                                    $rating = $rating+$review->getRating();
+                                                }
+                                                $possible = $iterator*5;
+                                                $perc = round(($rating / $possible) * 100);
+                                                $stars = round($rating / $iterator);
+                                            } else {
+                                                $perc  = 0;
+                                                $stars = 0;
+                                            }
+                                        ?>
+                                        <li id="current-rating" style="width:<?php echo $perc; ?>%;">Currently <?php echo $stars; ?>/5 Stars</li>
+                                    </ol>
+                                </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="right" style="float:right;margin:0 20px 10px 0;">
+                        <div class="holder"></div>
+                    </div>
+                    <section id="edit_vehicle" style="display:none;">
+                    <div class="module-a">
+                        <form method="POST" name="Vehicle_Search" id="vehiclesearch" action="<?php echo $this->serverUrl(true); ?>">
+                        <input type="hidden" name="searchquery" value="<?php echo $this->searchquery; ?>" />
+                        <input type="hidden" name="querytype" value="vehicle" />
+                        <input type="hidden" name="filterstatus" value="yes" />
+                        <select name="vehYear" id="vehYear">
+                            <option>Select Year</option>
+                            <?php foreach($this->years as $year) { ?>
+                            <option><?php echo $year->getName(); ?></option>
+                            <?php } ?>
+                        </select>
+                        <select name="vehMake" id="vehMake" disabled="disabled">
+                            <option>Select Make</option>
+                        </select>
+                        <select name="vehModel" id="vehModel" disabled="disabled">
+                            <option>Select Model</option>
+                        </select>
+                        <select name="vehSubmodel" id="vehSubmodel" disabled="disabled" style="display:none;">
+                            <option>Select Submodel</option>
+                        </select>
+                        <input class="dealedgesub" type="submit" name="search" value="Submit">
+                       </form>
+                    </div>
+                    </section>
+                    <script type="text/javascript" language="javascript">
+                        $(function() {
+                            $('#vehiclefilter').click(function(){
+                                var that = this;
+                                setTimeout(function(){
+                                    if ($(that).is(':checked')) {
+                                        $('#filterstatus').val('yes');
+                                        $('#vehiclefilterform').submit();
+                                    } else {
+                                        $('#filterstatus').val('no');
+                                        $('#vehiclefilterform').submit();
+                                    }
+                                });
+                            });
+                            var dialogOpts = {
+                                title: 'Edit My Vehicle',
+                                modal: true,
+                                autoOpen: true,
+                                height: 300,
+                                width: 300,
+                                dialogClass: 'add-vehicle'}
+
+                            $('#editvehicle').click(function(){
+                                $('#edit_vehicle').dialog(dialogOpts);
+                                return false;
+                            });
+                        });
+                    </script>

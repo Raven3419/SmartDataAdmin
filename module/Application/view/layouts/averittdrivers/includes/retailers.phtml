@@ -1,0 +1,138 @@
+                    <div class="colr">
+                        <?php if ($this->searchRetailer) { ?>
+                            <?php if (!is_array($this->retailers)) { ?>
+                        <div id="map">
+                            <h1 class="fgh" style="text-align:center">Sorry there are no retailers that matched your search</h1>
+                            <p class="fgb" style="text-align:center">Try a different postal code to the left and we'll will look again.</p>
+                        </div>
+                            <?php } else { ?>
+                        <div id="map_canvas" style="border:1px solid #000; width:690px; height:568px;"></div>
+                        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4Cxv43Pqw3BseJYueS6vPX08dXO75Mx8&sensor=true"></script>
+                        <script type="text/javascript">
+                        var geocoder = new google.maps.Geocoder();
+                        var map;
+
+                        function geo(address, callback){
+                            geocoder.geocode({ 'address' : address },
+                            function (results, status) {
+                                if (status == google.maps.GeocoderStatus.OK) {
+                                    var storeLocation = results[0].geometry.location;
+                                    callback(storeLocation);
+                                }
+                            })
+                        }
+                        function initialize() {
+                            var lat = geo('<?php echo $this->layout()->rsPostCode; ?>', function (storeLocation) { 
+                                var myOptions = {
+                                    zoom: <?php echo $this->config['zoom']; ?>,
+                                    center: storeLocation,
+                                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                                }
+                                var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+                                <?php foreach ($this->retailers as $retailer) { ?>
+                                    <?php if ($retailer->getLatitude() && $retailer->getLongitude()) { ?>
+                                var image = '';   
+                                var latlng<?php echo $retailer->getRetailerId(); ?> = new google.maps.LatLng(<?php echo $retailer->getLatitude(); ?>,<?php echo $retailer->getLongitude(); ?>);
+                                var contentString<?php echo $retailer->getRetailerId(); ?> = '<div style="height:120px"><h4><?php echo addslashes($retailer->getCompanyName()); ?></h4><p><?php echo $retailer->getStreetAddress(); ?><br><?php echo $retailer->getLocality(); ?>, <?php echo $retailer->getRegion()->getSubdivisionName(); ?> <?php echo $retailer->getPostCode(); ?></p><p>Call: <?php echo $retailer->getPhoneNumber(); ?></p><p class="directions"><a href="http://maps.google.com/maps?f=d&source=s_d&saddr=&daddr=<?php echo strtolower($retailer->getStreetAddress()); ?>,+<?php echo strtolower($retailer->getLocality()); ?>,+<?php echo strtolower($retailer->getRegion()->getSubdivisionName()); ?>+<?php echo $retailer->getPostCode(); ?>" target="_blank">Get Directions</a></p>';
+                                <?php if (preg_match("/reilly auto parts/",strtolower($retailer->getCompanyName()))) { ?>
+                                var image = '/assets/application/lundinternational/images/mark_oreily.png';
+                                <?php } else if (preg_match("/autozone/",strtolower($retailer->getCompanyName()))) { ?>
+                                var image = '/assets/application/lundinternational/images/mark_autozone.png';
+                                <?php } else if (preg_match("/pep boys/",strtolower($retailer->getCompanyName()))) { ?>
+                                var image = '/assets/application/lundinternational/images/mark_pepboys.png';
+                                <?php } else if (preg_match("/napa/",strtolower($retailer->getCompanyName()))) { ?>
+                                var image = '/assets/application/lundinternational/images/mark_napa.png';
+                                <?php } ?>
+                                
+                                if (image.length > 0) {
+                                    var icon = new google.maps.MarkerImage(image,new google.maps.Size(35, 33), new google.maps.Point(0,0), new google.maps.Point(4,33));
+                                    var marker<?php echo $retailer->getRetailerId(); ?> = new google.maps.Marker({
+                                        position: latlng<?php echo $retailer->getRetailerId(); ?>,
+                                        map: map,
+                                        title:"<?php echo $retailer->getCompanyName(); ?>",
+                                        icon: icon
+                                    });
+                                } else {
+                                    var marker<?php echo $retailer->getRetailerId(); ?> = new google.maps.Marker({
+                                        position: latlng<?php echo $retailer->getRetailerId(); ?>,
+                                        map: map,
+                                        title:"<?php echo $retailer->getCompanyName(); ?>"
+                                    });
+                                }
+                                var infowindow = new google.maps.InfoWindow({
+                                    content: contentString<?php echo $retailer->getRetailerId(); ?>
+                                });
+                                google.maps.event.addListener(marker<?php echo $retailer->getRetailerId(); ?>, 'click', function() {
+                                    infowindow.setContent(contentString<?php echo $retailer->getRetailerId(); ?>);
+                                    infowindow.open(map,marker<?php echo $retailer->getRetailerId(); ?>);
+                                });
+                                $('#map<?php echo $retailer->getRetailerId(); ?>').click(function() {
+                                    infowindow.setContent(contentString<?php echo $retailer->getRetailerId(); ?>);
+                                    infowindow.open(map,marker<?php echo $retailer->getRetailerId(); ?>);
+                                });
+                                <?php } ?>
+                                <?php } ?>
+                            });
+                        }
+                        $(function() {
+                            initialize();
+                        });
+                        </script>
+                            <?php } ?>
+                        <?php } else { ?>
+                        <img class="image-header" alt="AVS-Lund-sold-at-retail-locations-national-brands" src="/assets/application/lundinternational/images/retailerheaderimage.jpg" />
+                        <h1 class="title">Retailers</h1>
+                        <p>Congratulations! You're ever so close to finding the AVS or LUND product that's right for your truck, SUV, CUV, van or passenger car. Our AVS and LUND products are sold through over 28,000 retailers throughout North America including national retailers, regional and, even, local retailers.</p>
+                        <p>The retailers in our database carry a variety of AVS and LUND products. If they don't have the specific product for your vehicle in-store, they can easily order it for you to make sure you have the right accessory and perfect fit for your vehicle and lifestyle.</p>
+                        <div class="module-e">
+                            <h1 class="title">Featured National Retailers</h1>
+                            <p>To view online promotions or to order direct from our retail partners' websites, please click the logos below.<br><br>
+                                <img src="/assets/application/lundinternational/images/retailers_discount_dark.png"> = In-store promotional offer
+                            </p>
+                            <ul class="list-logos featured-retailers">
+                                <li><a href="http://shop.advanceautoparts.com/webapp/wcs/stores/servlet/PartSearchCmd?storeId=10151&catalogId=10051&langId=-1&pageId=partTypeList&suggestion=&actionSrc=Form&searchTerm=lund&searchedFrom=header" target="_blank"><img style="padding: 8px 0 34px 0;" src="/assets/application/lundinternational/images/advanceauto.png" /></a></li>
+                                <!--<li><a class="discount" href="http://shop.advanceautoparts.com/webapp/wcs/stores/servlet/PartSearchCmd?storeId=10151&catalogId=10051&langId=-1&pageId=partTypeList&suggestion=&actionSrc=Form&searchTerm=lund&searchedFrom=header" target="_blank"><img style="padding: 8px 0 34px 0;" src="/assets/application/lundinternational/images/advanceauto.png" /></a>
+                                    <div style="display:none">
+                                        <div class="inline_discount">
+                                            <h3>(NAME OF PROMO)</h3>
+                                            <p style="margin-top: 15px;"><a href="#" target="_blank"><img src="/assets/application/lundinternational/images/No_image_available-large.jpg" /></a></p>
+                                        </div>
+                                    </div>
+                                </li>-->
+                                <li><a href="http://www.autozone.com/autozone/storelocator/storeLocatorMain.jsp" target="_blank"><img style="padding: 12px 0 38px 0;height:23px;" src="/assets/application/lundinternational/images/autozone.png" /></a></li>
+                                <li><a href="http://www.napaonline.com/Catalog/Result.aspx?Ntt%3dlund%26Ntk%3dKeyword%26Nty%3d1%26Dn%3d0%26D%3dlund%26Dk%3d1%26Dp%3d3%26N%3d0" target="_blank"><img style="padding: 4px 0 31px 0;" src="/assets/application/lundinternational/images/napa.png" /></a></li>
+                                <li><a href="http://www.oreillyauto.com/site/fi/storelocator.oap" target="_blank"><img style="padding: 10px 0 35px 0;" src="/assets/application/lundinternational/images/oreily.png" /></a></li>
+                                <li><a href="http://www.pepboys.com/accessories/exterior_accessories/" target="_blank"><img style="padding: 3px 0 20px 0;" src="/assets/application/lundinternational/images/pepboys0730.png" /></a></li>
+                            </ul>
+                        </div>
+                         <script>
+                            $(document).ready(function() {
+                                $('.module-e .list-logos a.discount').each(function(){
+                                    $(this).after('<div class="discount_img"><img src="/assets/application/lundinternational/images/retailers_discount.png" alt="Discounted Retailer"/></div>');
+                                    $('.discount_img').hover(function(){
+                                        $(this).find('img').attr('src','/assets/application/lundinternational/images/retailers_discount_dark.png');
+                                    },function(){
+                                        $(this).find('img').attr('src','/assets/application/lundinternational/images/retailers_discount.png');
+                                    });
+                                });
+                                $('.discount_img').on('click', function(e){
+                                    e.preventDefault();
+                                    var popContent = $(this).next().find('.inline_discount');
+                                    $.colorbox({inline:true, href:popContent, width:'auto'});
+                                });
+                            });
+                            </script>
+                        <br>
+                        <h1 class="title">Regional and Local Retailers</h1>
+                        <p>There are hundreds of retailers in our database. We encourage you to use our "Find a Retailer" tool to locate one of the over 28,000 retailers who proudly carry AVS and LUND products. Wherever you are - chances are we have a retailer carrying our products within driving distance.</p>
+                        <?php if ($this->testimonials) { ?>
+                        <h1 class="title">What Our Customers Are Saying...</h1>
+                        <ul class="testimonials">
+                            <?php foreach ($this->testimonials as $testimonial) { ?>
+                            <li><img alt="quote" src="/assets/application/lundinternational/images/quote.png"><?php echo $testimonial->getContent(); ?><img alt="quote" src="/assets/application/lundinternational/images/quot_right.png"></li>
+                            <?php } ?>
+                        </ul>
+                        <?php } ?>
+                        <div class="clear"></div>
+                        <?php } ?>
+                    </div>

@@ -1,0 +1,12 @@
+                <nav class="bottomnav">
+                    <ul>
+                    <?php
+                        $menu = $this->menuService->getMenuByShortCode($this->site, 'footer-menu');
+                        $elements = $this->menuElementService->getActiveMenuElements($menu);
+
+                        foreach ($elements as $element) {
+                    ?>
+                        <li><a href="<?php echo $element->getUrl(); ?>"<?php echo ($element->getAction() == 'external' ? ' target="_blank"' : ''); ?>><?php echo $element->getTitle(); ?></a></li>
+                    <?php } ?>
+                    </ul>
+                </nav>

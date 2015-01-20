@@ -1,0 +1,618 @@
+                    <script type="text/javascript" src="/assets/application/lundinternational/js/jquery.pages.js"></script>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('#custreviewstab').on('click', function() {
+                                setTimeout(function() {
+                                    $("div.holder").jPages({
+                                        containerID : "paginatedcontent",
+                                        perPage: 5
+                                    });
+                                }, 50);
+                            });
+                        });
+                    </script>
+                    <div class="colr">
+                        <div class="module-b">
+                            <h1>
+                                <?php echo strtoupper($this->productLine->getBrand()->getLabel()) . ' ' . $this->productLine->getDisplayName(); ?>
+                                <ol class="star-rating small-star">
+                                    <?php 
+                                        if ($this->productReviews) {
+                                            $iterator = 0;
+                                            $rating   = 0;
+                                            $perc     = null;
+                                            $stars    = null;
+                                            foreach($productReviews as $review) {
+                                                $iterator++;
+                                                $rating = $rating+$review->getRating();
+                                            }
+                                            $possible = $iterator*5;
+                                            $perc = round(($rating / $possible) * 100);
+                                            $stars = round($rating / $iterator);
+                                        } else {
+                                            $perc  = 0;
+                                            $stars = 0;
+                                        }
+                                    ?>
+                                    <li id="current-rating" style="width:<?php echo $perc; ?>%;">Currently <?php echo $stars; ?>/5 Stars</li>
+                                </ol>
+                            </h1>
+                            <div class="clear"></div>
+                            <ul class="product-top">
+                                <li>
+                                    <?php if (is_array($this->productLineAssets) && count($this->productLineAssets) > 0) { ?>
+                                    <img src="/admin/imagine/<?php echo $this->productLineAssets[0]->getAsset()->getHash(); ?>/358/238" id="list-product-main" class="image-outline" />
+                                    <?php } else { ?>
+                                    <img src="/assets/application/lundinternational/images/No_image_available-large.jpg" id="list-product-main" class="image-outline" />
+                                    <?php } ?>
+                                </li>
+                                <li>
+                                    <div class="product-select">
+                                        <?php if ($this->universal) { ?>
+                                        <div class="module-a partlist">
+                                            <h1 style="padding-bottom:163px;">This product fits all vehicles.</h1>
+                                        </div>
+                                        <?php } else if ($this->globalQuery) { ?>
+                                        <div class="module-a partlist">
+                                            <h1>PART #<?php echo $this->queryPart->getPartNumber(); ?></h1>
+                                            <p><strong>This part is guaranteed to fit:</strong></p>
+                                            <?php foreach ($this->vehicles as $vehicle) { ?>
+                                            <div class="clear"></div>
+                                            <p class="partlistveh"><?php echo $vehicle['fromYear']; ?>-<?php echo $vehicle['toYear']; ?> <?php echo $vehicle['make']; ?><?php echo (isset($vehicle['model']) ? ' ' . $vehicle['model'] : ''); ?><?php echo (isset($vehicle['submodel']) ? ' ' . $vehicle['submodel'] : ''); ?><?php echo (isset($vehicle['subdetail']) ? ' <em>' . $vehicle['subdetail'] . '</em>' : ''); ?></p>
+                                            <?php } ?>
+                                            <p><a class="btn-red" href="/where-to-buy">Where to Buy</a></p>
+                                        </div>
+                                        <?php } else { ?>
+                                            <?php if ($this->vehicle) { ?>
+                                        <div id="displayvehicle" class="module-a">
+                                            <h1>YOUR CURRENT VEHICLE</h1>
+                                            <hr />
+                                            <p>
+                                                <strong>Year:</strong> <?php echo $this->vehicle[0]->getVehYear()->getName(); ?><br />
+                                                <strong>Make:</strong> <?php echo $this->vehicle[0]->getVehMake()->getName(); ?><br />
+                                                <strong>Model:</strong> <?php echo $this->vehicle[0]->getVehModel()->getName(); ?><br />
+                                                <?php if (count($this->vehicle) == 1 && $this->vehicle[0]->getVehSubmodel()) { ?>
+                                                <strong>Sub-Model:</strong> <?php echo $this->vehicle[0]->getVehSubmodel()->getName(); ?><br />
+                                                <?php } ?>
+                                            </p>
+                                            <p><a id="changevehiclebtn" class="btn-red" href="javascript:;">Change Your Vehicle</a></p>
+                                        </div>
+                                        <div id="changevehicle" class="module-a" style="display:none;">
+                                            <h1 class="product">CHANGE YOUR VEHICLE</h1>
+                                            <hr />
+                                            <form method="POST" name="Vehicle_Selector" id="vehiclesearch" action="<?php echo $this->serverUrl(true); ?>">
+                                            <input type="hidden" name="searchquery" value="<?php echo $this->searchquery; ?>" />
+                                            <input type="hidden" name="querytype" value="vehicle" />
+                                            <input type="hidden" name="filterstatus" value="yes" />
+                                            <select name="vehYear" id="vehYear">
+                                                <option>Select Year</option>
+                                                <?php foreach($this->years as $year) { ?>
+                                                <option><?php echo $year->getName(); ?></option>
+                                                <?php } ?>
+                                            </select>
+                                            <select name="vehMake" id="vehMake" disabled="disabled">
+                                                <option>Select Make</option>
+                                            </select>
+                                            <select name="vehModel" id="vehModel" disabled="disabled">
+                                                <option>Select Model</option>
+                                            </select>
+                                            <select name="vehSubmodel" id="vehSubmodel" disabled="disabled" style="display:none;">
+                                                <option>Select All Submodels</option>
+                                            </select>
+                                            <input class="dealedgesub" type="submit" name="search" value="Submit">
+                                            </form> 
+                                        </div>
+                                            <?php } else { ?>
+                                        <div id="selectvehicle" class="module-a">
+                                            <h1 class="product">SELECT YOUR VEHICLE TO VIEW PRODUCTS</h1>
+                                            <hr />
+                                            <form method="POST" name="Vehicle_Selector" id="vehiclesearch" action="<?php echo $this->serverUrl(true); ?>">
+                                            <input type="hidden" name="searchquery" value="<?php echo $this->searchquery; ?>" />
+                                            <input type="hidden" name="querytype" value="vehicle" />
+                                            <input type="hidden" name="filterstatus" value="yes" />
+                                            <select name="vehYear" id="vehYear">
+                                                <option>Select Year</option>
+                                                <?php foreach($this->years as $year) { ?>
+                                                <option><?php echo $year->getName(); ?></option>
+                                                <?php } ?>
+                                            </select>
+                                            <select name="vehMake" id="vehMake" disabled="disabled">
+                                                <option>Select Make</option>
+                                            </select>
+                                            <select name="vehModel" id="vehModel" disabled="disabled">
+                                                <option>Select Model</option>
+                                            </select>
+                                            <select name="vehSubmodel" id="vehSubmodel" disabled="disabled" style="display:none;">
+                                                <option>Select All Submodels</option>
+                                            </select>
+                                            <input class="dealedgesub" type="submit" name="search" value="Submit">
+                                            </form>
+                                        </div>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="clear"></div>
+                            <ul class="list-product-thumbnails">
+                                <?php foreach ($this->productLineAssets as $asset) { ?>
+                                <li><a href="/admin/imagine/<?php echo $asset->getAsset()->getHash(); ?>/358/238" alt="<?php echo $asset->getAsset()->getLabel(); ?>" /><img src="/admin/imagine/<?php echo $asset->getAsset()->getHash(); ?>/75/75" /></a></li>
+                                <?php } ?>
+                            </ul>
+                            <div class="clear"></div>
+                            <ul class="social">
+                                <div class="addthis_toolbox addthis_default_style ">
+                                    <a class="addthis_button_preferred_1"><img alt="Facebook" src="/assets/application/lundinternational/images/facebook.png" /></a>
+                                    <a class="addthis_button_preferred_2"><img alt="Twitter" src="/assets/application/lundinternational/images/twitter.png"></a>
+                                    <a class="addthis_button_pinterest"><img alt="Pinterest" src="/assets/application/lundinternational/images/pinterest.png"></a>
+                                </div>
+                                <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ff7134a3fc75ce1"></script>
+                            </ul>
+                            <div class="clear"></div>
+                            <?php if (($this->vehicle && $this->filtervehicle == 'yes' && !$this->globalQuery) || $this->universal) { ?>
+                            <div class="parts">
+                                <?php if ($this->universal) { ?>
+                                <h3 class="fgd smaller"><?php echo $this->productLine->getDisplayName(); ?> - Available Parts</h3>
+                                <?php } else { ?>
+                                <h3 class="fgd">Parts made for your <?php echo $this->vehicle[0]->getVehYear()->getName(); ?> <?php echo $this->vehicle[0]->getVehMake()->getName(); ?> <?php echo $this->vehicle[0]->getVehModel()->getName(); ?><?php echo ((count($this->vehicle) == 1 &&$this->vehicle[0]->getVehSubmodel()) ? ' ' . $this->vehicle[0]->getVehSubmodel()->getName() : ''); ?></h3>
+                                <?php } ?>
+                                <?php if ($this->parts) { ?>
+                                    <?php foreach ($this->parts as $part) { ?>
+                                        <?php 
+                                        if (method_exists($part, 'getPart')) { 
+                                            $subDetail = $part->getSubDetail();
+                                            //$bodyType = $part->getVehCollection()->getBodyType();
+                                            $bodyType = null;
+                                            if ($part->getVehCollection()->getVehSubmodel()) {
+                                                $subModel = $part->getVehCollection()->getVehSubmodel()->getName();
+                                            } else {
+                                                $subModel = null;
+                                            }
+                                            $thePart = $part->getPart();
+                                        } else {
+                                            $subDetail = null;
+                                            $bodyType = null;
+                                            $subModel = null;
+                                            $thePart = $part;
+                                        }
+                                        ?>
+                                <ul>
+                                    <li>
+                                        <?php if ($thePart->getPartAsset()) { ?>
+                                            <?php
+                                                $iterator = 1;
+                                                $assetArray = array();
+                                                foreach ($thePart->getPartAsset() as $partAsset) {
+                                                    if ($partAsset->getPicType() == 'P04') {
+                                                        $assetArray[0] = $partAsset;
+                                                    } else {
+                                                        $assetArray[$iterator] = $partAsset;
+                                                    }
+                                                    $iterator++;
+                                                }
+                                                ksort($assetArray);
+                                            ?>
+                                            <?php $newIterator = 0; ?>
+                                            <?php foreach ($assetArray as $asset) { ?>
+                                                <?php if ($newIterator == 0) { ?>
+                                        <img class="imgdialog" src="/admin/imagine/<?php echo $asset->getAsset()->getHash(); ?>/143/95" />
+                                        <div class="addl_views">
+                                            <img id="zoom" src="/admin/imagine/<?php echo $asset->getAsset()->getHash(); ?>/500/500" />
+                                            <p id="thumbs">
+                                                <?php } ?>
+                                                <img class="addlminiimg" src="/admin/imagine/<?php echo $asset->getAsset()->getHash(); ?>/75/75" />
+                                                <?php $newIterator++; ?>
+                                            <?php } ?>
+                                            <?php if (count($assetArray) > 0) { ?>
+                                            </p>
+                                        </div>
+                                            <?php } else {  ?>
+                                        <img src="/assets/application/lundinternational/images/No_image_available.jpg" width="143" height="95"  />
+                                            <?php } ?>
+                                        <?php } else { ?>
+                                        <img src="/assets/application/lundinternational/images/No_image_available.jpg" width="143" height="95" />
+                                        <?php } ?>
+                                        <div class="details">
+                                            <p class="txt-detail"><?php echo ($thePart->getDetail() ? $thePart->getDetail() . '<br>' : ucwords(strtolower($thePart->getColor())) . '<br>'); ?>Part #<?php echo $thePart->getPartNumber(); ?></p>
+                                            <?php
+                                                $fits = '';
+                                                if ($thePart->getUniversal()) {
+                                                    $fits .= ($subDetail ? $subDetail . '; ' : '');
+                                                    $fits .= (($thePart->getDima() > '0.00') ? $thePart->getDima() . 'in X ' : '');
+                                                    $fits .= (($thePart->getDimb() > '0.00') ? $thePart->getDimb() . 'in X ' : '');
+                                                    $fits .= (($thePart->getDimc() > '0.00') ? $thePart->getDimc() . 'in X ' : '');
+                                                    $fits .= (($thePart->getDimd() > '0.00') ? $thePart->getDimd() . 'in X ' : '');
+                                                    $fits .= (($thePart->getDime() > '0.00') ? $thePart->getDime() . 'in X ' : '');
+                                                    $fits .= (($thePart->getDimf() > '0.00') ? $thePart->getDimf() . 'in X ' : '');
+                                                    $fits .= (($thePart->getDimg() > '0.00') ? $thePart->getDimg() . 'in X ' : '');
+                                                    if (substr($fits, -2) == 'X ') {
+                                                        $fits = substr($fits, 0, -2);
+                                                    }
+                                                    //$fits .= 'Universal Fit';
+                                                } else {
+                                                    if (null != $subModel) {
+                                                        $fits .= $subModel;
+                                                        $fits .= ($subDetail ? '; ' . $subDetail : '');
+                                                        $fits .= ($bodyType ? '; ' . $bodyType : '');
+                                                    } else {
+                                                        if (null != $subDetail) {
+                                                            $fits .= $subDetail;
+                                                        } else {
+                                                            $fits .= $bodyType;
+                                                        }
+                                                    }
+                                                    if ($fits == '') {
+                                                        $fits = 'ALL';
+                                                    }
+                                                }
+                                            ?>
+                                                <p class="txt">Fits: <?php echo $fits; ?></p>
+                                            <?php if ($this->productLine->getSaleable()) { ?>
+                                            <a class="btn-red" href="/cart/add/<?php echo $thePart->getPartId(); ?>">Add to Cart</a>
+                                           <?php } else { ?>
+                                            <a class="btn-red" href="/where-to-buy">Where to Buy</a>
+                                            <?php } ?>
+                                        </div>
+                                    </li>
+                                </ul>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                <p><strong>There were no parts found for your vehicle.</strong></p>
+                                <?php } ?>
+                            </div>
+                            <?php } ?>
+                            <p>
+                            <ul class="tabs">
+                                <li><a href="#tab1">Product Overview</a></li>
+                                <li><a href="#tab2">Features</a></li>
+                                <li><a id="custreviewstab" href="#tab3">Customer Reviews</a></li>
+                                <li><a href="#tab4">Installation Guide</a></li>
+                            </ul>
+                            <div id="tab1" class="tab-text"><?php echo $this->productLine->getOverview(); ?></div>
+                            <div id="tab2" class="tab-text">
+                                <?php if ($this->productLineFeatures) { ?>
+                                <ul>
+                                    <?php foreach ($this->productLineFeatures as $feature) { ?>
+                                    <li><?php echo $feature->getFeatureCopy(); ?></li>
+                                    <?php } ?>
+                                </ul>
+                                <?php } ?>
+                            </div>  
+                            <div id="tab3" class="tab-text">
+                                <h4 class="review-top">
+                                    <div class="alignleft">
+                                        <ol class="star-rating-reviews small-star" >
+                                            <li id="current-rating" style="width:<?php echo $perc; ?>%;">Currently <?php echo $stars; ?>/5 Stars</li>
+                                        </ol>
+                                        <span>Average of <?php echo count($this->productReviews); ?> customer reviews</span>
+                                    </div>
+                                    <div class="alignright">
+                                    <div id="reviewloginlink"<?php echo ($this->identity() ? ' style="display:none;"' : ''); ?>>
+                                            <a class="red" id="loginreviewbtn" href="javascript:;">Login to add your Review</a>
+                                        </div>
+                                        <div id="reviewhellolink"<?php echo (!$this->identity() ? ' style="display:none;"' : ''); ?>>
+                                            <p>Welcome, <span id="reviewername"><?php echo ($this->identity() ? $this->identity()->getFirstName() : 'Guest'); ?></span>. <a class="red" id="loggedinreviewbtn" href="javascript:;">Submit your Review</a></p>
+                                        </div>
+                                        <div class="holder"></div>
+                                    </div>
+                                </h4>
+                                <div class="review">
+                                <?php if (is_array($this->productReviews) && count($this->productReviews) > 0) { ?>
+                                    <ul id="paginatedcontent">
+                                    <?php foreach($this->productReviews as $review) { ?>
+                                        <li>
+                                            <ol class="star-rating-reviews small-star">
+                                                <?php
+                                                    if ($review->getRating() > 0) {
+                                                        $singlePerc = round(($review->getRating() / 1) * 100);
+                                                        $singleStars = $review->getRating();
+                                                    } else {
+                                                        $singlePerc = 0;
+                                                        $singleStars = 0;
+                                                    }
+                                                ?>
+                                                <li id="current-rating" style="width:<?php echo $singlePerc; ?>%;">Currently <?php echo $singleStars; ?>/5 Stars</li>
+                                            </ol>
+                                            <ol>
+                                                <li>
+                                                    <div class="byline reviewer vcard">
+                                                        <h4>By <span class="fn"><?php echo ($review->getUser()->getUserId() == 6 ? 'website member' : ucwords(strtolower($review->getUser()->getFirstName())) . ' ' . ucwords(strtolower($review->getUser()->getLastName()))); ?></span>, <span class="dtreviewed"><?php echo $review->getCreatedAt()->format('F j, Y'); ?></span></h4>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="review_text description">
+                                                        <?php echo $review->getReview(); ?>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    <?php } ?>
+                                    </ul>
+                                <?php } else { ?>
+                                    <p>Be the first to review the <?php echo $this->productLine->getDisplayName(); ?></p>
+                                <?php } ?>
+                                </div>
+                            </div>
+                            <div id="tab4" class="tab-text">
+                                <?php if ($this->productLine->getInstallationVideo()) { ?>
+                                <p>This installation video will help you get started!</p>
+                                <a class="youtube" href="http://www.youtube.com/embed/<?php echo $this->productLine->getInstallationVideo(); ?>">
+                                    <img src="http://img.youtube.com/vi/<?php echo $this->productLine->getInstallationVideo(); ?>/0.jpg" width="294" height="200" />
+                                </a>
+                                <hr />
+                                <p>For proper installation and best possible fit, please read all instructions BEFORE you begin.</p>
+                                <?php 
+                                    if (is_array($this->parts) && count($this->parts) > 0) { 
+                                        $isheet = null;
+                                        foreach($this->parts as $part) {
+                                            if (method_exists($part, 'getPart')) {
+                                                $thePart = $part->getPart();
+                                            } else {
+                                                $thePart = $part;
+                                            }
+                                            if ($thePart->getIsheet()) {
+                                                if (is_file('assets/library/products/isheets/' . $thePart->getIsheet() . '.pdf')) {
+                                ?>
+                                <p>Download the PDF to get started.</p>
+                                <p><a href="/assets/library/products/isheets/<?php echo $thePart->getIsheet(); ?>.pdf" class="btn btn-download" target="_blank" style="float:left; clear:left;"><span>Download Installation Guide</span></a><img src="/assets/application/lundinternational/images/pdficon_large.png" border="0" /></p>
+                                <?php
+                                                    break;
+                                                }
+                                            } 
+                                        }
+                                    }
+                                ?>
+                                <p>For technical assistance or to obtain missing parts, please call<br>
+                                Customer Relations at <strong>1-800-241-7219</strong>.</p>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+<?php
+$loginForm = $this->loginForm;
+$loginForm->setAttributes(array(
+    'action' => '/login',
+    'method' => 'POST',
+))->prepare();
+$loginFieldset = $loginForm->getBaseFieldset();
+$loginErrors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+$registerForm = $this->registerForm;
+$registerForm->setAttributes(array(
+    'action' => '/register',
+    'method' => 'POST',
+))->prepare();
+$registerFieldset = $registerForm->getBaseFieldset();
+$registerErrors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+$reviewForm = $this->reviewForm;
+$reviewForm->setAttributes(array(
+    'action' => '/review',
+    'method' => 'post',
+))->prepare();
+$reviewFieldset = $reviewForm->getBaseFieldset();
+$reviewErrors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+<style>
+.ui-widget input, .ui-widget button{font-size:11px;font-family:"Eurostile","Helvetica Neue",Helvetica,Arial,sans-serif;}
+#login-form input{width:45%;}
+#create-user-form input[type="submit"]{margin:30px 0 0 0; padding: 0 10px 0 10px;width:100px;}
+#login-form input[type="submit"]{margin:30px 0 0 0; padding: 0 10px 0 10px;}
+#create-user-form .formcolumn:first-of-type {margin-right: 2%;}
+#create-user-form .formcolumn {float:left;width:49%;}
+.ui-widget textarea { font-size:11px;font-family:"Eurostile","Helvetica Neue",Helvetica,Arial,sans-serif; width:300px;}
+#product-review-form input[type="submit"]{margin:30px 0 0 0; padding: 0 10px 0 10px;}
+</style>
+                    <section id="login_review" style="display:none;width:515px;">
+                        <div id="authforms" class="module-b">
+                            <ul class="tabs">
+                                <li><a href="#tab5">Login</a></li>
+                                <li><a href="#tab6">Register Account</a></li>
+                            </ul>
+                            <div id="tab5" class="tab-text" style="width:435px;">
+                                <h2 class="login">Please sign in to continue</h2>
+                                <p style="display:none;color:#ff0000;">Error: Invalid credentials</p>
+                                <?php echo $this->form()->openTag($loginForm); ?>
+                                <input type="hidden" name="login-fieldset[rememberme]" value="1" />
+                                <input type="hidden" name="nofollow" value="1" />
+                                <?php $username = $loginFieldset->get('username'); ?>
+                                <label><?php echo $username->getLabel(); ?></label>
+                                <?php echo $this->formElement($username); ?>
+                                <?php $password = $loginFieldset->get('password'); ?>
+                                <label><?php echo $password->getLabel(); ?></label>
+                                <?php echo $this->formElement($password); ?>
+                                <div class="clear"></div>
+                                <input id="loginsubmitbtn" type="submit" name="login" value="Login">
+                                <?php echo $this->form()->closeTag($loginForm); ?>
+                            </div>
+                            <div id="tab6" class="tab-text" style="width:435px;">
+                                <h2 class="login">Please create an account to continue</h2>
+                                <p id="registererror" style="display:none;"></p>
+                                <?php echo $this->form()->openTag($registerForm); ?>
+                                <input type="hidden" name="user-fieldset[disabled]" value="0" />
+                                <input type="hidden" name="user-fieldset[role]" value="5" />
+                                <input type="hidden" name="user-fieldset[username]" value="" />
+                                <div class="formcolumn">
+                                    <?php $emailAddress = $registerFieldset->get('emailAddress'); ?>
+                                    <label><?php echo $emailAddress->getLabel() ?> / Username</label>
+                                    <?php echo $this->formElement($emailAddress); ?>
+                                    <?php $password = $registerFieldset->get('password'); ?>
+                                    <label><?php echo $password->getLabel(); ?></label>
+                                    <?php echo $this->formElement($password); ?>
+                                    <?php $passwordVerification = $registerFieldset->get('passwordVerification'); ?>
+                                    <label><?php echo $passwordVerification->getLabel() ?></label>
+                                    <?php echo $this->formElement($passwordVerification); ?>
+                                    <?php $firstName = $registerFieldset->get('firstName'); ?>
+                                    <label><?php echo $firstName->getLabel() ?></label>
+                                    <?php echo $this->formElement($firstName); ?>
+                                    <?php $lastName = $registerFieldset->get('lastName'); ?>
+                                    <label><?php echo $lastName->getLabel() ?></label>
+                                    <?php echo $this->formElement($lastName); ?>
+                                </div>
+                                <div class="formcolumn">                                
+                                    <?php $streetAddress = $registerFieldset->get('streetAddress'); ?>
+                                    <label><?php echo $streetAddress->getLabel() ?></label>
+                                    <?php echo $this->formElement($streetAddress); ?>
+                                    <?php $locality = $registerFieldset->get('locality'); ?>
+                                    <label>City</label>
+                                    <?php echo $this->formElement($locality); ?>
+                                    <?php $region = $registerFieldset->get('region'); ?>
+                                    <label>State</label>
+                                    <?php echo $this->formElement($region); ?>
+                                    <?php $postCode = $registerFieldset->get('postCode'); ?>
+                                    <label><?php echo $postCode->getLabel() ?></label>
+                                    <?php echo $this->formElement($postCode); ?>
+                                    <?php $country = $registerFieldset->get('country'); ?>
+                                    <label><?php echo $country->getLabel() ?></label>
+                                    <?php echo $this->formElement($country); ?>
+                                </div>
+                                <div class="clear"></div>
+                                <input id="registersubmitbtn" type="submit" name="register" value="Register">
+                                <?php echo $this->form()->closeTag($registerForm); ?>
+                            </div>
+                        </div>
+                        <div id="reviewform" class="module-b" style="display:none;">
+                            <div class="tab-text" style="width:435px;">
+                                <h2 class="login">Please submit your customer review</h2>
+                                <h2 class="login"><?php echo $this->productLine->getDisplayName(); ?></h2>
+                                <p id="reviewerror" style="margin-top: 30px;display:none;"></p>
+                                <?php echo $this->form()->openTag($reviewForm); ?>
+                                <input type="hidden" name="product-review-fieldset[productLines]" value="<?php echo $this->productLine->getProductLineId(); ?>" />
+                                <input type="hidden" id="revieweruserid" name="product-review-fieldset[user]" value="<?php echo ($this->identity() ? $this->identity()->getUserId() : ''); ?>" />
+                                <?php echo $this->formElement($reviewForm->get('secret')); ?>
+                                <input type="hidden" name="product-review-fieldset[disabled]" value="1" />
+                                <?php $rating = $reviewFieldset->get('rating'); ?>
+                                <label><?php echo $rating->getLabel(); ?></label>
+                                <?php echo $this->formElement($rating); ?>
+                                <?php $review = $reviewFieldset->get('review'); ?>
+                                <label><?php echo $review->getLabel(); ?></label>
+                                <?php echo $this->formElement($review); ?>
+                                <div class="clear"></div>
+                                <input id="reviewsubmitbtn" type="submit" name="submit" value="Submit">
+                                <?php echo $this->form()->closeTag($reviewForm); ?>
+                            </div> 
+                        </div>
+                    </section>
+                    <script type="text/javascript" language="javascript">
+                        $(function() {
+                            $('#changevehiclebtn').click(function() {
+                                $('#displayvehicle').hide();
+                                $('#changevehicle').show();
+                            });
+                            $('.imgdialog').click(function() {
+                                var html = '';
+                                if($(this).next(".addl_views").length) {
+                                    html = $(this).next().html();
+                                } else {
+                                    var image = ($this).attr('src').slice(0,-5)+"500/500";
+                                    html ='<img id="zoom" src="'+image+'" />';
+                                }
+                                $dialog.dialog('open').html(html);
+                                return false;
+                            });
+                            var $dialog = $('<div></div>')
+                            .dialog({
+                                autoOpen: false,
+                                modal: true,
+                                width: 540,
+                                height: 660,
+                                title: '<?php echo $this->productLine->getDisplayName(); ?>'
+                            });
+                            $('.ui-dialog').on('click', '.addlminiimg', function(){
+                                var addlimage = $(this).attr('src').slice(0,-5)+"500/500";
+                                $('.ui-dialog-content #zoom').attr('src',addlimage);
+                                return false;
+                            });
+                            var loginOpts = {
+                                title: 'Submit Your Review',
+                                modal: true,
+                                autoOpen: true,
+                                draggable: false,
+                                width: 540,
+                                height: 590
+                            }
+                            $('#loginreviewbtn').on('click', function(){
+                                $('#login_review').dialog(loginOpts);
+                                return false;
+                            });
+                            $('#loginsubmitbtn').on('click', function(e){
+                                e.preventDefault();
+
+                                $.ajax({
+                                    url: '/login',
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: $('#login-form').serialize(),
+                                    success: function(res){
+                                        if (res.error) {
+                                          $('#authformerror').show();
+                                        } else {
+                                          $('#authforms').hide();
+                                          $('#reviewloginlink').hide();
+                                          $('#reviewform').show();
+                                          $('#reviewhellolink').show();
+                                          $('#reviewername').html(res.data.firstName);
+                                          $('#revieweruserid').val(res.data.userId);
+                                        }
+                                    }
+                                });
+                            });
+                            $('#loggedinreviewbtn').on('click', function(){
+                                $('#authforms').hide();
+                                $('#reviewform').show();
+                                $('#login_review').dialog(loginOpts);
+                                return false;
+                            });
+                            $('#registersubmitbtn').on('click', function(e){
+                                e.preventDefault();
+                                $('input[name="user-fieldset[username]"]').val($('input[name="user-fieldset[emailAddress]"]').val());
+
+                                $.ajax({
+                                    url: '/products/register',
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: $('#create-user-form').serialize(),
+                                    success: function(res){
+                                        if (res.data.error) {
+                                            $('#registererror').html(res.data.error);
+                                        } else {
+                                            $('#authforms').hide();
+                                            $('#reviewloginlink').hide();
+                                            $('#reviewform').show();
+                                            $('#reviewhellolink').show();
+                                            $('#reviewername').html(res.data.firstName);
+                                            $('#revieweruserid').val(res.data.userId);
+                                        }
+                                    }
+                                });
+                            });
+                            $('#reviewsubmitbtn').on('click', function(e){
+                                e.preventDefault();
+
+                                $.ajax({
+                                    url: '/products/review',
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: $('#product-review-form').serialize(),
+                                    success: function(res){
+                                        if (res.data.error) {
+                                            $('#reviewerror').html(res.data.error);
+                                            $('#reviewerror').show();
+                                        } else {
+                                            $('#reviewerror').html('Thank you! You have successfully submitted your review.');
+                                            $('#reviewerror').show();
+                                            $('#product-review-form').hide();
+                                        }
+                                    }
+                                });
+                            });
+                        });
+                    </script>

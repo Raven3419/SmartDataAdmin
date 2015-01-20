@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="LundSite\Entity\ProductRegistration" table="product_registration">
+        <indexes>
+            <index name="emailAddress" columns="email_address"/>
+            <index name="deleted" columns="deleted"/>
+        </indexes>
+        <id name="productRegistrationId" column="product_registration_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="deleted" type="boolean" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+        <many-to-one field="site" target-entity="RocketCms\Entity\Site" fetch="EAGER">
+            <join-column name="site_id" referenced-column-name="site_id"/>
+        </many-to-one>
+        <field name="title" type="string" length="5" nullable="true"/>
+        <field name="firstName" column="first_name" type="string" length="255"/>
+        <field name="middleInitial" column="middle_initial" type="string" length="5"/>
+        <field name="lastName" column="last_name" type="string" length="255"/>
+        <field name="emailAddress" column="email_address" type="string" length="255"/>
+        <field name="streetAddress" column="street_address" type="string" length="255"/>
+        <field name="extStreetAddress" column="ext_street_address" type="string" length="255" nullable="true"/>
+        <field name="locality" type="string" length="255"/>
+        <many-to-one field="region" target-entity="RocketBase\Entity\State" fetch="EAGER">
+            <join-column name="state_id" referenced-column-name="state_id"/>
+        </many-to-one>
+        <field name="postCode" column="post_code" type="string" length="10"/>
+        <many-to-one field="country" target-entity="RocketBase\Entity\Country" fetch="EAGER">
+            <join-column name="country_id" referenced-column-name="country_id"/>
+        </many-to-one>
+        <field name="phoneNumber" column="phone_number" type="string" length="15" nullable="true"/>
+        <field name="birthDate" column="birth_date" type="date" nullable="true"/>
+        <field name="maritalStatus" column="maritalStatus" type="string" length="10" nullable="true"/>
+        <many-to-one field="productCategory" target-entity="LundProducts\Entity\ProductCategories" fetch="EAGER">
+            <join-column name="product_category_id" referenced-column-name="product_category_id"/>
+        </many-to-one>
+        <field name="upcCode" column="upc_code" type="string" length="255" nullable="true"/>
+        <many-to-one field="vehYear" target-entity="LundProducts\Entity\VehYear" fetch="EAGER">
+            <join-column name="veh_year_id" referenced-column-name="veh_year_id"/>
+        </many-to-one>
+        <many-to-one field="vehMake" target-entity="LundProducts\Entity\VehMake" fetch="EAGER">
+            <join-column name="veh_make_id" referenced-column-name="veh_make_id"/>
+        </many-to-one>
+        <many-to-one field="vehModel" target-entity="LundProducts\Entity\VehModel" fetch="EAGER">
+            <join-column name="veh_model_id" referenced-column-name="veh_model_id"/>
+        </many-to-one>
+        <many-to-one field="vehSubmodel" target-entity="LundProducts\Entity\VehSubmodel" fetch="EAGER">
+            <join-column name="veh_submodel_id" referenced-column-name="veh_submodel_id"/>
+        </many-to-one>
+        <field name="ownedLength" column="owned_length" type="string" length="255" nullable="true"/>
+        <field name="pricePaid" column="price_paid" type="string" length="255" nullable="true"/>
+        <field name="wherePurchased" column="where_purchased" type="string" length="255" nullable="true"/>
+        <field name="installer" type="string" length="255" nullable="true"/>
+        <field name="shopStore" column="shop_store" type="boolean" nullable="true"/>
+        <field name="shopOnline" column="shop_online" type="boolean" nullable="true"/>
+        <field name="shopCatalog" column="shop_catalog" type="boolean" nullable="true"/>
+        <field name="brandInMind" column="brand_in_mind" type="boolean" nullable="true"/>
+        <field name="brandPurchased" column="brand_purchased" type="boolean" nullable="true"/>
+        <field name="easeOfInstallation" column="ease_of_installation" type="string" length="10" nullable="true"/>
+        <field name="quality" type="string" length="10" nullable="true"/>
+        <field name="valueOfMoney" column="value_of_money" type="string" length="10" nullable="true"/>
+        <field name="overall" type="string" length="10" nullable="true"/>
+        <field name="infReputation" column="inf_reputation" type="boolean" nullable="true"/>
+        <field name="infEase" column="inf_ease" type="boolean" nullable="true"/>
+        <field name="infDealer" column="inf_dealer" type="boolean" nullable="true"/>
+        <field name="infRecommendation" column="inf_recommendation" type="boolean" nullable="true"/>
+        <field name="infFunctionality" column="inf_functionality" type="boolean" nullable="true"/>
+        <field name="infAvailability" column="inf_availability" type="boolean" nullable="true"/>
+        <field name="infPrice" column="inf_price" type="boolean" nullable="true"/>
+        <field name="infStyle" column="inf_style" type="boolean" nullable="true"/>
+        <field name="infQuality" column="inf_quality" type="boolean" nullable="true"/>
+        <field name="infWarranty" column="inf_warranty" type="boolean" nullable="true"/>
+        <field name="infOther" column="inf_other" type="boolean" nullable="true"/>
+        <field name="personOneGender" column="person_one_gender" type="string" length="50" nullable="true"/>
+        <field name="personOneAge" column="person_one_age" type="string" length="50" nullable="true"/>
+        <field name="personTwoGender" column="person_two_gender" type="string" length="50" nullable="true"/>
+        <field name="personTwoAge" column="person_two_age" type="string" length="50" nullable="true"/>
+        <field name="personThreeGender" column="person_three_gender" type="string" length="50" nullable="true"/>
+        <field name="personThreeAge" column="person_three_age" type="string" length="50" nullable="true"/>
+        <field name="personFourGender" column="person_four_gender" type="string" length="50" nullable="true"/>
+        <field name="personFourAge" column="person_four_age" type="string" length="50" nullable="true"/>
+        <field name="noneHousehold" column="none_household" type="boolean" nullable="true"/>
+        <field name="childUnderOne" column="child_under_one" type="boolean" nullable="true"/>
+        <field name="youOccupation" column="you_occupation" type="string" length="255" nullable="true"/>
+        <field name="spouseOccupation" column="spouse_occupation" type="string" length="255" nullable="true"/>
+        <field name="youHomemaker" column="you_homemaker" type="boolean" nullable="true"/>
+        <field name="spouseHomemaker" column="spouse_homemaker" type="boolean" nullable="true"/>
+        <field name="youRetired" column="you_retired" type="boolean" nullable="true"/>
+        <field name="spouseRetired" column="spouse_retired" type="boolean" nullable="true"/>
+        <field name="youStudent" column="you_student" type="boolean" nullable="true"/>
+        <field name="spouseStudent" column="spouse_student" type="boolean" nullable="true"/>
+        <field name="youOwner" column="you_owner" type="boolean" nullable="true"/>
+        <field name="spouseOwner" column="spouse_owner" type="boolean" nullable="true"/>
+        <field name="youHome" column="you_home" type="boolean" nullable="true"/>
+        <field name="spouseHome" column="spouse_home" type="boolean" nullable="true"/>
+        <field name="youMilitary" column="you_military" type="boolean" nullable="true"/>
+        <field name="spouseMilitary" column="spouse_military" type="boolean" nullable="true"/>
+        <field name="youVeteran" column="you_veteran" type="boolean" nullable="true"/>
+        <field name="spouseVeteran" column="spouse_veteran" type="boolean" nullable="true"/>
+        <field name="income" type="string" length="255" nullable="true"/>
+        <field name="education" type="string" length="255" nullable="true"/>
+        <field name="creditCards" column="credit_cards" type="string" length="255" nullable="true"/>
+        <field name="residence" type="string" length="255" nullable="true"/>
+        <field name="magazineSubscribed" column="magazine_subscribed" type="string" length="50" nullable="true"/>
+        <field name="magazinePurchased" column="magazine_purchased" type="string" length="50" nullable="true"/>
+        <field name="newWithin" column="new_within" type="string" length="50" nullable="true"/>
+        <field name="usedWithin" column="used_within" type="string" length="50" nullable="true"/>
+        <many-to-one field="recVehYear" target-entity="LundProducts\Entity\VehYear" fetch="EAGER">
+            <join-column name="rec_veh_year_id" referenced-column-name="veh_year_id"/>
+        </many-to-one>
+        <many-to-one field="recVehMake" target-entity="LundProducts\Entity\VehMake" fetch="EAGER">
+            <join-column name="rec_veh_make_id" referenced-column-name="veh_make_id"/>
+        </many-to-one>
+        <many-to-one field="recVehModel" target-entity="LundProducts\Entity\VehModel" fetch="EAGER">
+            <join-column name="rec_veh_model_id" referenced-column-name="veh_model_id"/>
+        </many-to-one>
+        <many-to-one field="recVehSubmodel" target-entity="LundProducts\Entity\VehSubmodel" fetch="EAGER">
+            <join-column name="rec_veh_submodel_id" referenced-column-name="veh_submodel_id"/>
+        </many-to-one>
+        <field name="purchaseType" column="purchase_type" type="string" length="50" nullabled="true"/>
+        <many-to-many field="aboutHousehold" target-entity="LundSite\Entity\AboutHousehold">
+            <join-table name="product_registration_about_household">
+                <join-columns>
+                    <join-column name="product_registration_id" referenced-column-name="product_registration_id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="about_household_id" referenced-column-name="about_household_id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+        <many-to-many field="lifestyleHousehold" target-entity="LundSite\Entity\LifestyleHousehold">
+            <join-table name="product_registration_lifestyle_household">
+                <join-columns>
+                    <join-column name="product_registration_id" referenced-column-name="product_registration_id" />
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="lifestyle_household_id" referenced-column-name="lifestyle_household_id" />
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+        <field name="optout" type="boolean" nullable="true"/>
+    </entity>
+</doctrine-mapping>

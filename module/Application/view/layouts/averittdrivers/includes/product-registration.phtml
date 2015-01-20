@@ -1,0 +1,710 @@
+<?php
+$form = $this->form;
+$form->setAttributes(array(
+    'action' => '/customer-care/product-registration',
+    'method' => 'POST',
+    'id'     => 'forms',
+))->prepare();
+$fieldset = $form->getBaseFieldset();
+$errors = $this->formElementErrors()
+            ->setMessageOpenFormat('<span class="help-block">')
+            ->setMessageSeparatorString('</span><span class="help-block">')
+            ->setMessageCloseString('</span>');
+?>
+<style>
+#module_warranty-form ol {margin-left:35px;}
+#module_warranty-form ol li {margin-bottom:20px;}
+#module_warranty-form .control-group{margin:10px 0;}
+#forms input{width:50%;}
+#forms input.span3{width:100px;}
+#forms input.span4{width:150px;}
+#forms .control-label{font-weight:bold;}
+#forms .radio{margin:0 10px;}
+#forms label {display:inline;}
+.colA {float:left; width:100%;}
+.colA div {display:inline;float: left; padding: 0 20px 0 0;}
+.colA select {width:40%;}
+.col0 select {width:100%; padding:0 !important;}
+table tr td {width:10%; text-align:center;}
+.leftalign {text-align:left;}
+.num {margin-top:10px; margin-left:0 !important;}
+.twocol table tr td {width:45%;}
+#formnotes p { font-size: 12px; color:#979797; font-weight:bold;}
+
+@media only screen and (max-width:979px){
+    .colA div {display:block; float:none;}
+    .colA input[type="text"] {width:45%;}
+    .col0 select {width:45%;}
+    .twocol table tr td {width:36%;}
+    .num .col0 select {width:20%; display:inline; float:left; margin-right:10px;}
+}
+@media only screen and (max-width:480px){
+    .num .col0 select {width:80%; float:none;}
+    .colA input[type="text"] {width:80%;}
+    .col0 select {width:80%;}
+}
+</style>
+                
+                <div class="colr">
+                    <?php if ($this->result == 'success') { ?>
+                    <p>Thank you for registering your product with AVS and LUND. A confirmation e-mail has been sent to you. If you do not receive an e-mail within 1 hour, please email <a href="mailto:info@lundinter.com">info@lundinter.com</a>.</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <?php } else { ?>
+                        <?php if ($this->result == 'error') { ?>
+                    <p style="color:#ff0000"><strong>There was an error processing your request.</strong></p>
+                        <?php } ?>
+                    <h1>Product Registration</h1>
+                    <p><strong>Lund styling accessories</strong><br>
+                    Complete this registration for: Product Protection</p>
+                    <p>With the information you provide  we can confirm the date of purchase of your product.  This confirmation  is of benefit to you, especially if your original proof of purchase  is lost.</p>
+                    <p>Proof of Ownership: Your UPS code and other information  will be kept in our files for up to ten years.</p>
+                    <p><u>Limited Lifetime Warranty</u></p>
+                    <ul>
+                        <li><b>What is covered:</b> All  defects in materials or workmanship except paint and painting on all  Lund International, Inc.'s (&quot;Lund International&quot;) Lund<sup>&reg;</sup>  Accessories branded products properly installed  per provided instructions except those listed below under Three Year  Warranty and One Year Warranty.  This warranty does not apply to  any product from Lund International's direct or indirect subsidiaries.</li>
+                        <li><b>For How Long:</b> This  warranty, <b>and any implied warranties including merchantability and  fitness for a particular purpose,</b> last as long as the original retail  purchases owns the vehicle on which the product is installed.   The warranty expires if the product is removed from the original vehicle  or if the original vehicle is transferred to another owner.  The  warranty is not transferable from the original purchaser.</li>
+                    </ul>
+                    <br>
+                    <p><u>Limited Three Year Warranty</u></p>
+                    <ul>
+                        <li><b>What is Covered:</b> All  defects in materials or workmanship except paint and painting on the  Stainless Screen Front<sup>&trade;</sup>, Stainless Cold Front<sup>&trade;</sup>, Stainless  Interceptor<sup>&trade;</sup>, Folding Aluminum Ramp, Folding Aluminum Arched  Ramp, Bi-Fold Ramps, and Tr-Fold Ramps properly installed per provided  instructions.</li>
+                        <li><b>For How Long:</b> This  warranty, <b>and any implied warranties including merchantability and  fitness for a particular purpose,</b> lasts three years from the date  of purchase.  The warranty expires if the product is removed from  the original vehicle or if the original vehicle is transferred to another  owner.  The warranty is not transferable from the original purchaser.</li>
+                    </ul>
+                    <br>
+                    <p><u>Limited One Year Warranty</u></p>
+                    <ul>
+                        <li><b>What is covered:</b> All  defects in materials on workmanship on all Cargo Management products  except the Folding Aluminum Ramp, Folding Aluminum Arched Ramp, Bi-Fold  Ramps, and Tri-Fold Ramps properly installed per provided instructions.</li>
+                        <li><b>For How Long:</b> This  warranty, <b>and any implied warranties including merchantability and  fitness for a particular purpose,</b> lasts one year from the date of  purchase.  This warranty expires if the product is removed from  the original vehicle or if the original vehicle is transferred to another  owner.  The warranty is not transferable from the original purchaser.</li>
+                        <li><b>What Lund International  Will Do:</b> During the applicable warranty period listed above, Lund  International will, at its option, either repair or replace any defective  product at no additional charge.  You must pay any labor charges  associated with removing or reinstalling the product.  If a specific  product has been discontinued, Lund International may, at its option,  replace your product with a current product of comparable function and  value.</li>
+                        <li><b>What These Warranties  Will Not Cover:</b> These warranties doe not cover any damage, defect,  or malfunction caused by misuse, abuse, accident, improper installation,  modification, improper or inadequate maintenance, or on-road and off-road  hazards.  <b>Incidental and consequential damages are not recoverable  under this warranty.</b>  Some states or providence do not allow  the exclusion or limitation of incidental or consequential damages,  so this exclusion or limitation may not apply to you.</li>
+                        <li><b>How To Get Service:</b>  A defective product may, during the warranty period listed above, be  returned to the place of purchase.  Alternatively, you may contact  Lund International Customer Relations directly at 1-800-328-5863 to  obtain information on how to obtain service.  Proof of purchase <u>  must</u> accompany all warranty returns.  Returns made to Lund  International will not be accepted without prior authorization from  Lund International.</li>
+                        <li><b>How Does State Law Apply?</b>  This warranty gives you specific legal rights, and you may have other  rights which may vary from state to state or province to province.</li>
+                    </ul>
+                    <p><b>This warranty statement  supersedes all previous warranty statements in Lund<sup>®</sup>  Accessories catalogs or other marketing materials.</b></p>
+                    <div class="clear"></div>
+                    <div id="module_warranty-form">
+                        <?php echo $this->form()->openTag($form); ?>
+                        <?php echo $this->formElement($form->get('secret')); ?>
+                        <input type="hidden" name="product-registration-fieldset[disabled]" value="0" />
+                        <input type="hidden" name="product-registration-fieldset[site]" value="<?php echo $this->site->getSiteId(); ?>" />
+                        <?php $title = $fieldset->get('title'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($title) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $title->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($title); ?>
+                                            <?php echo ($this->formElementErrors($title) ? $errors->render($title) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $firstName = $fieldset->get('firstName'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($firstName) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $firstName->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($firstName); ?>
+                                            <?php echo ($this->formElementErrors($firstName) ? $errors->render($firstName) : ''); ?>
+                                        </div>
+                                   </div>
+                                    <?php $middleInitial = $fieldset->get('middleInitial'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($middleInitial) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $middleInitial->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($middleInitial); ?>
+                                            <?php echo ($this->formElementErrors($middleInitial) ? $errors->render($middleInitial) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $lastName = $fieldset->get('lastName'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($lastName) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $lastName->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($lastName); ?>
+                                            <?php echo ($this->formElementErrors($lastName) ? $errors->render($lastName) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $emailAddress = $fieldset->get('emailAddress'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($emailAddress) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $emailAddress->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($emailAddress); ?>
+                                            <?php echo ($this->formElementErrors($emailAddress) ? $errors->render($emailAddress) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $streetAddress = $fieldset->get('streetAddress'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($streetAddress) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $streetAddress->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($streetAddress); ?>
+                                            <?php echo ($this->formElementErrors($streetAddress) ? $errors->render($streetAddress) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $extStreetAddress = $fieldset->get('extStreetAddress'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($extStreetAddress) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $extStreetAddress->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($extStreetAddress); ?>
+                                            <?php echo ($this->formElementErrors($extStreetAddress) ? $errors->render($extStreetAddress) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $locality = $fieldset->get('locality'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($locality) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $locality->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($locality); ?>
+                                            <?php echo ($this->formElementErrors($locality) ? $errors->render($locality) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $region = $fieldset->get('region'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($region) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $region->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($region); ?>
+                                            <?php echo ($this->formElementErrors($region) ? $errors->render($region) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $postCode = $fieldset->get('postCode'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($postCode) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $postCode->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($postCode); ?>
+                                            <?php echo ($this->formElementErrors($postCode) ? $errors->render($postCode) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $country = $fieldset->get('country'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($country) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $country->getLabel() ?><span class="text-error">*</span></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($country); ?>
+                                            <?php echo ($this->formElementErrors($country) ? $errors->render($country) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $phoneNumber = $fieldset->get('phoneNumber'); ?>
+                                    <div class="control-group<?php echo ($this->formElementErrors($phoneNumber) ? ' error' : ''); ?>">
+                                        <label class="control-label"><?php echo $phoneNumber->getLabel() ?></label>
+                                        <div class="controls">
+                                            <?php echo $this->formElement($phoneNumber); ?>
+                                            <?php echo ($this->formElementErrors($phoneNumber) ? $errors->render($phoneNumber) : ''); ?>
+                                        </div>
+                                    </div>
+                                    <?php $birthDate = $fieldset->get('birthDate'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($birthDate) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $birthDate->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($birthDate); ?>
+                                        <?php echo ($this->formElementErrors($birthDate) ? $errors->render($birthDate) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $maritalStatus = $fieldset->get('maritalStatus'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($maritalStatus) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $maritalStatus->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($maritalStatus); ?>
+                                        <?php echo ($this->formElementErrors($maritalStatus) ? $errors->render($maritalStatus) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $productCategory = $fieldset->get('productCategory'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($productCategory) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $productCategory->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($productCategory); ?>
+                                        <?php echo ($this->formElementErrors($productCategory) ? $errors->render($productCategory) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $upcCode = $fieldset->get('upcCode'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($upcCode) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $upcCode->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($upcCode); ?>
+                                        <?php echo ($this->formElementErrors($upcCode) ? $errors->render($upcCode) : ''); ?>
+                                    </div>
+                                </div>
+                                <div class="control-group" style="margin-top:20px;"><div class="span12"><label><strong>In what vehicle will this product be used?</strong></label></div></div>
+                                <?php $vehYear = $fieldset->get('vehYear'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($vehYear) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $vehYear->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($vehYear); ?>
+                                        <?php echo ($this->formElementErrors($vehYear) ? $errors->render($vehYear) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $vehMake = $fieldset->get('vehMake'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($vehMake) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $vehMake->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($vehMake); ?>
+                                        <?php echo ($this->formElementErrors($vehMake) ? $errors->render($vehMake) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $vehModel = $fieldset->get('vehModel'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($vehModel) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $vehModel->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($vehModel); ?>
+                                        <?php echo ($this->formElementErrors($vehModel) ? $errors->render($vehModel) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $vehSubmodel = $fieldset->get('vehSubmodel'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($vehSubmodel) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $vehSubmodel->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($vehSubmodel); ?>
+                                        <?php echo ($this->formElementErrors($vehSubmodel) ? $errors->render($vehSubmodel) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $ownedLength = $fieldset->get('ownedLength'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($ownedLength) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $ownedLength->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($ownedLength); ?>
+                                        <?php echo ($this->formElementErrors($ownedLength) ? $errors->render($ownedLength) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $installer = $fieldset->get('installer'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($installer) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $installer->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($installer); ?>
+                                        <?php echo ($this->formElementErrors($installer) ? $errors->render($installer) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $pricePaid = $fieldset->get('pricePaid'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($pricePaid) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $pricePaid->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($pricePaid); ?>
+                                        <?php echo ($this->formElementErrors($pricePaid) ? $errors->render($pricePaid) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $wherePurchased = $fieldset->get('wherePurchased'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($wherePurchased) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $wherePurchased->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($wherePurchased); ?>
+                                        <?php echo ($this->formElementErrors($wherePurchased) ? $errors->render($wherePurchased) : ''); ?>
+                                    </div>
+                                </div>
+                                <div class="control-group" style="margin-top:20px;"><div class="span12"><label><strong>Where did you shop for this product: (check all that apply)</label></strong></div></div>
+                                <?php $shopStore = $fieldset->get('shopStore'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($shopStore) ? ' error' : ''); ?>">
+                                    <div class="controls">
+                                        <?php echo $this->formElement($shopStore); ?> <label><?php echo $shopStore->getLabel() ?></label>
+                                        <?php echo ($this->formElementErrors($shopStore) ? $errors->render($shopStore) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $shopOnline = $fieldset->get('shopOnline'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($shopOnline) ? ' error' : ''); ?>">
+                                    <div class="controls">
+                                        <?php echo $this->formElement($shopOnline); ?> <label><?php echo $shopOnline->getLabel() ?></label>
+                                        <?php echo ($this->formElementErrors($shopOnline) ? $errors->render($shopOnline) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $shopCatalog = $fieldset->get('shopCatalog'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($shopCatalog) ? ' error' : ''); ?>">
+                                    <div class="controls">
+                                        <?php echo $this->formElement($shopCatalog); ?> <label><?php echo $shopCatalog->getLabel() ?></label>
+                                        <?php echo ($this->formElementErrors($shopCatalog) ? $errors->render($shopCatalog) : ''); ?>
+                                    </div>
+                                </div>
+                                <div class="control-group" style="margin-top:20px;"><div class="span12"><label><strong>When you first started shopping for this product:</label></strong></div></div>
+                                <?php $brandInMind = $fieldset->get('brandInMind'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($brandInMind) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $brandInMind->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($brandInMind); ?>
+                                        <?php echo ($this->formElementErrors($brandInMind) ? $errors->render($brandInMind) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $brandPurchased = $fieldset->get('brandPurchased'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($brandPurchased) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $brandPurchased->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($brandPurchased); ?>
+                                        <?php echo ($this->formElementErrors($brandPurchased) ? $errors->render($brandPurchased) : ''); ?>
+                                    </div>
+                                </div>
+                                <div class="control-group" style="margin-top:20px;"><div class="span12"><label><strong>Please indicate if the following exceeded, met or did not meet your expectations:</label></strong></div></div>
+                                <?php $easeOfInstallation = $fieldset->get('easeOfInstallation'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($easeOfInstallation) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $easeOfInstallation->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($easeOfInstallation); ?>
+                                        <?php echo ($this->formElementErrors($easeOfInstallation) ? $errors->render($easeOfInstallation) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $quality = $fieldset->get('quality'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($quality) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $quality->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($quality); ?>
+                                        <?php echo ($this->formElementErrors($quality) ? $errors->render($quality) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $valueOfMoney = $fieldset->get('valueOfMoney'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($valueOfMoney) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $valueOfMoney->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($valueOfMoney); ?>
+                                        <?php echo ($this->formElementErrors($valueOfMoney) ? $errors->render($valueOfMoney) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $overall = $fieldset->get('overall'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($overall) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $overall->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($overall); ?>
+                                        <?php echo ($this->formElementErrors($overall) ? $errors->render($overall) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $infReputation = $fieldset->get('infReputation'); ?>
+                                <?php $infEase = $fieldset->get('infEase'); ?>
+                                <?php $infDealer = $fieldset->get('infDealer'); ?>
+                                <?php $infRecommendation = $fieldset->get('infRecommendation'); ?>
+                                <?php $infFunctionality = $fieldset->get('infFunctionality'); ?>
+                                <?php $infAvailability = $fieldset->get('infAvailability'); ?>
+                                <?php $infStyle = $fieldset->get('infStyle'); ?>
+                                <?php $infQuality = $fieldset->get('infQuality'); ?>
+                                <?php $infWarranty = $fieldset->get('infWarranty'); ?>
+                                <?php $infOther = $fieldset->get('infOther'); ?>
+                                <div class="control-group">
+                                    <label class="control-label">What factors most influenced this purchase?</label>
+                                    <div class="controls"><?php echo $this->formElement($infReputation); ?> <label><?php echo $infReputation->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($infEase); ?> <label><?php echo $infEase->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($infDealer); ?> <label><?php echo $infDealer->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($infRecommendation); ?> <label><?php echo $infRecommendation->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($infFunctionality); ?> <label><?php echo $infFunctionality->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($infAvailability); ?> <label><?php echo $infAvailability->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($infStyle); ?> <label><?php echo $infStyle->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($infQuality); ?> <label><?php echo $infQuality->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($infWarranty); ?> <label><?php echo $infWarranty->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($infOther); ?> <label><?php echo $infOther->getLabel() ?></label></div>
+                                </div>
+                                <?php $personOneGender = $fieldset->get('personOneGender'); ?>
+                                <?php $personOneAge = $fieldset->get('personOneAge'); ?>
+                                <?php $personTwoGender = $fieldset->get('personTwoGender'); ?>
+                                <?php $personTwoAge = $fieldset->get('personTwoAge'); ?>
+                                <?php $personThreeGender = $fieldset->get('personThreeGender'); ?>
+                                <?php $personThreeAge = $fieldset->get('personThreeAge'); ?>
+                                <?php $personFourGender = $fieldset->get('personFourGender'); ?>
+                                <?php $personFourAge = $fieldset->get('personFourAge'); ?>
+                                <?php $noneHousehold = $fieldset->get('noneHousehold'); ?>
+                                <?php $childUnderOne = $fieldset->get('childUnderOne'); ?>
+                                <div class="control-group">
+                                    <label class="control-label">Not including yourself, what is the GENDER and AGE (in years) of children and other adults living in your household?</label>
+                                    <div class="controls"><?php echo $this->formElement($personOneGender); ?> <?php echo $this->formElement($personOneAge); ?> <label>yrs.</label></div>
+
+                                    <div class="controls"><?php echo $this->formElement($personTwoGender); ?> <?php echo $this->formElement($personTwoAge); ?> <label>yrs.</label></div>
+
+                                    <div class="controls"><?php echo $this->formElement($personThreeGender); ?> <?php echo $this->formElement($personThreeAge); ?> <label>yrs.</label></div>
+
+                                    <div class="controls"><?php echo $this->formElement($personFourGender); ?> <?php echo $this->formElement($personFourAge); ?> <label>yrs.</label></div>
+                                    <div class="controls"><?php echo $this->formElement($noneHousehold); ?> <label><?php echo $noneHousehold->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($childUnderOne); ?> <label><?php echo $childUnderOne->getLabel() ?></label></div>
+                                </div>
+                                <?php $youOccupation = $fieldset->get('youOccupation'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($youOccupation) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $youOccupation->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($youOccupation); ?>
+                                        <?php echo ($this->formElementErrors($youOccupation) ? $errors->render($youOccupation) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $spouseOccupation = $fieldset->get('spouseOccupation'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($spouseOccupation) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $spouseOccupation->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($spouseOccupation); ?>
+                                        <?php echo ($this->formElementErrors($spouseOccupation) ? $errors->render($spouseOccupation) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $youHomemaker = $fieldset->get('youHomemaker'); ?>
+                                <?php $youRetired = $fieldset->get('youRetired'); ?>
+                                <?php $youStudent = $fieldset->get('youStudent'); ?>
+                                <?php $youOwner = $fieldset->get('youOwner'); ?>
+                                <?php $youHome = $fieldset->get('youHome'); ?>
+                                <?php $youMilitary = $fieldset->get('youMilitary'); ?>
+                                <?php $youVeteran = $fieldset->get('youVeteran'); ?>
+                                <div class="control-group">
+                                    <label class="control-label">Are you?</label>
+                                    <div class="controls"><?php echo $this->formElement($youHomemaker); ?> <label><?php echo $youHomemaker->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($youRetired); ?> <label><?php echo $youRetired->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($youStudent); ?> <label><?php echo $youStudent->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($youOwner); ?> <label><?php echo $youOwner->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($youHome); ?> <label><?php echo $youHome->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($youMilitary); ?> <label><?php echo $youMilitary->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($youVeteran); ?> <label><?php echo $youVeteran->getLabel() ?></label></div>
+                                </div>
+                                <?php $spouseHomemaker = $fieldset->get('spouseHomemaker'); ?>
+                                <?php $spouseRetired = $fieldset->get('spouseRetired'); ?>
+                                <?php $spouseStudent = $fieldset->get('spouseStudent'); ?>
+                                <?php $spouseOwner = $fieldset->get('spouseOwner'); ?>
+                                <?php $spouseHome = $fieldset->get('spouseHome'); ?>
+                                <?php $spouseMilitary = $fieldset->get('spouseMilitary'); ?>
+                                <?php $spouseVeteran = $fieldset->get('spouseVeteran'); ?>
+                                <div class="control-group">
+                                    <label class="control-label">Is your spouse?</label>
+                                    <div class="controls"><?php echo $this->formElement($spouseHomemaker); ?> <label><?php echo $spouseHomemaker->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($spouseRetired); ?> <label><?php echo $spouseRetired->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($spouseStudent); ?> <label><?php echo $spouseStudent->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($spouseOwner); ?> <label><?php echo $spouseOwner->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($spouseHome); ?> <label><?php echo $spouseHome->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($spouseMilitary); ?> <label><?php echo $spouseMilitary->getLabel() ?></label></div>
+                                    <div class="controls"><?php echo $this->formElement($spouseVeteran); ?> <label><?php echo $spouseVeteran->getLabel() ?></label></div>
+                                </div>
+                                <?php $income = $fieldset->get('income'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($income) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $income->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($income); ?>
+                                        <?php echo ($this->formElementErrors($income) ? $errors->render($income) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $education = $fieldset->get('education'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($education) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $education->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($education); ?>
+                                        <?php echo ($this->formElementErrors($education) ? $errors->render($education) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $creditCards = $fieldset->get('creditCards'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($creditCards) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $creditCards->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($creditCards); ?>
+                                        <?php echo ($this->formElementErrors($creditCards) ? $errors->render($creditCards) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $residence = $fieldset->get('residence'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($residence) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $residence->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($residence); ?>
+                                        <?php echo ($this->formElementErrors($residence) ? $errors->render($residence) : ''); ?>
+                                    </div>
+                                </div>
+                                <div class="control-group"><div class="span12"><label><strong>Please tell us how many magazines your household:</strong></label></div></div>
+                                <?php $magazineSubscribed = $fieldset->get('magazineSubscribed'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($magazineSubscribed) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $magazineSubscribed->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($magazineSubscribed); ?>
+                                        <?php echo ($this->formElementErrors($magazineSubscribed) ? $errors->render($magazineSubscribed) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $magazinePurchased = $fieldset->get('magazinePurchased'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($magazinePurchased) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $magazinePurchased->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($magazinePurchased); ?>
+                                        <?php echo ($this->formElementErrors($magazinePurchased) ? $errors->render($magazinePurchased) : ''); ?>
+                                    </div>
+                                </div>
+                                <div class="control-group"><div class="span12"><label><strong>Which of the following do you plan to do within the next 6 or 12 months?</label></strong></div></div>
+                                <?php $newWithin = $fieldset->get('newWithin'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($newWithin) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $newWithin->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($newWithin); ?>
+                                        <?php echo ($this->formElementErrors($newWithin) ? $errors->render($newWithin) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $usedWithin = $fieldset->get('usedWithin'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($usedWithin) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $usedWithin->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($usedWithin); ?>
+                                        <?php echo ($this->formElementErrors($usedWithin) ? $errors->render($usedWithin) : ''); ?>
+                                    </div>
+                                </div>
+                                <div class="control-group"><div class="span12"><label><strong>Please tell us about the newest car or truck in your household:</label></strong></div></div>
+                                <?php $recVehYear = $fieldset->get('recVehYear'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($recVehYear) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $recVehYear->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($recVehYear); ?>
+                                        <?php echo ($this->formElementErrors($recVehYear) ? $errors->render($recVehYear) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $recVehMake = $fieldset->get('recVehMake'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($recVehMake) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $recVehMake->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($recVehMake); ?>
+                                        <?php echo ($this->formElementErrors($recVehMake) ? $errors->render($recVehMake) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $recVehModel = $fieldset->get('recVehModel'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($recVehModel) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $recVehModel->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($recVehModel); ?>
+                                        <?php echo ($this->formElementErrors($recVehModel) ? $errors->render($recVehModel) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $recVehSubmodel = $fieldset->get('recVehSubmodel'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($recVehSubmodel) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $recVehSubmodel->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($recVehSubmodel); ?>
+                                        <?php echo ($this->formElementErrors($recVehSubmodel) ? $errors->render($recVehSubmodel) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $purchaseType = $fieldset->get('purchaseType'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($purchaseType) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $purchaseType->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($purchaseType); ?>
+                                        <?php echo ($this->formElementErrors($purchaseType) ? $errors->render($purchaseType) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $aboutHousehold = $fieldset->get('aboutHousehold'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($aboutHousehold) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $aboutHousehold->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($aboutHousehold); ?>
+                                        <?php echo ($this->formElementErrors($aboutHousehold) ? $errors->render($aboutHousehold) : ''); ?>
+                                    </div>
+                                </div>
+                                <?php $lifestyleHousehold = $fieldset->get('lifestyleHousehold'); ?>
+                                <div class="control-group<?php echo ($this->formElementErrors($lifestyleHousehold) ? ' error' : ''); ?>">
+                                    <label class="control-label"><?php echo $lifestyleHousehold->getLabel() ?></label>
+                                    <div class="controls">
+                                        <?php echo $this->formElement($lifestyleHousehold); ?>
+                                        <?php echo ($this->formElementErrors($lifestyleHousehold) ? $errors->render($lifestyleHousehold) : ''); ?>
+                                    </div>
+                            </div>
+                        <div id="formnotes"> 
+                            <?php $optout = $fieldset->get('optout'); ?>
+                            <p>Thanks for taking the time to fill out this questionnaire.  Your answer will be used for market research studies and reports.  They will also allow you to receive important mailings and special offers from a number of fine companies whose products and services relate directly to the specific interests, hobbies, and other information indicated above.  Through this selective program, you will be able to obtain more information about acitivites in which you are involved and less about those in which you are not.  Please check here if, for some reason, you would prefer <em>not</em> to participate in this opportunity <?php echo $this->formElement($optout); ?> Opt-out</p>
+                            <p><input id="productregistrationsub" class="btn btn-submit" type="submit" name="submit" value="Submit" /></p>
+                            <p>Failure to complete this form will not diminish your warranty rights</p>
+                        </div>
+                        <?php echo $this->form()->closeTag($form); ?>
+                        <p>&nbsp;</p>
+                        <?php } ?>
+                    </div>
+                </div>
+                <script type="text/javascript" language="javascript">
+                    $(function() {
+    /* Vehicle Selector */
+    $('select[name="product-registration-fieldset[vehYear]"]').on('change', function(){
+        var data = {module : 'getMake',vehYear : $('select[name="product-registration-fieldset[vehYear]"] option:selected').text()}
+
+        $.ajax({
+            url: '/products/ajax',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function(res){
+                $('select[name="product-registration-fieldset[vehMake]"]').empty();
+                $('select[name="product-registration-fieldset[vehMake]"]').append('<option value="">Select Make</option>');
+                $('select[name="product-registration-fieldset[vehModel]"]').empty();
+                $('select[name="product-registration-fieldset[vehModel]"]').append('<option value="">Select Model</option>');
+                $('select[name="product-registration-fieldset[vehSubmodel]"]').empty();
+                $('select[name="product-registration-fieldset[vehSubmodel]"]').append('<option value="">Select Submodel</option>');
+                $.each(res.data, function(i, make){
+                    $('select[name="product-registration-fieldset[vehMake]"]').append('<option value="'+make.name+'">'+make.name+'</option>');
+                });
+            }
+        });
+    });
+
+    $('select[name="product-registration-fieldset[vehMake]"]').on('change', function(){
+        var data = {module : 'getModel',vehYear : $('select[name="product-registration-fieldset[vehYear]"] option:selected').text(),vehMake : $('select[name="product-registration-fieldset[vehMake]"] option:selected').text()}
+
+        $.ajax({
+            url: '/products/ajax',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function(res){
+                $('select[name="product-registration-fieldset[vehModel]"]').removeAttr('disabled');
+                $('select[name="product-registration-fieldset[vehModel]"]').empty();
+                $('select[name="product-registration-fieldset[vehModel]"]').append('<option value="">Select Model</option>');
+                $('select[name="product-registration-fieldset[vehSubmodel]"]').empty();
+                $('select[name="product-registration-fieldset[vehSubmodel]"]').append('<option value="">Select Submodel</option>');
+                $.each(res.data, function(i, model){
+                    $('select[name="product-registration-fieldset[vehModel]"]').append('<option value="'+model.name+'">'+model.name+'</option>');
+                });
+            }
+        });
+    });
+
+    $('select[name="product-registration-fieldset[vehModel]"]').on('change', function(){
+        var data = {module : 'getSubmodel',vehYear : $('select[name="product-registration-fieldset[vehYear]"] option:selected').text(),vehMake : $('select[name="product-registration-fieldset[vehMake]"] option:selected').text(),vehModel : $('select[name="product-registration-fieldset[vehModel]"] option:selected').text()}
+
+        $.ajax({
+            url: '/products/ajax',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function(res){
+                $('select[name="product-registration-fieldset[vehSubmodel]"]').empty();
+                $('select[name="product-registration-fieldset[vehSubmodel]"]').append('<option value="">Select Submodel</option>');
+                if (res.length > 0) {
+                    $.each(res.data, function(i, submodel){
+                        $('select[name="product-registration-fieldset[vehSubmodel]"]').append('<option value="'+submodel.name+'">'+submodel.name+'</option>');
+                    });
+                }
+            }
+        });
+    });
+
+    $('select[name="product-registration-fieldset[recVehYear]"]').on('change', function(){
+        var data = {module : 'getMake',vehYear : $('select[name="product-registration-fieldset[recVehYear]"] option:selected').text()}
+
+        $.ajax({
+            url: '/products/ajax',
+            type: 'POST',            dataType: 'json',
+            data: data,
+            success: function(res){
+                $('select[name="product-registration-fieldset[recVehMake]"]').empty();
+                $('select[name="product-registration-fieldset[recVehMake]"]').append('<option value="">Select Make</option>');
+                $('select[name="product-registration-fieldset[recVehModel]"]').empty();
+                $('select[name="product-registration-fieldset[recVehModel]"]').append('<option value="">Select Model</option>');
+                $('select[name="product-registration-fieldset[recVehSubmodel]"]').empty();                
+                $('select[name="product-registration-fieldset[recVehSubmodel]"]').append('<option value="">Select Submodel</option>');
+                $.each(res.data, function(i, make){
+                    $('select[name="product-registration-fieldset[recVehMake]"]').append('<option value="'+make.name+'">'+make.name+'</option>');
+                });
+            }
+        });
+    });
+
+    $('select[name="product-registration-fieldset[recVehMake]"]').on('change', function(){
+        var data = {module : 'getModel',vehYear : $('select[name="product-registration-fieldset[recVehYear]"] option:selected').text(),vehMake : $('select[name="product-registration-fieldset[recVehMake]"] option:selected').text()}
+
+        $.ajax({
+            url: '/products/ajax',
+            type: 'POST',            dataType: 'json',
+            data: data,
+            success: function(res){
+                $('select[name="product-registration-fieldset[recVehModel]"]').removeAttr('disabled');
+                $('select[name="product-registration-fieldset[recVehModel]"]').empty();
+                $('select[name="product-registration-fieldset[recVehModel]"]').append('<option value="">Select Model</option>');
+                $('select[name="product-registration-fieldset[recVehSubmodel]"]').empty();
+                $('select[name="product-registration-fieldset[recVehSubmodel]"]').append('<option value="">Select Submodel</option>');
+                $.each(res.data, function(i, model){
+                    $('select[name="product-registration-fieldset[recVehModel]"]').append('<option value="'+model.name+'">'+model.name+'</option>');
+                });
+            }
+        });
+    });
+
+    $('select[name="product-registration-fieldset[recVehModel]"]').on('change', function(){
+        var data = {module : 'getSubmodel',vehYear : $('select[name="product-registration-fieldset[recVehYear]"] option:selected').text(),vehMake : $('select[name="product-registration-fieldset[recVehMake]"] option:selected').text(),vehModel : $('select[name="product-registration-fieldset[recVehModel]"] option:selected').text()}
+        $.ajax({
+            url: '/products/ajax',
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function(res){
+                $('select[name="product-registration-fieldset[recVehSubmodel]"]').empty();
+                $('select[name="product-registration-fieldset[recVehSubmodel]"]').append('<option value="">Select Submodel</option>');
+                if (res.length > 0) {
+                    $.each(res.data, function(i, submodel){
+                        $('select[name="product-registration-fieldset[recVehSubmodel]"]').append('<option value="'+submodel.name+'">'+submodel.name+'</option>');
+                    });
+                }
+            }
+        });
+    });
+                    });
+                </script>
