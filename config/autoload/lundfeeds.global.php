@@ -18,6 +18,6 @@ namespace LundFeeds;
 
 return array(
     'lund_feeds' => array(
-        'part_asset_path' => 'pims.lundinternational.com/assets/',
+        'part_asset_path' => 'develop.thesmartdata.com//assets/',
     ),
 );
