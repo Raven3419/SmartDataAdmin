@@ -228,7 +228,7 @@ class IndexController extends AbstractActionController
         $slugthree = $this->params()->fromRoute('slugthree', null);
         $slugfour  = $this->params()->fromRoute('slugfour', null);
         $slugfive  = $this->params()->fromRoute('slugfive', null);
-
+        
         if (null === $slugone) {
             /* NO PAGE FOUND IN ROUTE */
         }
@@ -243,23 +243,41 @@ class IndexController extends AbstractActionController
             $slug = $slugone;
         }
 
-        if ($slugone == 'products' && $slugtwo == 'ajax') {
-            $result = $this->vehicleSelector();
-        } else if ($slugone == 'products' && $slugtwo == 'review') {
-            $result = $this->productReview();
-        } else if ($slugone == 'products' && $slugtwo == 'register') {
-            $result = $this->registerUser();
-        }
-
         $envVariable = $_SERVER['APP_SITE'];
 
         $site     = $this->siteService->getSiteByEnvVariable($envVariable);
         if (null == $site) {
             return $this->redirect()->toRoute('rocket-admin');
         }
-
+        
         $layout   = $this->layoutService->getLayoutBySite($site->getSiteId());
         $page     = $this->pageService->getPageBySlug($slug, $site->getSiteId());
+        
+        if($slugone == 'process')
+        {
+        	if ($this->request->isPost())
+        	{
+        		$page     = $this->pageService->getPageBySlug($this->request->getPost()->shortform['page_slug'], $site->getSiteId());
+        		if($page->getSendEmail())
+        		{
+        			$from = 'webmaster@appvault.com';
+        			$to = array($site->getClientEmail());
+        			$subject = 'New Short Form Submitted';
+        			$message = '<table>';
+        			foreach($this->request->getPost()->shortform as $key => $value)
+        			{
+        				$message .= '<tr><td>'.ucwords($key).'</td><td>'.ucwords($value).'<td></tr>';
+        			}
+        			
+        			$message .= '</table>';
+        			
+        			$this->sendEmail($from, $to, $subject, $message);
+        			
+        			return $this->redirect()->toUrl('http://averitt.localhost/thank-you');
+        			//return $this->redirect()->toRoute('thank-you');
+        		}
+        	}
+        }
 	if (null != $page) {
         $template = $this->templateService->getTemplate($page->getTemplate()->getTemplateId());
 	} else {
@@ -274,6 +292,12 @@ class IndexController extends AbstractActionController
                 'loadInclude'     => $page->getLoadInclude(),
             ));
         } elseif ($page->getContent()) {
+        	$string = $page->getContent();
+        	
+        	$newstring =str_replace('[[page_slug]]', $page->getSlug(), $string);
+        	
+        	$page->setContent($newstring);
+        	
             $vm = new ViewModel(array(
                 'templateContent' => $page->getContent(),
                 'loadInclude'     => false,
