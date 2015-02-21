@@ -266,14 +266,17 @@ class IndexController extends AbstractActionController
         			$message = '<table>';
         			foreach($this->request->getPost()->shortform as $key => $value)
         			{
-        				$message .= '<tr><td>'.ucwords($key).'</td><td>'.ucwords($value).'<td></tr>';
+        				if($key != 'page_slug')
+        				{
+        					$message .= '<tr><td>'.ucwords($key).'</td><td>'.ucwords($value).'<td></tr>';
+        				}
         			}
         			
         			$message .= '</table>';
         			
         			$this->sendEmail($from, $to, $subject, $message);
         			
-        			return $this->redirect()->toUrl('http://averitt.localhost/thank-you');
+        			return $this->redirect()->toUrl('http://group1201.thesmartdata.com/thank-you');
         			//return $this->redirect()->toRoute('thank-you');
         		}
         	}
