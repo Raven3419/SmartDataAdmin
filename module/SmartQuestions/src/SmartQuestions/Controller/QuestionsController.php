@@ -67,8 +67,10 @@ class QuestionsController extends AbstractActionController
     {
     	$schoolId = (int) $this->params('school_id', null);
     	
+    	$records = $this->questionsService->getCurrentQuestions($schoolId);
+    	
         return new ViewModel(array(
-            'records' => $this->questionsService->getCurrentQuestions($schoolId),
+            'records' => $records,
         ));
     }
 

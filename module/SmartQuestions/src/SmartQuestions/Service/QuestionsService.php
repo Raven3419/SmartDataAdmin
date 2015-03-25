@@ -93,7 +93,11 @@ class QuestionsService implements EventManagerAwareInterface
         return $this->repository->findBy(
             array('disabled' => false,
             	  'schoolId' => $schoolId),
-            array('createdAt' => 'ASC')
+            array('gradeId' => 'ASC',
+            	  'subjectId' => 'ASC',
+            	  'createdAt' => 'ASC'
+            	  
+            )
         );
     }
 
