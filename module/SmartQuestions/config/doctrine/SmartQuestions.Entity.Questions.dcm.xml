@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="SmartQuestions\Entity\Questions" table="questions">
+        <id name="questionId" column="question_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+        <field name="textQuestion" column="text_question" type="text" nullable="true"/>
+        <field name="textCorrectAnswer" column="text_correct_answer" type="string" length="255" nullable="true"/>
+        <field name="textOptionOne" column="text_option_one" type="string" length="255" nullable="true"/>
+        <field name="textOptionTwo" column="text_option_two" type="string" length="255" nullable="true"/>
+        <field name="textOptionThree" column="text_option_three" type="string" length="255" nullable="true"/>
+        <field name="imageQuestion" column="image_question" type="string" length="255" nullable="true"/>
+        <field name="imageCorrectAnswer" column="image_correct_answer" type="string" length="255" nullable="true"/>
+        <field name="imageOptionOne" column="image_option_one" type="string" length="255" nullable="true"/>
+        <field name="imageOptionTwo" column="image_option_two" type="string" length="255" nullable="true"/>
+        <field name="imageOptionThree" column="image_option_three" type="string" length="255" nullable="true"/>
+        <field name="isImage" column="is_image" type="boolean" nullable="true"/>
+        <many-to-one field="gradeId" target-entity="SmartQuestions\Entity\Grades" fetch="EAGER">
+            <join-column name="grade_id" referenced-column-name="grade_id"/>
+        </many-to-one>
+        <many-to-one field="subjectId" target-entity="SmartQuestions\Entity\Subjects" fetch="EAGER">
+            <join-column name="subject_id" referenced-column-name="subject_id"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

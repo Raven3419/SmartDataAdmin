@@ -1,0 +1,22 @@
+                    <h5 class="widget-name"><i class="icon-pencil"></i>Edit Question</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-th-large"></i>Question Details</h6>
+                                        <a class="btn btn-danger confirm pull-right" href="/admin/products/questions/delete/<?php echo $this->recordId; ?>"><b class="icon-trash"></b>Delete Question</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+<?php
+echo $this->partial('admin/form-partial', array(
+    'form'     => $this->form,
+    'url'      => '/admin/education/questions/edit/' . $this->recordId,
+    'fieldset' => 'question-fieldset',
+));
+?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
