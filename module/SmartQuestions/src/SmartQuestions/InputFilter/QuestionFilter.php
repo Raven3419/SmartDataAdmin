@@ -39,9 +39,14 @@ class QuestionFilter extends InputFilter
         ));
         
         $this->add(array(
+            'name'     => 'schoolId',
+            'required' => false
+        ));
+        
+        $this->add(array(
             'name'     => 'isImage',
-            'required' => true,
-        	'allow_empty'	=> false,
+            'required' => false,
+        	'allow_empty'	=> true,
           	'filters'     => array(array('name' => 'Zend\Filter\Null'))
         ));
 

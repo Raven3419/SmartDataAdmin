@@ -103,6 +103,7 @@ return array(
                                     'defaults' => array(
                                         'controller' => 'SmartQuestions\Controller\Questions',
                                         'action'     => 'index',
+                                    	'school_id'	 => 2,
                                     ),
                                 ),
                                 'may_terminate' => true,
@@ -114,6 +115,7 @@ return array(
                                             'defaults' => array(
                                                 'controller' => 'SmartQuestions\Controller\Questions',
                                                 'action'     => 'create',
+                                    			'school_id'	 => 2,
                                             ),
                                         ),
                                     ),
@@ -128,6 +130,7 @@ return array(
                                                 'controller' => 'SmartQuestions\Controller\Questions',
                                                 'action'     => 'edit',
                                                 'id'         => 0,
+                                    			'school_id'	 => 2,
                                             ),
                                         ),
                                     ),

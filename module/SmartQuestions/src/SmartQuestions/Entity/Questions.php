@@ -109,6 +109,11 @@ class Questions implements QuestionsInterface
     protected $questionId;
 
     /**
+     * @var integer
+     */
+    protected $schoolId;
+
+    /**
      * @var \SmartQuestions\Entity\Grades
      */
     protected $gradeId;
@@ -530,6 +535,29 @@ class Questions implements QuestionsInterface
     public function getSubjectId()
     {
         return $this->subjectId;
+    }
+    
+    /**
+     * Set schoolId
+     *
+     * @param  integer $schoolId
+     * @return Questions
+     */
+    public function setSchoolId($schoolId)
+    {
+    	$this->schoolId = $schoolId;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get schoolId
+     *
+     * @return integer
+     */
+    public function getSchoolId()
+    {
+    	return $this->schoolId;
     }
     
     /**

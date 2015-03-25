@@ -211,7 +211,6 @@ class SubjectsService implements EventManagerAwareInterface
     {
         $recordEntity->setModifiedAt(new DateTime('now'))
             ->setModifiedBy($usersEntity->getUsername())
-            ->setDeleted(true)
             ->setDisabled(true);
         $this->objectManager->persist($recordEntity);
         $this->objectManager->flush($recordEntity);

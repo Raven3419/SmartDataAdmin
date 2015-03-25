@@ -88,10 +88,11 @@ class QuestionsService implements EventManagerAwareInterface
     /**
      * @return mixed
      */
-    public function getCurrentQuestions()
+    public function getCurrentQuestions($schoolId = null)
     {
         return $this->repository->findBy(
-            array('disabled' => false),
+            array('disabled' => false,
+            	  'schoolId' => $schoolId),
             array('createdAt' => 'ASC')
         );
     }
@@ -211,7 +212,6 @@ class QuestionsService implements EventManagerAwareInterface
     {
         $recordEntity->setModifiedAt(new DateTime('now'))
             ->setModifiedBy($usersEntity->getUsername())
-            ->setDeleted(true)
             ->setDisabled(true);
         $this->objectManager->persist($recordEntity);
         $this->objectManager->flush($recordEntity);

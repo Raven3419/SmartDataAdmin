@@ -47,6 +47,11 @@ class QuestionFieldset extends Fieldset
             'type' => 'Zend\Form\Element\Hidden',
             'name' => 'questionId',
         ));
+        
+        $this->add(array(
+        		'type' => 'Zend\Form\Element\Hidden',
+        		'name' => 'schoolId',
+        ));
 
         $this->add(array(
             'type'    => 'Zend\Form\Element\Select',
@@ -231,9 +236,5 @@ class QuestionFieldset extends Fieldset
                 'class'    => 'select',
             ),
         ));
-        
-        // Brand fieldset
-        $grade = new GradeFieldset($objectManager);
-        $this->add($grade);
     }
 }

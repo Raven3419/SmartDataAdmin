@@ -65,8 +65,10 @@ class QuestionsController extends AbstractActionController
      */
     public function indexAction()
     {
+    	$schoolId = (int) $this->params('school_id', null);
+    	
         return new ViewModel(array(
-            'records' => $this->questionsService->getCurrentQuestions(),
+            'records' => $this->questionsService->getCurrentQuestions($schoolId),
         ));
     }
 
@@ -112,6 +114,8 @@ class QuestionsController extends AbstractActionController
      */
     public function createAction()
     {
+    	$schoolId = (int) $this->params('school_id', null);
+    	
         $record = new \SmartQuestions\Entity\Questions();
 
         $form = $this->questionsService->getCreateQuestionForm();
@@ -135,6 +139,7 @@ class QuestionsController extends AbstractActionController
             	$record->setIsImage($data->getIsImage());
             	$record->setGradeId($data->getGradeId());
             	$record->setSubjectId($data->getSubjectId());
+            	$record->setSchoolId($schoolId);
             	
                 $this->questionsService->createQuestion($record, $this->identity());
 

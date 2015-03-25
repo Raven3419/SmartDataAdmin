@@ -220,6 +220,17 @@ interface QuestionsInterface
     public function getSubjectId();
 
     /**
+     * @param  integer $schoolId
+     * @return Questions
+     */
+    public function setSchoolId($schoolId);
+
+    /**
+     * @return integer
+     */
+    public function getSchoolId();
+
+    /**
      * @return integer
      */
     public function getQuestionId();

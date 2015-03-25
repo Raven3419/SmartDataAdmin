@@ -233,6 +233,7 @@ class GradesController extends AbstractActionController
         }
 
         $this->gradesService->deleteGrade($record, $this->identity());
+        //$this->gradesService->deleteGrade($record, $this->identity());
 
         $this->flashMessenger()->setNamespace('success')
              ->addMessage('You have successfully deleted a Grade.');
