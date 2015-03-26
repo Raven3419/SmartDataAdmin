@@ -6,11 +6,9 @@
  * @category   Zend
  * @package    LundProducts
  * @subpackage Controller
- * @author     Jason Guthery <jason@rocketred.com>
- * @copyright  2013 Rocket Red (http://www.rocketred.com)
+ * @author     Raven Sampson <rsampson@thesmartdata.com>
  * @license    http://framework.zend.com/license/new-bsd New BSD License
  * @version    GIT: $Id$
- * @link       https://github.com/rocketred/www-lunddigitalplatform for the canonical source repository
  * @since      File available since Release 1.0.0
  */
 
@@ -33,11 +31,9 @@ use LundProducts\Service\ProductCategoryService;
  * @category   Zend
  * @package    LundProducts
  * @subpackage Controller
- * @author     Jason Guthery <jason@rocketred.com>
- * @copyright  2013 Rocket Red (http://www.rocketred.com)
+ * @author     Raven Sampson <rsampson@thesmartdata.com>
  * @license    http://framework.zend.com/license/new-bsd New BSD License
  * @version    GIT: $Id$
- * @link       https://github.com/rocketred/www-lunddigitalplatform for the canonical source repository
  */
 class BrandProductCategoryController extends AbstractActionController
 {

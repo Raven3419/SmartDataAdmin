@@ -486,7 +486,7 @@ class IndexController extends AbstractActionController
         } else {
             $from = 'mailer@lundinternational.com';
             $subject = 'Product Review Pending';
-            $to = array(/*'jason#rocketred.com',*/
+            $to = array(/*'rsampson@thesmartdata.com',*/
                 'jdrobik@lundinter.com'
                 /*'info@lundinter.com'*/);
             $message = "<p>" . $review->getUser()->getFirstName() . " has submitted a product review.</p>
@@ -900,7 +900,7 @@ class IndexController extends AbstractActionController
 
                         $this->sendEmail($from, $to, $subject, $message);
 
-                        $to = array(/*'jason@rocketred.com',*/
+                        $to = array(/*'rsampson@thesmartdata.com',*/
                             'jdrobik@lundinter.com');
 
                         $this->sendEmail($from, $to, $subject, $message);
@@ -1594,7 +1594,7 @@ class IndexController extends AbstractActionController
                     <p>For questions regarding your warranty, please contact our Customer Service department at <a href=\"mailto:info@lundinter.com\">info@lundinter.com</a>.</p>";
                 $this->sendEmail($from, $to, $subject, $message);
 
-                $to = array(/*'jason#rocketred.com',
+                $to = array(/*'rsampson@thesmartdata.com',
                     'jdrobik@lundinter.com',*/
                     'info@lundinter.com');
                 $message = "<p>" . $productRegistration->getFirstName() . " has submitted a product registration request.</p>
@@ -1674,7 +1674,7 @@ class IndexController extends AbstractActionController
                 $vm->setVariable('result', 'success');
 
                 $from = 'mailer@lundinternational.com';
-                $to = array(/*'jason@rocketred.com',
+                $to = array(/*'rsampson@thesmartdata.com',
                     'jdrobik@lundinter.com',*/
                     'info@lundinter.com');
                 $subject = 'Product Contact Form Submission';
@@ -1709,7 +1709,7 @@ class IndexController extends AbstractActionController
                 $vm->setVariable('result', 'success');
 
                 $from = 'mailer@lundinternational.com';
-                $to = array(/*'jason@rocketred.com',
+                $to = array(/*'rsampson@thesmartdata.com',
                     'jdrobik@lundinter.com',*/
                     'info@lundinter.com');
                 $subject = 'Contact Form Submission';
@@ -1745,7 +1745,7 @@ class IndexController extends AbstractActionController
                 $vm->setVariable('result', 'success');
 
                 $from = 'mailer@lundinternational.com';
-                $to = array(/*'jason@rocketred.com',
+                $to = array(/*'rsampson@thesmartdata.com',
                     'jdrobik@lundinter.com',*/
                     'info@lundinter.com');
                 $subject = 'ShowroomSubmission';
@@ -1794,7 +1794,7 @@ class IndexController extends AbstractActionController
 
                 $this->sendEmail($from, $to, $subject, $message);
 
-                $to = array(/*'jason@rocketred.com',
+                $to = array(/*'rsampson@thesmartdata.com',
                     'jdrobik@lundinter.com',*/
                     'info@lundinter.com',
                     'jmaguire@lundinter.com');
@@ -1888,7 +1888,7 @@ class IndexController extends AbstractActionController
 
                 $this->sendEmail($from, $to, $subject, $message);
 
-                $to = array(/*'jason@rocketred.com',
+                $to = array(/*'rsampson@thesmartdata.com',
                     'jdrobik@lundinter.com',*/
                     'info@lundinter.com',
                     'jmaguire@lundinter.com');

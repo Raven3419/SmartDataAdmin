@@ -263,8 +263,7 @@ class CustomerTransmitService implements EventManagerAwareInterface
                             $mail->setBody($body);
                             $mail->setFrom('mailer@lundinternational.com');
                             //$mail->addTo($customer->getEmail());
-                            $mail->addTo('jason@rocketred.com');
-                            $mail->addTo('jdrobik@lundinter.com');
+                            $mail->addTo('rsampson@thesmartdata.com');
                             $mail->setSubject('You have received a product update from Lund International');
                             $transport = new Mail\Transport\Sendmail();
                             $transport->send($mail);
@@ -330,8 +329,7 @@ class CustomerTransmitService implements EventManagerAwareInterface
                             $mail->setBody($body);
                             $mail->setFrom('mailer@lundinternational.com');
                             //$mail->addTo($customer->getEmail());
-                            $mail->addTo('jason@rocketred.com');
-                            $mail->addTo('jdrobik@lundinter.com');
+                            $mail->addTo('rsampson@thesmartdata.com');
                             $mail->setSubject('You have received a product update from Lund International');
                             $transport = new Mail\Transport\Sendmail();
                             $transport->send($mail);

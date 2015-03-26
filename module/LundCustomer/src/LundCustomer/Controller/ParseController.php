@@ -260,9 +260,7 @@ class ParseController extends AbstractActionController
                                 Username: " . strtolower($email) . "\r\n
                                 Password: " . $newPassword . "\r\n
                             ");
-                            $mail->setFrom('jdrobik@lundinter.com');
-                            //$mail->addTo('jason@rocketred.com');
-                            //$mail->addTo('jdrobik@lundinter.com');
+                            $mail->setFrom('rsampson@thesmartdata.com');
                             /* TODO: Replace email with customer file supplied email address */
                             $mail->addTo($email);
                             $mail->setSubject('Account created for lundinternational.com');
