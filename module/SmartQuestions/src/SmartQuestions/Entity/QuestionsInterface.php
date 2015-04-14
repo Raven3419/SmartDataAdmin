@@ -132,59 +132,26 @@ interface QuestionsInterface
     public function getTextOptionThree();
 
     /**
-     * @param  string $imageQuestion
+     * @param  string $images
      * @return Questions
      */
-    public function setImageQuestion($imageQuestion);
+    public function setImages($images);
 
     /**
      * @return string
      */
-    public function getImageQuestion();
+    public function getImages();
 
     /**
-     * @param  string $imageCorrectAnswer
+     * @param  string $paragraph
      * @return Questions
      */
-    public function setImageCorrectAnswer($imageCorrectAnswer);
+    public function setParagraph($paragraph);
 
     /**
      * @return string
      */
-    public function getImageCorrectAnswer();
-
-    /**
-     * @param  string $imageOptionOne
-     * @return Questions
-     */
-    public function setImageOptionOne($imageOptionOne);
-
-    /**
-     * @return string
-     */
-    public function getImageOptionOne();
-
-    /**
-     * @param  string $imageOptionTwo
-     * @return Questions
-     */
-    public function setImageOptionTwo($imageOptionTwo);
-
-    /**
-     * @return string
-     */
-    public function getImageOptionTwo();
-
-    /**
-     * @param  string $imageOptionThree
-     * @return Questions
-     */
-    public function setImageOptionThree($imageOptionThree);
-
-    /**
-     * @return string
-     */
-    public function getImageOptionThree();
+    public function getParagraph();
 
     /**
      * @param  string $isImage

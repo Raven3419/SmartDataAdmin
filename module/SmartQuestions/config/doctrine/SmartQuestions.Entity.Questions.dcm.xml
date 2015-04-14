@@ -18,11 +18,8 @@
         <field name="textOptionOne" column="text_option_one" type="string" length="255" nullable="true"/>
         <field name="textOptionTwo" column="text_option_two" type="string" length="255" nullable="true"/>
         <field name="textOptionThree" column="text_option_three" type="string" length="255" nullable="true"/>
-        <field name="imageQuestion" column="image_question" type="string" length="255" nullable="true"/>
-        <field name="imageCorrectAnswer" column="image_correct_answer" type="string" length="255" nullable="true"/>
-        <field name="imageOptionOne" column="image_option_one" type="string" length="255" nullable="true"/>
-        <field name="imageOptionTwo" column="image_option_two" type="string" length="255" nullable="true"/>
-        <field name="imageOptionThree" column="image_option_three" type="string" length="255" nullable="true"/>
+        <field name="images" column="images" type="string" length="255" nullable="true"/>
+        <field name="paragraph" column="paragraph" type="string" length="255" nullable="true"/>
         <field name="isImage" column="is_image" type="boolean" nullable="true"/>
         <field name="schoolId" column="school_id"  type="integer"/>
         <many-to-one field="gradeId" target-entity="SmartQuestions\Entity\Grades" fetch="EAGER">

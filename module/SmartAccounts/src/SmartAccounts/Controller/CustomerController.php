@@ -4,7 +4,7 @@
  * PHP version 5.5
  *
  * @category   Zend
- * @package    SmartQuestions
+ * @package    SmartAccounts
  * @subpackage Controller
  * @author     Raven Sampson <rsampson@thesmartdata.com>
  * @license    http://framework.zend.com/license/new-bsd New BSD License
@@ -12,33 +12,33 @@
  * @since      File available since Release 1.0.0
  */
 
-namespace SmartQuestions\Controller;
+namespace SmartAccounts\Controller;
 
 use Zend\EventManager\EventManagerInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\HelperPluginManager as ViewHelperManager;
 use Zend\View\Model\ViewModel;
-use SmartQuestions\Form\QuestionForm;
-use SmartQuestions\Service\QuestionsService;
-use SmartQuestions\Service\QuestionProductCategoryService;
+use SmartAccounts\Form\CustomerForm;
+use SmartAccounts\Service\CustomerService;
+use SmartAccounts\Service\CustomerProductCategoryService;
 use RocketAdmin\Service\MessageService;
 
 /**
- * Questions controller for SmartQuestions module
+ * Customer controller for SmartAccounts module
  *
  * @category   Zend
- * @package    SmartQuestions
+ * @package    SmartAccounts
  * @subpackage Controller
  * @author     Raven Sampson <rsampson@thesmartdata.com>
  * @license    http://framework.zend.com/license/new-bsd New BSD License
  * @version    GIT: $Id$
  */
-class QuestionsController extends AbstractActionController
+class CustomerController extends AbstractActionController
 {
     /**
-     * @var QuestionsService
+     * @var CustomerService
      */
-    protected $questionsService;
+    protected $customerService;
 
     /**
      * @var HelperPluginManager
@@ -46,36 +46,32 @@ class QuestionsController extends AbstractActionController
     protected $viewHelperManager;
 
     /**
-     * @param QuestionsService  $questionsService
+     * @param CustomerService  $customerService
      * @param HelperPluginManager $viewHelperManager
      */
     public function __construct(
-        QuestionsService  $questionsService,
+        CustomerService  $customerService,
         ViewHelperManager $viewHelperManager
     )
     {
-        $this->questionsService  = $questionsService;
+        $this->customerService  = $customerService;
         $this->viewHelperManager = $viewHelperManager;
     }
 
     /**
-     * Display a table of questions
+     * Display a table of customer
      *
      * @return Zend\View\Model\ViewModel|array
      */
     public function indexAction()
     {
-    	$schoolId = (int) $this->params('school_id', null);
-    	
-    	$records = $this->questionsService->getCurrentQuestions($schoolId);
-    	
         return new ViewModel(array(
-            'records' => $records,
+            'records' => $this->customerService->getCurrentCustomer(),
         ));
     }
 
     /**
-     * View a single question record
+     * View a single customer record
      *
      * @return ViewModel|array
      */
@@ -87,19 +83,19 @@ class QuestionsController extends AbstractActionController
             $this->flashMessenger()->setNamespace('error')
                                    ->addMessage('You have attempted to access an invalid record.');
 
-            return $this->redirect()->toRoute('rocket-admin/education/questions');
+            return $this->redirect()->toRoute('rocket-admin/accounts/customer');
         }
 
-        $record = $this->questionsService->getQuestion($recordId);
+        $record = $this->customerService->getCustomer($recordId);
 
         if (null === $record) {
             $this->flashMessenger()->setNamespace('error')
                                    ->addMessage('You have attempted to access an invalid record.');
 
-            return $this->redirect()->toRoute('rocket-admin/education/questions');
+            return $this->redirect()->toRoute('rocket-admin/accounts/customer');
         }
 
-        $form = $this->questionsService->getEditQuestionForm($recordId);
+        $form = $this->customerService->getEditCustomerForm($recordId);
 
         return new ViewModel(array(
             'record'   => $record,
@@ -110,45 +106,39 @@ class QuestionsController extends AbstractActionController
     }
 
     /**
-     * Create a new question record
+     * Create a new customer record
      *
      * @return ViewModel|array
      */
     public function createAction()
     {
-    	$schoolId = (int) $this->params('school_id', null);
-    	
-        $record = new \SmartQuestions\Entity\Questions();
+        $record = new \SmartAccounts\Entity\Customer();
 
-        $form = $this->questionsService->getCreateQuestionForm();
+        $form = $this->customerService->getCreateCustomerForm();
 
         if ($this->request->isPost()) {
             $form->setData($this->request->getPost());
             if ($form->isValid()) {
             	$data = $form->getData();
             	
+            	$record->setEmail($data->getEmail());
+            	$record->setPassword($data->getPassword());
+            	$record->setFirstName($data->getFirstName());
+            	$record->setLastName($data->getLastName());
             	$record->setDisabled($data->getDisabled());
-            	$record->setTextQuestion($data->getTextQuestion());
-            	$record->setTextCorrectAnswer($data->getTextCorrectAnswer());
-            	$record->setTextOptionOne($data->getTextOptionOne());
-            	$record->setTextOptionTwo($data->getTextOptionTwo());
-            	$record->setTextOptionThree($data->getTextOptionThree());
-            	$record->setImages($data->getImages());
-            	$record->setParagraph($data->getParagraph());
-            	$record->setIsImage($data->getIsImage());
-            	$record->setGradeId($data->getGradeId());
-            	$record->setSubjectId($data->getSubjectId());
-            	$record->setSchoolId($schoolId);
+            	$record->setParentFirstName($data->getParentFirstName());
+            	$record->setParentLastName($data->getParentLastName());
+            	$record->setParentEmail($data->getParentEmail());
             	
-                $this->questionsService->createQuestion($record, $this->identity());
+                $this->customerService->createCustomer($record, $this->identity());
 
                 $this->flashMessenger()->setNamespace('success')
-                                       ->addMessage('You have successfullly created a new Question.');
+                                       ->addMessage('You have successfullly created a new Customer.');
 
-                return $this->redirect()->toRoute('rocket-admin/education/questions');
+                return $this->redirect()->toRoute('rocket-admin/accounts/customer');
             } else {
                 $this->flashMessenger()->setNamespace('error')
-                                       ->addMessage('There was an error trying to create a new Question.');
+                                       ->addMessage('There was an error trying to create a new Customer.');
             }
         }
 
@@ -157,7 +147,7 @@ class QuestionsController extends AbstractActionController
         $this->viewHelperManager->get('HeadScript')
              ->appendFile($base . '/assets/rocket-admin/ckeditor/ckeditor.js');
         $this->viewHelperManager->get('InlineScript')
-             ->appendScript("$(function () {CKEDITOR.replace('question-fieldset[html]');});", 'text/javascript');
+             ->appendScript("$(function () {CKEDITOR.replace('customer-fieldset[html]');});", 'text/javascript');
 
         return new ViewModel(array(
             'record' => $record,
@@ -166,7 +156,7 @@ class QuestionsController extends AbstractActionController
     }
 
     /**
-     * Edit an existing question record
+     * Edit an existing customer record
      *
      * @return ViewModel|array
      */
@@ -178,34 +168,45 @@ class QuestionsController extends AbstractActionController
             $this->flashMessenger()->setNamespace('error')
                  ->addMessage('You have attempted to access an invalid record.');
 
-            return $this->redirect()->toRoute('rocket-admin/education/questions');
+            return $this->redirect()->toRoute('rocket-admin/accounts/customer');
         }
 
-        $record = $this->questionsService->getQuestion($recordId);
+        $record = $this->customerService->getCustomer($recordId);
 
         if (null === $record) {
             $this->flashMessenger()->setNamespace('error')
                  ->addMessage('You have attempted to access an invalid record.');
 
-            return $this->redirect()->toRoute('rocket-admin/education/questions');
+            return $this->redirect()->toRoute('rocket-admin/accounts/customer');
         }
 
-        $form = $this->questionsService->getEditQuestionForm($recordId);
+        $form = $this->customerService->getEditCustomerForm($recordId);
 
         if ($this->request->isPost()) {
+        	
+        	$holdPassword = $record->getPassword();
+        	
             $form->setData($this->request->getPost());
-
+            
             if ($form->isValid()) {
-                $this->questionsService->editQuestion($record, $this->identity());
+            	
+            	$array = $this->getRequest()->getPost()->toArray();
+            	 
+            	if ($array['customer-fieldset']['password'] == '')
+            	{
+            		$record->setPassword($holdPassword);
+            	}
+            	
+                $this->customerService->editCustomer($record, $this->identity());
 
                 $this->flashMessenger()->setNamespace('success')
-                     ->addMessage('You have successfully edited a Question.');
+                     ->addMessage('You have successfully edited a Customer.');
 
-                return $this->redirect()->toRoute('rocket-admin/education/questions');
+                return $this->redirect()->toRoute('rocket-admin/accounts/customer');
             } else {
                 $form->getData();
                 $this->flashMessenger()->setNamespace('error')
-                     ->addMessage('There was an error trying to edit an existing Question.');
+                     ->addMessage('There was an error trying to edit an existing Customer.');
             }
         }
 
@@ -214,7 +215,7 @@ class QuestionsController extends AbstractActionController
         $this->viewHelperManager->get('HeadScript')
              ->appendFile($base . '/assets/rocket-admin/ckeditor/ckeditor.js');
         $this->viewHelperManager->get('InlineScript')
-             ->appendScript("$(function () {CKEDITOR.replace('question-fieldset[html]');});", 'text/javascript');
+             ->appendScript("$(function () {CKEDITOR.replace('customer-fieldset[html]');});", 'text/javascript');
 
         return new ViewModel(array(
             'record'   => $record,
@@ -224,7 +225,7 @@ class QuestionsController extends AbstractActionController
     }
 
     /**
-     * Delete an existing question record (toggle deleted boolean)
+     * Delete an existing customer record (toggle deleted boolean)
      *
      * @return void
      */
@@ -236,23 +237,23 @@ class QuestionsController extends AbstractActionController
             $this->flashMessenger()->setNamespace('error')
                  ->addMessage('You have attempted to access an invalid record.');
 
-            return $this->redirect()->toRoute('rocket-admin/education/questions');
+            return $this->redirect()->toRoute('rocket-admin/accounts/customer');
         }
 
-        $record = $this->questionsService->getQuestion($recordId);
+        $record = $this->customerService->getCustomer($recordId);
 
         if (null === $record) {
             $this->flashMessenger()->setNamespace('error')
                  ->addMessage('You have attempted to access an invalid record.');
 
-            return $this->redirect()->toRoute('rocket-admin/education/questions');
+            return $this->redirect()->toRoute('rocket-admin/accounts/customer');
         }
 
-        $this->questionsService->deleteQuestion($record, $this->identity());
-
+        $this->customerService->deleteCustomer($record, $this->identity());
+        
         $this->flashMessenger()->setNamespace('success')
-             ->addMessage('You have successfully deleted a Question.');
+             ->addMessage('You have successfully deleted a Customer.');
 
-        return $this->redirect()->toRoute('rocket-admin/education/questions');
+        return $this->redirect()->toRoute('rocket-admin/accounts/customer');
     }
 }

@@ -76,27 +76,12 @@ class Questions implements QuestionsInterface
     /**
      * @var string
      */
-    protected $imageQuestion;
+    protected $images;
 
     /**
      * @var string
      */
-    protected $imageCorrectAnswer;
-
-    /**
-     * @var string
-     */
-    protected $imageOptionOne;
-
-    /**
-     * @var string
-     */
-    protected $imageOptionTwo;
-
-    /**
-     * @var string
-     */
-    protected $imageOptionThree;
+    protected $paragraph;
 
     /**
      * @var boolean
@@ -354,118 +339,49 @@ class Questions implements QuestionsInterface
     }
 
     /**
-     * Set imageQuestion
+     * Set images
      *
-     * @param  string $imageQuestion
+     * @param  string $images
      * @return Questions
      */
-    public function setImageQuestion($imageQuestion)
+    public function setImages($images)
     {
-        $this->imageQuestion = $imageQuestion;
+        $this->images = $images;
 
         return $this;
     }
 
     /**
-     * Get imageQuestion
+     * Get images
      *
      * @return string
      */
-    public function getImageQuestion()
+    public function getImages()
     {
-        return $this->imageQuestion;
+        return $this->images;
     }
     
     /**
-     * Set imageCorrectAnswer
+     * Set paragraph
      *
-     * @param  string $imageCorrectAnswer
+     * @param  string $paragraph
      * @return Questions
      */
-    public function setImageCorrectAnswer($imageCorrectAnswer)
+    public function setParagraph($paragraph)
     {
-    	$this->imageCorrectAnswer = $imageCorrectAnswer;
+    	$this->paragraph = $paragraph;
     
     	return $this;
     }
     
     /**
-     * Get imageCorrectAnswer
+     * Get paragraph
      *
      * @return string
      */
-    public function getImageCorrectAnswer()
+    public function getParagraph()
     {
-    	return $this->imageCorrectAnswer;
-    }
-    
-    /**
-     * Set imageOptionOne
-     *
-     * @param  string $imageOptionOne
-     * @return Questions
-     */
-    public function setImageOptionOne($imageOptionOne)
-    {
-    	$this->imageOptionOne = $imageOptionOne;
-    
-    	return $this;
-    }
-    
-    /**
-     * Get imageOptionOne
-     *
-     * @return string
-     */
-    public function getImageOptionOne()
-    {
-    	return $this->imageOptionOne;
-    }
-    
-    /**
-     * Set imageOptionTwo
-     *
-     * @param  string $imageOptionTwo
-     * @return Questions
-     */
-    public function setImageOptionTwo($imageOptionTwo)
-    {
-    	$this->imageOptionTwo = $imageOptionTwo;
-    
-    	return $this;
-    }
-    
-    /**
-     * Get imageOptionTwo
-     *
-     * @return string
-     */
-    public function getImageOptionTwo()
-    {
-    	return $this->imageOptionTwo;
-    }
-    
-    /**
-     * Set imageOptionThree
-     *
-     * @param  string $imageOptionThree
-     * @return Questions
-     */
-    public function setImageOptionThree($imageOptionThree)
-    {
-    	$this->imageOptionThree = $imageOptionThree;
-    
-    	return $this;
-    }
-    
-    /**
-     * Get imageOptionThree
-     *
-     * @return string
-     */
-    public function getImageOptionThree()
-    {
-    	return $this->imageOptionThree;
+    	return $this->paragraph;
     }
     
     /**

@@ -100,35 +100,14 @@ class QuestionFilter extends InputFilter
         ));
 
         $this->add(array(
-            'name'       	=> 'imageQuestion',
+            'name'       	=> 'images',
             'required'   	=> false,
           	'allow_empty' 	=> true,
             'filters'    	=> array(array('name' => 'StringTrim'))
         ));
 
         $this->add(array(
-            'name'       	=> 'imageCorrectAnswer',
-            'required'   	=> false,
-          	'allow_empty' 	=> true,
-            'filters'    	=> array(array('name' => 'StringTrim'))
-        ));
-
-        $this->add(array(
-            'name'       	=> 'imageOptionOne',
-            'required'   	=> false,
-          	'allow_empty' 	=> true,
-            'filters'    	=> array(array('name' => 'StringTrim'))
-        ));
-
-        $this->add(array(
-            'name'       	=> 'imageOptionTwo',
-            'required'   	=> false,
-          	'allow_empty' 	=> true,
-            'filters'    	=> array(array('name' => 'StringTrim'))
-        ));
-
-        $this->add(array(
-            'name'       	=> 'imageOptionThree',
+            'name'       	=> 'paragraph',
             'required'   	=> false,
           	'allow_empty' 	=> true,
             'filters'    	=> array(array('name' => 'StringTrim'))

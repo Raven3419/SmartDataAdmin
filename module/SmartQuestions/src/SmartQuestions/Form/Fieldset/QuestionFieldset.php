@@ -57,10 +57,11 @@ class QuestionFieldset extends Fieldset
             'type'    => 'Zend\Form\Element\Select',
             'name'    => 'isImage',
             'options' => array(
-                'label'         => 'Is the Question an Image',
+                'label'         => 'Does the Question have an Image or Paragraph',
                 'value_options' => array(
-                    '0' => 'No',
-                    '1'  => 'Yes',
+                    '0' => 'None',
+                    '1'  => 'Image',
+                    '2'  => 'Paragraph',
                 ),
             ),
             'attributes' => array(
@@ -163,61 +164,25 @@ class QuestionFieldset extends Fieldset
 
         $this->add(array(
             'type'    => 'Zend\Form\Element\Text',
-            'name'    => 'imageQuestion',
+            'name'    => 'images',
             'options' => array(
-                'label' => 'Image Question',
+                'label' => 'Image',
             ),
             'attributes' => array(
                 'class'       => 'span12',
-                'placeholder' => 'Enter a Question Image',
+                'placeholder' => 'Enter a Image',
             ),
         ));
 
         $this->add(array(
             'type'    => 'Zend\Form\Element\Text',
-            'name'    => 'imageCorrectAnswer',
+            'name'    => 'paragraph',
             'options' => array(
-                'label' => 'Image Correct Answer',
+                'label' => 'Image Paragraph',
             ),
             'attributes' => array(
                 'class'       => 'span12',
-                'placeholder' => 'Enter a Correct Answer Image',
-            ),
-        ));
-
-        $this->add(array(
-            'type'    => 'Zend\Form\Element\Text',
-            'name'    => 'imageOptionOne',
-            'options' => array(
-                'label' => 'Image Option One',
-            ),
-            'attributes' => array(
-                'class'       => 'span12',
-                'placeholder' => 'Enter a Option One Image',
-            ),
-        ));
-
-        $this->add(array(
-            'type'    => 'Zend\Form\Element\Text',
-            'name'    => 'imageOptionTwo',
-            'options' => array(
-                'label' => 'Image Option Two',
-            ),
-            'attributes' => array(
-                'class'       => 'span12',
-                'placeholder' => 'Enter a Option Two Image',
-            ),
-        ));
-
-        $this->add(array(
-            'type'    => 'Zend\Form\Element\Text',
-            'name'    => 'imageOptionThree',
-            'options' => array(
-                'label' => 'Image Option Three',
-            ),
-            'attributes' => array(
-                'class'       => 'span12',
-                'placeholder' => 'Enter a Option Three Image',
+                'placeholder' => 'Enter a Paragraph',
             ),
         ));
 

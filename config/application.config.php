@@ -23,6 +23,7 @@ $modules = [
     'RocketEcom',
     'RocketAdmin',
 	'SmartQuestions',
+	'SmartAccounts',
     'Aws'
 ];
 
