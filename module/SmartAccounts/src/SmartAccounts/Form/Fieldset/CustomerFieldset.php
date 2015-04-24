@@ -54,6 +54,7 @@ class CustomerFieldset extends Fieldset
                 'label' => 'Email',
             ),
             'attributes' => array(
+            	'disabled'	  => 'disabled',
                 'required'    => 'required',
                 'class'       => 'validate[required] span12',
                 'placeholder' => 'Enter a Email',
