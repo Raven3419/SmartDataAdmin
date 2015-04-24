@@ -1,0 +1,37 @@
+                    <h5 class="widget-name"><i class="icon-table"></i>View All Customer</h5>
+                    <div class="widget">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <h6><i class="icon-th-large"></i>Customer</h6>
+                                <a class="btn btn-info pull-right" href="/admin/rest/customer/create"><b class="icon-plus"></b>Add New Customer</a>
+                            </div>
+                        </div>
+                        <div class="table-overflow">
+                            <table class="table table-striped table-bordered" id="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Disabled</th>
+                                        <th class="actnCol">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($this->records as $record) { ?>
+                                    <tr>
+                                        <td><?php echo $record->getFirstName(); ?></td>
+                                        <td><?php echo $record->getLastName(); ?></td>
+                                        <td><?php echo ($record->getDisabled() ? 'Yes' : 'No'); ?></td>
+                                        <td>
+                                            <ul class="table-controls">
+                                                <li><a href="/admin/rest/customer/edit/<?php echo $record->getCustomerId(); ?>" class="btn tip" title="Edit Record"><i class="icon-edit"></i> edit</a></li>
+                                                <li><a href="/admin/rest/customer/view/<?php echo $record->getCustomerId(); ?>" class="btn tip" title="View Record"><i class="icon-external-link"></i> view</a></li>
+                                                <li><a href="/admin/rest/customer/delete/<?php echo $record->getCustomerId(); ?>" class="btn tip confirm"><i class="icon-trash"></i> delete</a></li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>

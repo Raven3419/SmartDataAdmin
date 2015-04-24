@@ -9,13 +9,7 @@ $modules = [
     'EdpModuleLayouts',
     'ZfcRbac',
     'OcraCachedViewResolver',
-    //'EdpSuperluminal',
     'Application',
-    //'LundProducts',
-    //'LundFeeds',
-    //'LundCustomer',
-    //'LundSite',
-    //'GoogleMaps',
     'RocketBase',
     'RocketUser',
     'RocketCms',
@@ -24,6 +18,7 @@ $modules = [
     'RocketAdmin',
 	'SmartQuestions',
 	'SmartAccounts',
+	'SmartRestServices',
     'Aws'
 ];
 
