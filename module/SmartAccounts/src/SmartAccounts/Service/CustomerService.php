@@ -95,6 +95,16 @@ class CustomerService implements EventManagerAwareInterface
             array('createdAt' => 'ASC')
         );
     }
+    
+    /**
+     * @return mixed
+     */
+    public function getCustomerByEmail($email = null)
+{
+        return $this->repository->findOneBy(
+            array('email' => $email)
+        );
+    }
 
     /**
      * Return customer record

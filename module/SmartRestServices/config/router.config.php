@@ -52,47 +52,24 @@ return array(
                                         ),
                                     ),
                                     'edit' => array(
-                                        'type'    => 'Zend\Mvc\Router\Http\Segment',
+                                        'type'    => 'Zend\Mvc\Router\Http\Literal',
                                         'options' => array(
-                                            'route'       => '/edit/:id',
-                                            'constraints' => array(
-                                                'id' => '[0-9]*',
-                                            ),
+                                            'route'       => '/edit',
                                             'defaults'    => array(
                                                 'controller' => 'SmartRestServices\Controller\Customer',
                                                 'action'     => 'edit',
-                                                'id'         => 0,
                                             ),
                                         ),
                                     ),
-                                    'delete' => array(
-                                        'type'    => 'Zend\Mvc\Router\Http\Segment',
+                                    'id' => array(
+                                        'type'    => 'Zend\Mvc\Router\Http\Literal',
                                         'options' => array(
-                                            'route'       => '/delete/:id',
-                                            'constraints' => array(
-                                                'id' => '[0-9]*',
-                                            ),
+                                            'route'       => '/id',
                                             'defaults'    => array(
                                                 'controller' => 'SmartRestServices\Controller\Customer',
-                                                'action'     => 'delete',
-                                                'id'         => 0,
+                                                'action'     => 'edit',
                                             ),
                                         ),
-                                    ),
-                                    'view' => array(
-                                        'type'    => 'Zend\Mvc\Router\Http\Segment',
-                                        'options' => array(
-                                            'route'       => '/view/:id',
-                                            'constraints' => array(
-                                                'id' => '[0-9]*',
-                                            ),
-                                            'defaults'    => array(
-                                                'controller' => 'SmartRestServices\Controller\Customer',
-                                                'action'     => 'view',
-                                                'id'         => 0,
-                                            ),
-                                        ),
-                                        'may_terminate' => true,
                                     ),
                                 ),
                             ),

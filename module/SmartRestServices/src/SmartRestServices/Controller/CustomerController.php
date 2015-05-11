@@ -36,6 +36,10 @@ class CustomerController extends AbstractRestfulController
      * @var CustomerService
      */
     protected $customerService;
+    
+    const USERNAME = 'raven';
+    const PASSWORD = '123234';
+    
 
     /**
      * @param CustomerService  $customerService
@@ -55,7 +59,108 @@ class CustomerController extends AbstractRestfulController
     
     public function editAction()
     {
-    	$this->methodNotAllowed();
+    	if ($this->request->isPost())
+    	{	
+    		$json = $this->params()->fromPost();
+
+    		$data = json_decode($json['data'], true);
+
+    		//print_r($data['smartdata']);exit;
+    		if($data['smartdata']['authentication']['username'] == self::USERNAME && $data['smartdata']['authentication']['password'] == self::PASSWORD)
+    		{
+    			if(isset($data['smartdata']['editCustomer']))
+    			{
+    				$record = new \SmartAccounts\Entity\Customer();
+    				$user = new \RocketUser\Entity\User();
+    				 
+    				$editCustomer = $data['smartdata']['editCustomer'];
+    				
+    				$record = $this->customerService->getCustomerByEmail($editCustomer['email']);
+    				 
+    				$record->setFirstName($editCustomer['firstname']);
+    				$record->setLastName($editCustomer['lastname']);
+    				$record->setParentFirstName($editCustomer['parentFirstName']);
+    				$record->setParentLastName($editCustomer['parentLastName']);
+    				$record->setParentEmail($editCustomer['parentEmail']);
+    				$record->setAddress($editCustomer['address']);
+    				$record->setCity($editCustomer['city']);
+    				$record->setState($editCustomer['state']);
+    				$record->setZip($editCustomer['zip']);
+    				 
+    				$user->setUsername('android');
+    				 
+    				$this->customerService->editCustomer($record, $user);
+    				 
+    				$result = new JsonModel(array(
+    						'status'	=> 'success'
+    				));
+    				 
+    			}
+    			else if(isset($data['smartdata']['editNotification']))
+    			{
+    				$record = new \SmartAccounts\Entity\Customer();
+    				$user = new \RocketUser\Entity\User();
+    				 
+    				$editNotification = $data['smartdata']['editNotification'];
+    				
+    				$record = $this->customerService->getCustomerByEmail($editNotification['email']);
+    				 
+    				$record->setNotificationFree($editNotification['notificationFree']);
+    				$record->setNotificationGrade($editNotification['notificationGrade']);
+    				 
+    				$user->setUsername('android');
+    				 
+    				$this->customerService->editCustomer($record, $user);
+    				 
+    				$result = new JsonModel(array(
+    						'status'	=> 'success'
+    				));
+    				 
+    			}
+    			else if(isset($data['smartdata']['editPassword']))
+    			{
+    				$record = new \SmartAccounts\Entity\Customer();
+    				$user = new \RocketUser\Entity\User();
+    				 
+    				$editPassword = $data['smartdata']['editPassword'];
+    				
+    				$record = $this->customerService->getCustomerByEmail($editPassword['email']);
+    				 
+    				$record->setPassword($editPassword['password']);
+    				 
+    				$user->setUsername('android');
+    				 
+    				$this->customerService->editCustomer($record, $user);
+    				 
+    				$result = new JsonModel(array(
+    						'status'	=> 'success'
+    				));
+    				 
+    			}
+	    		else 
+	    		{
+	    			$result = new JsonModel(array(
+	    				'status'	=> 'error',
+			    		'message' 	=> 'Invalid Method!!.'
+	        		));
+	
+	    		}
+    		}
+    		else 
+    		{
+    			$result = new JsonModel(array(
+    				'status'	=> 'error',
+		    		'message' 	=> 'You have attempted to HACK! email has been sent to admin.'
+        		));
+
+    		}
+    		
+    		return $result;
+    	}
+    	else 
+    	{
+    		return $this->redirect()->toUrl('http://www.thesmartdata.com');
+    	}
     }
     
     public function createAction()
@@ -66,26 +171,56 @@ class CustomerController extends AbstractRestfulController
 
     		$data = json_decode($json['data'], true);
 
-    		if($data['profile']['authentication']['username'] == 'raven' && $data['profile']['authentication']['password'] == '123234')
+    		if($data['smartdata']['authentication']['username'] == self::USERNAME && $data['smartdata']['authentication']['password'] == self::PASSWORD)
     		{
-    			$record = new \SmartAccounts\Entity\Customer();
-    			$user = new \RocketUser\Entity\User();
-    			
-    			$newCustomer = $data['profile']['newCustomer'];
-    			
-    			$record->setEmail($newCustomer['email']);
-    			$record->setPassword($newCustomer['password']);
-    			
-    			$user->setUsername('android');
-    			
-    			$this->customerService->createCustomer($record, $user);
-    			
-    			$result = new JsonModel(array(
-    					'status'	=> 'success'
-    			));
-    			
-    			return $result;
-    			
+    			if(isset($data['smartdata']['newCustomer']))
+    			{
+	    			$record = new \SmartAccounts\Entity\Customer();
+	    			$user = new \RocketUser\Entity\User();
+	    			
+	    			$newCustomer = $data['smartdata']['newCustomer'];
+	    			
+	    			$record->setEmail($newCustomer['email']);
+	    			$record->setPassword($newCustomer['password']);
+	    			$record->setNotificationFree('1');
+	    			$record->setNotificationGrade('1');
+	    			
+	    			$user->setUsername('android');
+	    			
+	    			$this->customerService->createCustomer($record, $user);
+	    			
+	    			$result = new JsonModel(array(
+	    					'status'	=> 'success'
+	    			));
+	    		}
+	    		else if(isset($data['smartdata']['newGrade']))
+	    		{
+	    			$record = new \SmartAccounts\Entity\Customer();
+	    			$user = new \RocketUser\Entity\User();
+	    		
+	    			$newCustomer = $data['smartdata']['newCustomer'];
+	    		
+	    			$record->setEmail($newCustomer['email']);
+	    			$record->setPassword($newCustomer['password']);
+	    			$record->setNotificationFree('1');
+	    			$record->setNotificationGrade('1');
+	    		
+	    			$user->setUsername('android');
+	    		
+	    			$this->customerService->createCustomer($record, $user);
+	    		
+	    			$result = new JsonModel(array(
+	    					'status'	=> 'success'
+	    			));
+	    		}
+	    		else 
+	    		{
+	    			$result = new JsonModel(array(
+	    				'status'	=> 'error',
+			    		'message' 	=> 'Invalid Method!!.'
+	        		));
+	
+	    		}
     		}
     		else 
     		{
@@ -94,8 +229,9 @@ class CustomerController extends AbstractRestfulController
 		    		'message' 	=> 'You have attempted to HACK! email has been sent to admin.'
         		));
 
-        		return $result;
     		}
+    		
+    		return $result;
     	}
     	else 
     	{

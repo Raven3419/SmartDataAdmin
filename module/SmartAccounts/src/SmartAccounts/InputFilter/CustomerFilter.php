@@ -95,5 +95,43 @@ class CustomerFilter extends InputFilter
             'filters'    => array(array('name' => 'StringTrim'))
         ));
 
+        $this->add(array(
+            'name'       => 'address',
+			'required'   => false,
+          	'allow_empty'=> true,
+            'filters'    => array(array('name' => 'StringTrim'))
+        ));
+
+        $this->add(array(
+            'name'       => 'city',
+			'required'   => false,
+          	'allow_empty'=> true,
+            'filters'    => array(array('name' => 'StringTrim'))
+        ));
+
+        $this->add(array(
+            'name'       => 'state',
+			'required'   => false,
+          	'allow_empty'=> true,
+            'filters'    => array(array('name' => 'StringTrim'))
+        ));
+
+        $this->add(array(
+            'name'       => 'zip',
+			'required'   => false,
+          	'allow_empty'=> true,
+            'filters'    => array(array('name' => 'StringTrim'))
+        ));
+        
+        $this->add(array(
+            'name'     => 'notificationFree',
+            'required' => true,
+        ));
+        
+        $this->add(array(
+            'name'     => 'notificationGrade',
+            'required' => true,
+        ));
+
     }
 }

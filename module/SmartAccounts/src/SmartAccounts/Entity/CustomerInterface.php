@@ -158,4 +158,70 @@ interface CustomerInterface
      */
     public function getCustomerId();
 
+    /**
+     * @param  string $address
+     * @return Customer
+     */
+    public function setAddress($address);
+
+    /**
+     * @return string
+     */
+    public function getAddress();
+
+    /**
+     * @param  string $city
+     * @return Customer
+     */
+    public function setCity($city);
+
+    /**
+     * @return string
+     */
+    public function getCity();
+
+    /**
+     * @param  string $state
+     * @return Customer
+     */
+    public function setState($state);
+
+    /**
+     * @return string
+     */
+    public function getState();
+
+    /**
+     * @param  string $zip
+     * @return Customer
+     */
+    public function setZip($zip);
+
+    /**
+     * @return string
+     */
+    public function getZip();
+
+    /**
+     * @param  string $notificationFree
+     * @return Customer
+     */
+    public function setNotificationFree($notificationFree);
+
+    /**
+     * @return string
+     */
+    public function getNotificationFree();
+
+    /**
+     * @param  string $notificationGrade
+     * @return Customer
+     */
+    public function setNotificationGrade($notificationGrade);
+
+    /**
+     * @return string
+     */
+    public function getNotificationGrade();
+
 }

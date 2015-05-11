@@ -89,6 +89,36 @@ class Customer implements CustomerInterface
     protected $customerId;
 
     /**
+     * @var string
+     */
+    protected $address;
+
+    /**
+     * @var string
+     */
+    protected $city;
+
+    /**
+     * @var string
+     */
+    protected $state;
+
+    /**
+     * @var sring
+     */
+    protected $zip;
+
+    /**
+     * @var sring
+     */
+    protected $notificationFree;
+
+    /**
+     * @var sring
+     */
+    protected $notificationGrade;
+
+    /**
      * Set createdAt
      *
      * @param  \DateTime $createdAt
@@ -372,6 +402,144 @@ class Customer implements CustomerInterface
     public function getCustomerId()
     {
         return $this->customerId;
+    }
+
+    /**
+     * Set address
+     *
+     * @param  string $address
+     * @return Customer
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set city
+     *
+     * @param  string $city
+     * @return Customer
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set state
+     *
+     * @param  string $state
+     * @return Customer
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Set zip
+     *
+     * @param  string $zip
+     * @return Customer
+     */
+    public function setZip($zip)
+    {
+        $this->zip = $zip;
+
+        return $this;
+    }
+
+    /**
+     * Get zip
+     *
+     * @return string
+     */
+    public function getZip()
+    {
+        return $this->zip;
+    }
+
+    /**
+     * Set notificationFree
+     *
+     * @param  string $notificationFree
+     * @return Customer
+     */
+    public function setNotificationFree($notificationFree)
+    {
+        $this->notificationFree = $notificationFree;
+
+        return $this;
+    }
+
+    /**
+     * Get notificationFree
+     *
+     * @return string
+     */
+    public function getNotificationFree()
+    {
+        return $this->notificationFree;
+    }
+
+    /**
+     * Set notificationGrade
+     *
+     * @param  string $notificationGrade
+     * @return Customer
+     */
+    public function setNotificationGrade($notificationGrade)
+    {
+        $this->notificationGrade = $notificationGrade;
+
+        return $this;
+    }
+
+    /**
+     * Get notificationGrade
+     *
+     * @return string
+     */
+    public function getNotificationGrade()
+    {
+        return $this->notificationGrade;
     }
 
 }

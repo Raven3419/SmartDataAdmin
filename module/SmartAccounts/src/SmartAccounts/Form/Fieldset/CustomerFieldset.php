@@ -148,5 +148,85 @@ class CustomerFieldset extends Fieldset
                 'class'    => 'select',
             ),
         ));
+
+        $this->add(array(
+            'type'    => 'Zend\Form\Element\Text',
+            'name'    => 'address',
+            'options' => array(
+                'label' => 'Address',
+            ),
+            'attributes' => array(
+                'class'       => 'span12',
+                'placeholder' => 'Enter in Your Address',
+            ),
+        ));
+
+        $this->add(array(
+            'type'    => 'Zend\Form\Element\Text',
+            'name'    => 'city',
+            'options' => array(
+                'label' => 'City',
+            ),
+            'attributes' => array(
+                'class'       => 'span12',
+                'placeholder' => 'Enter in Your City',
+            ),
+        ));
+
+        $this->add(array(
+            'type'    => 'Zend\Form\Element\Text',
+            'name'    => 'state',
+            'options' => array(
+                'label' => 'State',
+            ),
+            'attributes' => array(
+                'class'       => 'span12',
+                'placeholder' => 'Enter in Your State',
+            ),
+        ));
+
+        $this->add(array(
+            'type'    => 'Zend\Form\Element\Text',
+            'name'    => 'zip',
+            'options' => array(
+                'label' => 'Zip',
+            ),
+            'attributes' => array(
+                'class'       => 'span12',
+                'placeholder' => 'Enter in Zip',
+            ),
+        ));
+
+        $this->add(array(
+            'type'    => 'Zend\Form\Element\Select',
+            'name'    => 'notificationFree',
+            'options' => array(
+                'label'         => 'Notification Free',
+                'value_options' => array(
+                    '0' => 'No',
+                    '1'  => 'Yes',
+                ),
+            ),
+            'attributes' => array(
+                'required' => 'required',
+                'class'    => 'select',
+            ),
+        ));
+
+        $this->add(array(
+            'type'    => 'Zend\Form\Element\Select',
+            'name'    => 'notificationGrade',
+            'options' => array(
+                'label'         => 'Notification Grade',
+                'value_options' => array(
+                    '0' => 'No',
+                    '1'  => 'Yes',
+                ),
+            ),
+            'attributes' => array(
+                'required' => 'required',
+                'class'    => 'select',
+            ),
+        ));
     }
 }

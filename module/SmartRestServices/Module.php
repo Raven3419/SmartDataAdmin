@@ -38,11 +38,7 @@ use Zend\ModuleManager\Feature\InputFilterProviderInterface;
 class Module implements
     BootstrapListenerInterface,
     AutoloaderProviderInterface,
-    ConfigProviderInterface,
-    ServiceProviderInterface,
-    ViewHelperProviderInterface,
-    FormElementProviderInterface,
-    InputFilterProviderInterface
+    ConfigProviderInterface
 {
     /**
      * {@inheritDoc}
@@ -88,43 +84,11 @@ class Module implements
         return $config;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function getServiceConfig()
-    {
-        return include __DIR__ . '/config/service.config.php';
-    }
-
    /**
     * {@inheritDoc}}
     */
     public function getControllerConfig()
     {
         return include __DIR__ . '/config/controller.config.php';
-    }
-
-   /**
-    * {@inheritDoc}
-    */
-    public function getViewHelperConfig()
-    {
-        return include __DIR__ . '/config/view-helper.config.php';
-    }
-
-   /**
-    * {@inheritDoc}
-    */
-    public function getFormElementConfig()
-    {
-        return include __DIR__ . '/config/form-element.config.php';
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getInputFilterConfig()
-    {
-        return include __DIR__ . '/config/input-filter.config.php';
     }
 }
