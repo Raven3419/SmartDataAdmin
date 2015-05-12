@@ -24,6 +24,7 @@ use Zend\EventManager\EventManagerInterface;
 use SmartQuestions\Service\GradesService;
 use SmartQuestions\Service\SubjectsService;
 use SmartQuestions\Service\QuestionsService;
+use SmartQuestions\Service\ResultsService;
 
 /**
  * Service injecting all lund product services.
@@ -56,21 +57,29 @@ class SmartQuestionService implements EventManagerAwareInterface
     protected $subjectsService;
 
     /**
+     * @var ResultsService
+     */
+    protected $resultsService;
+
+    /**
      * @param ObjectManager                        	$objectManager
      * @param GradesService                   		$gradesServie
      * @param QuestionsService                   	$questionsServie
      * @param SubjectsService                   	$subjectsServie
+     * @param ResultsService                   		$resultsServie
      */
     public function __construct(
         ObjectManager $objectManager,
         GradesService $gradesService,
         QuestionsService $questionsService,
-        SubjectsService $subjectsService
+        SubjectsService $subjectsService,
+        ResultsService $resultsService
     ) {
         $this->objectManager = $objectManager;
         $this->gradesService = $gradesService;
         $this->questionsService = $questionsService;
         $this->subjectsService = $subjectsService;
+        $this->resultsService = $resultsService;
     }
     
     /**
@@ -101,6 +110,16 @@ class SmartQuestionService implements EventManagerAwareInterface
     public function getSubjectsService()
     {
         return $this->subjectsService;
+    }
+    
+    /**
+     * Return ResultsService
+     *
+     * @return ResultsService
+     */
+    public function getResultsService()
+    {
+    	return $this->resultsService;
     }
 
     /**

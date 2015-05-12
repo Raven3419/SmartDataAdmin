@@ -19,6 +19,10 @@ use Zend\View\Model\JsonModel;
 use SmartAccounts\Form\CustomerForm;
 use SmartAccounts\Service\CustomerService;
 use SmartAccounts\Service\CustomerProductCategoryService;
+use SmartQuestions\Form\QuestionForm;
+use SmartQuestions\Service\QuestionsService;
+use SmartQuestions\Form\ResultForm;
+use SmartQuestions\Service\ResultsService;
 
 /**
  * Customer controller for SmartRestServices module
@@ -36,6 +40,15 @@ class CustomerController extends AbstractRestfulController
      * @var CustomerService
      */
     protected $customerService;
+    /**
+     * @var ResultService
+     */
+    protected $resultService;
+    /**
+     * @var QuestionService
+     */
+    protected $questionService;
+    
     
     const USERNAME = 'raven';
     const PASSWORD = '123234';
@@ -46,10 +59,14 @@ class CustomerController extends AbstractRestfulController
      * @param HelperPluginManager $viewHelperManager
      */
     public function __construct(
-    		CustomerService  $customerService
+    		CustomerService  $customerService,
+    		ResultsService  $resultService,
+    		QuestionsService  $questionService
     )
     {
     	$this->customerService  = $customerService;
+    	$this->resultService  = $resultService;
+    	$this->questionService  = $questionService;
     }
     
     public function indexAction()
@@ -195,19 +212,21 @@ class CustomerController extends AbstractRestfulController
 	    		}
 	    		else if(isset($data['smartdata']['newGrade']))
 	    		{
-	    			$record = new \SmartAccounts\Entity\Customer();
+	    			$record = new \SmartQuestions\Entity\Results();
 	    			$user = new \RocketUser\Entity\User();
-	    		
-	    			$newCustomer = $data['smartdata']['newCustomer'];
-	    		
-	    			$record->setEmail($newCustomer['email']);
-	    			$record->setPassword($newCustomer['password']);
-	    			$record->setNotificationFree('1');
-	    			$record->setNotificationGrade('1');
-	    		
+	    			
+	    			$newGrade = $data['smartdata']['newGrade'];
+
+	    			$customer = $this->customerService->getCustomerByEmail($newGrade['email']);
+	    			$question = $this->questionService->getQuestion($newGrade['questionId']);
+	    			
+	    			//$customerRecord->set
+	    			$record->setCustomerId($customer);
+	    			$record->setStatus($newGrade['status']);
+	    			$record->setQuestionId($question);
 	    			$user->setUsername('android');
-	    		
-	    			$this->customerService->createCustomer($record, $user);
+	    			
+	    			$this->resultService->createResult($record, $user);
 	    		
 	    			$result = new JsonModel(array(
 	    					'status'	=> 'success'

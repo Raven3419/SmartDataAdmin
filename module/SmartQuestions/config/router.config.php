@@ -231,6 +231,72 @@ return array(
                             		),
                             	),
                             ),
+                            'results' => array(
+                                'type'    => 'Zend\Mvc\Router\Http\Literal',
+                                'options' => array(
+                                    'route'    => '/results',
+                                    'defaults' => array(
+                                        'controller' => 'SmartQuestions\Controller\Results',
+                                        'action'     => 'index',
+                                    ),
+                                ),
+                                'may_terminate' => true,
+                                'child_routes' => array(
+                                    'create' => array(
+                                        'type'    => 'Zend\Mvc\Router\Http\Literal',
+                                        'options' => array(
+                                            'route'    => '/create',
+                                            'defaults' => array(
+                                                'controller' => 'SmartQuestions\Controller\Results',
+                                                'action'     => 'create',
+                                            ),
+                                        ),
+                                    ),
+                                    'edit' => array(
+                                        'type'    => 'Zend\Mvc\Router\Http\Segment',
+                                        'options' => array(
+                                            'route'       => '/edit/:id',
+                                            'constraints' => array(
+                                                'id' => '[0-9]*',
+                                            ),
+                                            'defaults'    => array(
+                                                'controller' => 'SmartQuestions\Controller\Results',
+                                                'action'     => 'edit',
+                                                'id'         => 0,
+                                            ),
+                                        ),
+                                    ),
+                                    'delete' => array(
+                                        'type'    => 'Zend\Mvc\Router\Http\Segment',
+                                        'options' => array(
+                                            'route'       => '/delete/:id',
+                                            'constraints' => array(
+                                                'id' => '[0-9]*',
+                                            ),
+                                            'defaults'    => array(
+                                                'controller' => 'SmartQuestions\Controller\Results',
+                                                'action'     => 'delete',
+                                                'id'         => 0,
+                                            ),
+                                        ),
+                                    ),
+                                    'view' => array(
+                                        'type'    => 'Zend\Mvc\Router\Http\Segment',
+                                        'options' => array(
+                                            'route'       => '/view/:id',
+                                            'constraints' => array(
+                                                'id' => '[0-9]*',
+                                            ),
+                                            'defaults'    => array(
+                                                'controller' => 'SmartQuestions\Controller\Results',
+                                                'action'     => 'view',
+                                                'id'         => 0,
+                                            ),
+                                        ),
+                                        'may_terminate' => true,
+                                    ),
+                                ),
+                            ),
                        	),
                  	),
                 ),

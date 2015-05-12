@@ -19,5 +19,6 @@ return array(
         'SmartQuestions\InputFilter\GradeFilter'                => 'SmartQuestions\InputFilter\Factory\GradeFilterFactory',
         'SmartQuestions\InputFilter\QuestionFilter'             => 'SmartQuestions\InputFilter\Factory\QuestionFilterFactory',
         'SmartQuestions\InputFilter\SubjectFilter'              => 'SmartQuestions\InputFilter\Factory\SubjectFilterFactory',
+        'SmartQuestions\InputFilter\ResultFilter'               => 'SmartQuestions\InputFilter\Factory\ResultFilterFactory',
     ),
 );

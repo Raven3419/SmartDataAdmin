@@ -103,6 +103,32 @@ return array(
                 			),
                 		),
                 	),
+                    array(
+                        'label'      => 'Results',
+                        'route'      => 'rocket-admin/education/results',
+                        'permission' => 'SmartQuestions\Controller\Results:index',
+                        'order'      => 504,
+                        'pages'      => array(
+                            array(
+                                'label'           => 'Create Result',
+                                'route'           => 'rocket-admin/education/results/create',
+                                'permission'      => 'SmartQuestions\Controller\Results:create',
+                                'use_route_match' => true,
+                            ),
+                            array(
+                                'label'           => 'Edit Result',
+                                'route'           => 'rocket-admin/education/results/edit',
+                                'permission'      => 'SmartQuestions\Controller\Results:edit',
+                                'use_route_match' => true,
+                            ),
+                            array(
+                                'label'           => 'View Result',
+                                'route'           => 'rocket-admin/education/results/view',
+                                'permission'      => 'SmartQuestions\Controller\Results:view',
+                                'use_route_match' => true,
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),

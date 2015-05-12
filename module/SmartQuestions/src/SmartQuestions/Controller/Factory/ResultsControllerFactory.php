@@ -2,7 +2,7 @@
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 /**
  * @category   Zend
- * @package    SmartRestServices\Controller
+ * @package    SmartQuestions\Controller
  * @subpackage Factory
  * @author     Raven Sampson <rsampson@thesmartdata.com>
  * @license    http://framework.zend.com/license/new-bsd New BSD License
@@ -10,7 +10,7 @@
  * @since      File available since Release 1.0.0
  */
 
-namespace SmartRestServices\Controller\Factory;
+namespace SmartQuestions\Controller\Factory;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -19,33 +19,32 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  * Controller Factory
  *
  * @category   Zend
- * @package    SmartRestServices\Controller
+ * @package    SmartQuestions\Controller
  * @subpackage Factory
  * @author     Raven Sampson <rsampson@thesmartdata.com>
  * @license    http://framework.zend.com/license/new-bsd New BSD License
  * @version    GIT: $Id$
  */
-class CustomerControllerFactory implements FactoryInterface
+class ResultsControllerFactory implements FactoryInterface
 {
     /**
      * @param \Zend\ServiceManager\ServiceLocatorInterface $sl
      *
-     * @return \SmartRestServices\Controller\CustomerController
+     * @return \SmartQuestions\Controller\ResultsController
      */
     public function createService(ServiceLocatorInterface $sl)
     {
         $sm = $sl->getServiceLocator();
         $em = $sm->get('EventManager');
 
-        $cn = new \SmartRestServices\Controller\CustomerController(
-            $sm->get('SmartAccounts\Service\CustomerService'),
+        $cn = new \SmartQuestions\Controller\ResultsController(
             $sm->get('SmartQuestions\Service\ResultsService'),
-            $sm->get('SmartQuestions\Service\QuestionsService')
+            $sm->get('ViewHelperManager')
         );
 
         $em->attach('dispatch', function ($e) use ($cn) {
-            $cn->layout()->pageTitle = 'Customer System';
-            $cn->layout()->pageDescr = 'Customer Taxonomy';
+            $cn->layout()->pageTitle = 'Result System';
+            $cn->layout()->pageDescr = 'Result Taxonomy';
         }, 100);
 
         $cn->setEventManager($em);

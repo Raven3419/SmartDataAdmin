@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="SmartQuestions\Entity\Results" table="results">
+        <id name="resultId" column="result_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="false"/>
+        <field name="status" type="boolean" nullable="false"/>
+        <many-to-one field="customerId" target-entity="SmartAccounts\Entity\Customer" fetch="EAGER">
+            <join-column name="customer_id" referenced-column-name="customer_id"/>
+        </many-to-one>
+        <many-to-one field="questionId" target-entity="SmartQuestions\Entity\Questions" fetch="EAGER">
+            <join-column name="question_id" referenced-column-name="question_id"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

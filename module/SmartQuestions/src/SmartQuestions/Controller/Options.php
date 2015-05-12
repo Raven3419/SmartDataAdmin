@@ -15,18 +15,22 @@ class Options extends AbstractOptions
      * @var array
      */
     protected $messages = array(
-        'grade-create-success'            => 'You have successfully created a new grade.',
-        'grade-create-error'              => 'There was an error creating a new grade.',
-        'grade-edit-success'              => 'You have successfully edited the grade.',
-        'grade-edit-error'                => 'There was an error editing the grade.',
-        'question-create-success'            => 'You have successfully created a new question.',
-        'question-create-error'              => 'There was an error creating a new question.',
-        'question-edit-success'              => 'You have successfully edited the question.',
-        'question-edit-error'                => 'There was an error editing the question.',
+        'grade-create-success'           	=> 'You have successfully created a new grade.',
+        'grade-create-error'              	=> 'There was an error creating a new grade.',
+        'grade-edit-success'              	=> 'You have successfully edited the grade.',
+        'grade-edit-error'                	=> 'There was an error editing the grade.',
+        'question-create-success'           => 'You have successfully created a new question.',
+        'question-create-error'             => 'There was an error creating a new question.',
+        'question-edit-success'             => 'You have successfully edited the question.',
+        'question-edit-error'               => 'There was an error editing the question.',
         'subject-create-success'            => 'You have successfully created a new subject.',
         'subject-create-error'              => 'There was an error creating a new subject.',
         'subject-edit-success'              => 'You have successfully edited the subject.',
         'subject-edit-error'                => 'There was an error editing the subject.',
+        'result-create-success'            	=> 'You have successfully created a new result.',
+        'result-create-error'              	=> 'There was an error creating a new result.',
+        'result-edit-success'              	=> 'You have successfully edited the result.',
+        'result-edit-error'                	=> 'There was an error editing the result.',
     );
 
     /**

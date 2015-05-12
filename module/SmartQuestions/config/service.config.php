@@ -26,6 +26,7 @@ return array(
         'SmartQuestions\Entity\GradesPrototype'                	=> 'SmartQuestions\Entity\Grades',
         'SmartQuestions\Entity\QuestionsPrototype'             	=> 'SmartQuestions\Entity\Questions',
         'SmartQuestions\Entity\SubjectsPrototype'             	=> 'SmartQuestions\Entity\Subjects',
+        'SmartQuestions\Entity\ResultsPrototype'                => 'SmartQuestions\Entity\Results',
     ),
     'factories' => array(
         'SmartQuestions\Options\SmartQuestionsOptions'         	=> 'SmartQuestions\Options\Factory\SmartQuestionsOptionsFactory',
@@ -34,8 +35,10 @@ return array(
         'SmartQuestions\Repository\GradesRepository'           	=> 'SmartQuestions\Repository\Factory\GradesRepositoryFactory',
         'SmartQuestions\Repository\QuestionsRepository'         => 'SmartQuestions\Repository\Factory\QuestionsRepositoryFactory',
         'SmartQuestions\Repository\SubjectsRepository'          => 'SmartQuestions\Repository\Factory\SubjectsRepositoryFactory',
+        'SmartQuestions\Repository\ResultsRepository'           => 'SmartQuestions\Repository\Factory\ResultsRepositoryFactory',
         'SmartQuestions\Service\GradesService'               	=> 'SmartQuestions\Service\Factory\GradesServiceFactory',
         'SmartQuestions\Service\QuestionsService'               => 'SmartQuestions\Service\Factory\QuestionsServiceFactory',
         'SmartQuestions\Service\SubjectsService'               	=> 'SmartQuestions\Service\Factory\SubjectsServiceFactory',
+        'SmartQuestions\Service\ResultsService'               	=> 'SmartQuestions\Service\Factory\ResultsServiceFactory',
 	),
 );
