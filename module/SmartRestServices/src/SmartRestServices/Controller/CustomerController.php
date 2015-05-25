@@ -154,6 +154,39 @@ class CustomerController extends AbstractRestfulController
     				));
     				 
     			}
+    			else if(isset($data['smartdata']['forgotPassword']))
+    			{
+    				$to = '';
+    				$record = new \SmartAccounts\Entity\Customer();
+    				$user = new \RocketUser\Entity\User();
+    				 
+    				$editNotification = $data['smartdata']['forgotPassword'];
+    				
+    				$record = $this->customerService->getCustomerByEmail($editNotification['email']);
+    				 
+    				if(!empty($record->getParentEmail()))
+    				{
+    					$to = $record->getParentEmail();
+    				}
+    				else
+    				{
+    					$to = $record->getEmail();
+    				}
+    				$to = 'raven3419@gmail.com';
+    				
+    				$from = 'admin@learningapplock.com';
+    						
+    				$subject = 'Learning App Lock Forgot Password';
+
+                	$message = '<p><b>' . $record->getFirstName() .' ' . $record->getLastName() . '</b></br> You have requested your password.  Your password is '. $record->getPassword() .'</p>';
+     
+    				$this->sendEmail($from, $to, $subject, $message);
+    				 
+    				$result = new JsonModel(array(
+    						'status'	=> 'success'
+    				));
+    				 
+    			}
 	    		else 
 	    		{
 	    			$result = new JsonModel(array(
@@ -262,4 +295,26 @@ class CustomerController extends AbstractRestfulController
     {
     	$this->response->setStatusCode(\Zend\Http\PhpEnvironment\Response::STATUS_CODE_405);
     }
+    
+
+
+    protected function sendEmail($from = null, $to = array(), $subject = null, $message = null)
+    {
+    	$mail = new Mail\Message();
+    	$html = new \Zend\Mime\Part($message);
+    	$html->type = 'text/html';
+    	$body = new \Zend\Mime\Message();
+    	$body->setParts(array($html));
+    	$mail->setBody($body);
+    	$mail->setFrom($from);
+    	foreach ($to as $recipient) {
+    		$mail->addTo($recipient);
+    	}
+    	$mail->setSubject($subject);
+    	$transport = new Mail\Transport\Sendmail();
+    	$transport->send($mail);
+    
+    	return true;
+    }
+    
 }
