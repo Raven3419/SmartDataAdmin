@@ -23,6 +23,7 @@ use SmartQuestions\Form\QuestionForm;
 use SmartQuestions\Service\QuestionsService;
 use SmartQuestions\Form\ResultForm;
 use SmartQuestions\Service\ResultsService;
+use Zend\Mail;
 
 /**
  * Customer controller for SmartRestServices module
@@ -156,23 +157,21 @@ class CustomerController extends AbstractRestfulController
     			}
     			else if(isset($data['smartdata']['forgotPassword']))
     			{
-    				$to = '';
     				$record = new \SmartAccounts\Entity\Customer();
     				$user = new \RocketUser\Entity\User();
     				 
-    				$editNotification = $data['smartdata']['forgotPassword'];
+    				$editForgotPassword = $data['smartdata']['forgotPassword'];
     				
-    				$record = $this->customerService->getCustomerByEmail($editNotification['email']);
+    				$record = $this->customerService->getCustomerByEmail($editForgotPassword['email']);
     				 
     				if(!empty($record->getParentEmail()))
     				{
-    					$to = $record->getParentEmail();
+    					$to = array($record->getParentEmail());
     				}
     				else
     				{
-    					$to = $record->getEmail();
+    					$to = array($record->getEmail());
     				}
-    				$to = 'raven3419@gmail.com';
     				
     				$from = 'admin@learningapplock.com';
     						
@@ -186,6 +185,41 @@ class CustomerController extends AbstractRestfulController
     						'status'	=> 'success'
     				));
     				 
+    			}
+    			else if(isset($data['smartdata']['login']))
+    			{
+
+    				$record = new \SmartAccounts\Entity\Customer();
+    				$user = new \RocketUser\Entity\User();
+    					
+    				$editLogin = $data['smartdata']['login'];
+    				
+    				$record = $this->customerService->getCustomerByEmail($editLogin['email']);
+    				
+    				if(empty($record))
+    				{
+    					$result = new JsonModel(array(
+    							'status'	=> 'error',
+    							'message' 	=> 'Invalid Email or Password'
+    					));
+    				}
+    				else
+    				{
+    					if($record->getEmail() == $editLogin['email'] && $record->getPassword() == $editLogin['password'])
+    					{
+    						$result = new JsonModel(array(
+    								'status'	=> 'success'
+    						));
+    					}
+    					else
+    					{
+    						$result = new JsonModel(array(
+    								'status'	=> 'error',
+    								'message' 	=> 'Invalid Email or Password'
+    						));
+    					}
+    				}
+    				
     			}
 	    		else 
 	    		{
@@ -230,18 +264,31 @@ class CustomerController extends AbstractRestfulController
 	    			
 	    			$newCustomer = $data['smartdata']['newCustomer'];
 	    			
-	    			$record->setEmail($newCustomer['email']);
-	    			$record->setPassword($newCustomer['password']);
-	    			$record->setNotificationFree('1');
-	    			$record->setNotificationGrade('1');
+	    			$record2 = $this->customerService->getCustomerByEmail($newCustomer['email']);
 	    			
-	    			$user->setUsername('android');
+	    			if(!empty($record2))
+	    			{
+	    				$result = new JsonModel(array(
+	    						'status'	=> 'error',
+	    						'message' 	=> 'Invalid Email'
+	    				));
+	    			}
+	    			else
+	    			{
 	    			
-	    			$this->customerService->createCustomer($record, $user);
-	    			
-	    			$result = new JsonModel(array(
-	    					'status'	=> 'success'
-	    			));
+		    			$record->setEmail($newCustomer['email']);
+		    			$record->setPassword($newCustomer['password']);
+		    			$record->setNotificationFree('1');
+		    			$record->setNotificationGrade('1');
+		    			
+		    			$user->setUsername('android');
+		    			
+		    			$this->customerService->createCustomer($record, $user);
+		    			
+		    			$result = new JsonModel(array(
+		    					'status'	=> 'success'
+		    			));
+	    			}
 	    		}
 	    		else if(isset($data['smartdata']['newGrade']))
 	    		{
