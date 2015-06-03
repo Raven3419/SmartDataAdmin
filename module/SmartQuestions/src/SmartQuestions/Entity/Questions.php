@@ -84,7 +84,7 @@ class Questions implements QuestionsInterface
     protected $paragraph;
 
     /**
-     * @var boolean
+     * @var integer
      */
     protected $isImage;
 

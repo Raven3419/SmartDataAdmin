@@ -268,10 +268,17 @@ class CustomerController extends AbstractRestfulController
 	    			
 	    			if(!empty($record2))
 	    			{
-	    				$result = new JsonModel(array(
-	    						'status'	=> 'error',
-	    						'message' 	=> 'Invalid Email'
-	    				));
+		    			$record2->setPassword($newCustomer['password']);
+		    			$record2->setNotificationFree('1');
+		    			$record2->setNotificationGrade('1');
+		    			
+		    			$user->setUsername('android');
+		    			
+		    			$this->customerService->editCustomer($record2, $user);
+		    			
+		    			$result = new JsonModel(array(
+		    					'status'	=> 'success'
+		    			));
 	    			}
 	    			else
 	    			{
