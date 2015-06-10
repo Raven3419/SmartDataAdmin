@@ -104,19 +104,29 @@ class Customer implements CustomerInterface
     protected $state;
 
     /**
-     * @var sring
+     * @var string
      */
     protected $zip;
 
     /**
-     * @var sring
+     * @var string
      */
     protected $notificationFree;
 
     /**
-     * @var sring
+     * @var string
      */
     protected $notificationGrade;
+
+    /**
+     * @var boolean
+     */
+    protected $downloadReady;
+
+    /**
+     * @var string
+     */
+    protected $downloadUrl;
 
     /**
      * Set createdAt
@@ -540,6 +550,52 @@ class Customer implements CustomerInterface
     public function getNotificationGrade()
     {
         return $this->notificationGrade;
+    }
+
+    /**
+     * Set downloadReady
+     *
+     * @param  boolean $downloadReady
+     * @return Customer
+     */
+    public function setDownloadReady($downloadReady)
+    {
+        $this->downloadReady = $downloadReady;
+
+        return $this;
+    }
+
+    /**
+     * Get downloadReady
+     *
+     * @return boolean
+     */
+    public function getDownloadReady()
+    {
+        return $this->downloadReady;
+    }
+
+    /**
+     * Set downloadUrl
+     *
+     * @param  string $downloadUrl
+     * @return Customer
+     */
+    public function setDownloadUrl($downloadUrl)
+    {
+        $this->downloadUrl = $downloadUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get downloadUrl
+     *
+     * @return string
+     */
+    public function getDownloadUrl()
+    {
+        return $this->downloadUrl;
     }
 
 }

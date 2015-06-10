@@ -214,14 +214,25 @@ interface CustomerInterface
     public function getNotificationFree();
 
     /**
-     * @param  string $notificationGrade
+     * @param  string $downloadReady
      * @return Customer
      */
-    public function setNotificationGrade($notificationGrade);
+    public function setDownloadReady($downloadReady);
 
     /**
      * @return string
      */
-    public function getNotificationGrade();
+    public function getDownloadReady();
+
+    /**
+     * @param  boolean $downloadUrl
+     * @return Customer
+     */
+    public function setDownloadUrl($downloadUrl);
+
+    /**
+     * @return boolean
+     */
+    public function getDownloadUrl();
 
 }

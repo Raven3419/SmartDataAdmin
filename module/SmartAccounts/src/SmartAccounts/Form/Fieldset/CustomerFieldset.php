@@ -150,6 +150,22 @@ class CustomerFieldset extends Fieldset
         ));
 
         $this->add(array(
+            'type'    => 'Zend\Form\Element\Select',
+            'name'    => 'downloadReady',
+            'options' => array(
+                'label'         => 'Download Ready',
+                'value_options' => array(
+                    '0' => 'No',
+                    '1'  => 'Yes',
+                ),
+            ),
+            'attributes' => array(
+                'required' => 'required',
+                'class'    => 'select',
+            ),
+        ));
+
+        $this->add(array(
             'type'    => 'Zend\Form\Element\Text',
             'name'    => 'address',
             'options' => array(
@@ -226,6 +242,18 @@ class CustomerFieldset extends Fieldset
             'attributes' => array(
                 'required' => 'required',
                 'class'    => 'select',
+            ),
+        ));
+
+        $this->add(array(
+            'type'    => 'Zend\Form\Element\Text',
+            'name'    => 'downloadUrl',
+            'options' => array(
+                'label' => 'Download Url',
+            ),
+            'attributes' => array(
+                'class'       => 'span12',
+                'placeholder' => 'Enter in your download url',
             ),
         ));
     }

@@ -74,6 +74,11 @@ class CustomerFilter extends InputFilter
             'name'     => 'disabled',
             'required' => true,
         ));
+        
+        $this->add(array(
+            'name'     => 'downloadReady',
+            'required' => true,
+        ));
 
         $this->add(array(
             'name'       => 'parentEmail',
@@ -131,6 +136,13 @@ class CustomerFilter extends InputFilter
         $this->add(array(
             'name'     => 'notificationGrade',
             'required' => true,
+        ));
+
+        $this->add(array(
+            'name'       => 'downloadUrl',
+			'required'   => false,
+          	'allow_empty'=> true,
+            'filters'    => array(array('name' => 'StringTrim'))
         ));
 
     }

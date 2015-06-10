@@ -24,7 +24,9 @@
         <field name="city" column="city" type="string" length="55" nullable="true"/>
         <field name="state" column="state" type="string" length="2" nullable="true"/>
         <field name="zip" column="zip" type="string" length="5" nullable="true"/>
-        <field name="notificationFree" column="notification_free"  type="boolean" nullable="false"/>
-        <field name="notificationGrade" column="notification_grade"  type="boolean" nullable="false"/>
+        <field name="notificationFree" column="notification_free" type="boolean" nullable="false"/>
+        <field name="notificationGrade" column="notification_grade" type="boolean" nullable="false"/>
+        <field name="downloadReady" column="download_ready" type="boolean" nullable="false"/>
+        <field name="downloadUrl" column="download_url" type="string" nullable="true"/>
     </entity>
 </doctrine-mapping>
