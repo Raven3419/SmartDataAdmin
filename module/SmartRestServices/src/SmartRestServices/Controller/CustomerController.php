@@ -83,7 +83,6 @@ class CustomerController extends AbstractRestfulController
 
     		$data = json_decode($json['data'], true);
 
-    		//print_r($data['smartdata']);exit;
     		if($data['smartdata']['authentication']['username'] == self::USERNAME && $data['smartdata']['authentication']['password'] == self::PASSWORD)
     		{
     			if(isset($data['smartdata']['editCustomer']))
@@ -220,6 +219,81 @@ class CustomerController extends AbstractRestfulController
     					}
     				}
     				
+    			}
+    			else if(isset($data['smartdata']['checkDownload']))
+    			{
+    				$record = new \SmartAccounts\Entity\Customer();
+    				 
+    				$checkDownload = $data['smartdata']['checkDownload'];
+    				
+    				$record = $this->customerService->getCustomerByEmail($checkDownload['email']);
+    				 
+    				if(empty($record))
+    				{
+    					$result = new JsonModel(array(
+    							'status'	=> 'error',
+    							'message' 	=> 'Invalid Email or Password'
+    					));
+    				}
+    				else
+    				{
+    					$download = $record->getDownloadReady();
+    					 
+    					if($download)
+    					{
+    						$result = new JsonModel(array(
+    								'status'	=> 'success',
+    								'message' 	=> 'Download_Ready'
+    						));
+    					}
+    					else {
+    						$result = new JsonModel(array(
+    								'status'	=> 'success',
+    								'message' 	=> 'No_Download'
+    						));
+    					}
+    				}
+    			}
+    			else if(isset($data['smartdata']['downloadUrl']))
+    			{
+    				$domain = $_SERVER['HTTP_HOST'];
+    				
+    				$record = new \SmartAccounts\Entity\Customer();
+    				 
+    				$downloadURL = $data['smartdata']['downloadUrl'];
+    				
+    				$record = $this->customerService->getCustomerByEmail($downloadURL['email']);
+    				 
+    				if(empty($record))
+    				{
+    					$result = new JsonModel(array(
+    							'status'	=> 'error',
+    							'message' 	=> 'Invalid Email or Password'
+    					));
+    				}
+    				else
+    				{
+	    				$downloadReady = $record->getDownloadReady();
+	    				
+	    				if($downloadReady)
+	    				{
+		    				$download = $record->getDownloadUrl();
+		    				$id = $record->getCustomerId();
+		
+		    				$url = 'http://' . $domain.'/assets/customer/'.$id.'/'.$download;
+	
+		    				$result = new JsonModel(array(
+		    					'status'	=> 'success',
+					    		'message' 	=> urlencode($url)
+		    				));
+	    				}
+	    				else {
+	    					$result = new JsonModel(array(
+	    							'status'	=> 'success',
+				    				'message' 	=> 'No_Download'
+	    					));
+	    				}
+    				}
     			}
 	    		else 
 	    		{
