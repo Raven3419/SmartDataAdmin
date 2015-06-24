@@ -39,6 +39,7 @@ class CustomerControllerFactory implements FactoryInterface
 
         $cn = new \SmartAccounts\Controller\CustomerController(
             $sm->get('SmartAccounts\Service\CustomerService'),
+            $sm->get('SmartAccounts\Service\AccountsService'),
             $sm->get('ViewHelperManager')
         );
 

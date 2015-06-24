@@ -37,6 +37,7 @@ class CustomerServiceFactory implements FactoryInterface
         $customerService = new CustomerService(
             $serviceLocator->get('SmartAccounts\ObjectManager'),
             $serviceLocator->get('SmartAccounts\Repository\CustomerRepository'),
+            $serviceLocator->get('SmartAccounts\Service\AccountsService'),
             $serviceLocator->get('FormElementManager')->get('SmartAccounts\Form\CustomerForm')
         );
 

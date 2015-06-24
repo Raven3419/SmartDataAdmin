@@ -49,15 +49,13 @@ class CustomerFieldset extends Fieldset
 
         $this->add(array(
             'type'    => 'Zend\Form\Element\Text',
-            'name'    => 'email',
+            'name'    => 'login',
             'options' => array(
-                'label' => 'Email',
+                'label' => 'Login',
             ),
             'attributes' => array(
-            	'disabled'	  => 'disabled',
-                'required'    => 'required',
-                'class'       => 'validate[required] span12',
-                'placeholder' => 'Enter a Email',
+                'class'       => 'span12',
+                'placeholder' => 'Enter a Login',
             ),
         ));
 
@@ -72,96 +70,16 @@ class CustomerFieldset extends Fieldset
                 'placeholder' => 'Hidden for security',
             ),
         ));
-
+        
         $this->add(array(
             'type'    => 'Zend\Form\Element\Text',
-            'name'    => 'firstName',
+            'name'    => 'name',
             'options' => array(
-                'label' => 'First Name',
+                'label' => 'Name',
             ),
             'attributes' => array(
                 'class'       => 'span12',
-                'placeholder' => 'Enter a First Name',
-            ),
-        ));
-
-        $this->add(array(
-            'type'    => 'Zend\Form\Element\Text',
-            'name'    => 'lastName',
-            'options' => array(
-                'label' => 'Last Name',
-            ),
-            'attributes' => array(
-                'class'       => 'span12',
-                'placeholder' => 'Enter a Last Name',
-            ),
-        ));
-
-        $this->add(array(
-            'type'    => 'Zend\Form\Element\Text',
-            'name'    => 'parentEmail',
-            'options' => array(
-                'label' => 'Parent Email',
-            ),
-            'attributes' => array(
-                'class'       => 'span12',
-                'placeholder' => 'Enter in Parent Email',
-            ),
-        ));
-
-        $this->add(array(
-            'type'    => 'Zend\Form\Element\Text',
-            'name'    => 'parentFirstName',
-            'options' => array(
-                'label' => 'Parent First Name',
-            ),
-            'attributes' => array(
-                'class'       => 'span12',
-                'placeholder' => 'Enter in Parent First Name',
-            ),
-        ));
-
-        $this->add(array(
-            'type'    => 'Zend\Form\Element\Text',
-            'name'    => 'parentLastName',
-            'options' => array(
-                'label' => 'Parent Last Name',
-            ),
-            'attributes' => array(
-                'class'       => 'span12',
-                'placeholder' => 'Enter in Parent Last Name',
-            ),
-        ));
-
-        $this->add(array(
-            'type'    => 'Zend\Form\Element\Select',
-            'name'    => 'disabled',
-            'options' => array(
-                'label'         => 'Disabled',
-                'value_options' => array(
-                    '0' => 'No',
-                    '1'  => 'Yes',
-                ),
-            ),
-            'attributes' => array(
-                'required' => 'required',
-                'class'    => 'select',
-            ),
-        ));
-
-        $this->add(array(
-            'type'    => 'Zend\Form\Element\Select',
-            'name'    => 'downloadReady',
-            'options' => array(
-                'label'         => 'Download Ready',
-                'value_options' => array(
-                    '0' => 'No',
-                    '1'  => 'Yes',
-                ),
-            ),
-            'attributes' => array(
-                'required' => 'required',
-                'class'    => 'select',
+                'placeholder' => 'Enter a Name',
             ),
         ));
 
@@ -246,6 +164,22 @@ class CustomerFieldset extends Fieldset
         ));
 
         $this->add(array(
+            'type'    => 'Zend\Form\Element\Select',
+            'name'    => 'downloadReady',
+            'options' => array(
+                'label'         => 'Download Ready',
+                'value_options' => array(
+                    '0' => 'No',
+                    '1'  => 'Yes',
+                ),
+            ),
+            'attributes' => array(
+                'required' => 'required',
+                'class'    => 'select',
+            ),
+        ));
+
+        $this->add(array(
             'type'    => 'Zend\Form\Element\Text',
             'name'    => 'downloadUrl',
             'options' => array(
@@ -254,6 +188,22 @@ class CustomerFieldset extends Fieldset
             'attributes' => array(
                 'class'       => 'span12',
                 'placeholder' => 'Enter in your download url',
+            ),
+        ));
+
+        $this->add(array(
+            'type'    => 'Zend\Form\Element\Select',
+            'name'    => 'disabled',
+            'options' => array(
+                'label'         => 'Disabled',
+                'value_options' => array(
+                    '0' => 'No',
+                    '1'  => 'Yes',
+                ),
+            ),
+            'attributes' => array(
+                'required' => 'required',
+                'class'    => 'select',
             ),
         ));
     }

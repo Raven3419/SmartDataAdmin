@@ -27,6 +27,8 @@ use SmartAccounts\Form\CustomerForm;
 use SmartAccounts\Entity\CustomerInterface;
 use RocketUser\Entity\User;
 use DateTime;
+use SmartAccounts\Service\AccountsService;
+use SmartAccounts\Service\AccountsProductCategoryService;
 
 /*
  * Service managing the CRUD of customer.
@@ -57,6 +59,11 @@ class CustomerService implements EventManagerAwareInterface
      * @var CustomerInterface
      */
     protected $customerPrototype;
+    
+    /**
+     * @var AccountsService
+     */
+    protected $accountsService;
 
     /**
      * @param ObjectManager             	$objectManager
@@ -66,12 +73,14 @@ class CustomerService implements EventManagerAwareInterface
     public function __construct(
         ObjectManager             	$objectManager,
         CustomerRepositoryInterface $repository,
+        AccountsService  			$accountsService,
         FormInterface             	$customerForm
     )
     {
-        $this->objectManager = $objectManager;
-        $this->repository    = $repository;
-        $this->customerForm  = $customerForm;
+        $this->objectManager 	= $objectManager;
+        $this->repository    	= $repository;
+        $this->accountsService  = $accountsService;
+        $this->customerForm  	= $customerForm;
     }
 
     /**
@@ -99,10 +108,21 @@ class CustomerService implements EventManagerAwareInterface
     /**
      * @return mixed
      */
-    public function getCustomerByEmail($email = null)
-{
+    public function getCustomerByLogin($login = null)
+	{
         return $this->repository->findOneBy(
-            array('email' => $email)
+            array('login' => $login)
+        );
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getCustomerByLoginPassword($login = null, $password = null)
+	{
+        return $this->repository->findOneBy(
+            array('password' => $password,
+            	  'login' => $login)
         );
     }
 
@@ -185,13 +205,28 @@ class CustomerService implements EventManagerAwareInterface
      */
     public function createCustomer(Customer $recordEntity, User $usersEntity)
     {
+    	
+    	$recordAccounts = new \SmartAccounts\Entity\Accounts();
+    	
         $recordEntity->setCreatedAt(new DateTime('now'))
             ->setCreatedBy($usersEntity->getUsername())
-            ->setDisabled(false);
+            ->setDisabled(false)
+        	->setNotificationFree('1')
+		    ->setNotificationGrade('1')
+		    ->setDownloadReady('0');
+        
         $this->objectManager->persist($recordEntity);
         $this->objectManager->flush($recordEntity);
         
         //$this->flushCache();
+        
+        
+        $record = $this->getCustomerByLogin($recordEntity->getlogin());
+        
+        $recordAccounts->setCustomerId($record);
+        
+        $this->accountsService->createAccounts($recordAccounts, $usersEntity);
+        
         return $recordEntity;
     }
 

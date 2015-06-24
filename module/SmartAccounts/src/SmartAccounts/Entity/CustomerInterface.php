@@ -77,37 +77,26 @@ interface CustomerInterface
     public function getDisabled();
 
     /**
-     * @param  string $firstName
+     * @param  string $name
      * @return Customer
      */
-    public function setFirstName($firstName);
+    public function setName($name);
 
     /**
      * @return string
      */
-    public function getFirstName();
+    public function getName();
 
     /**
-     * @param  string $lastName
+     * @param  string $login
      * @return Customer
      */
-    public function setLastName($lastName);
+    public function setLogin($login);
 
     /**
      * @return string
      */
-    public function getLastName();
-
-    /**
-     * @param  string $email
-     * @return Customer
-     */
-    public function setEmail($email);
-
-    /**
-     * @return string
-     */
-    public function getEmail();
+    public function getLogin();
 
     /**
      * @param  string $password
@@ -119,44 +108,6 @@ interface CustomerInterface
      * @return string
      */
     public function getPassword();
-
-    /**
-     * @param  string $parentEmail
-     * @return Customer
-     */
-    public function setParentEmail($parentEmail);
-
-    /**
-     * @return string
-     */
-    public function getParentEmail();
-
-    /**
-     * @param  string $parentFirstName
-     * @return Customer
-     */
-    public function setParentFirstName($parentFirstName);
-
-    /**
-     * @return string
-     */
-    public function getParentFirstName();
-
-    /**
-     * @param  string $parentLastName
-     * @return Customer
-     */
-    public function setParentLastName($parentLastName);
-
-    /**
-     * @return string
-     */
-    public function getParentLastName();
-
-    /**
-     * @return integer
-     */
-    public function getCustomerId();
 
     /**
      * @param  string $address
@@ -234,5 +185,10 @@ interface CustomerInterface
      * @return boolean
      */
     public function getDownloadUrl();
+    
+    /**
+     * @return integer
+     */
+    public function getCustomerId();
 
 }

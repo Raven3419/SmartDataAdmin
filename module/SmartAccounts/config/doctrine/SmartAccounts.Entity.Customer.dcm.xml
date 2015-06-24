@@ -13,13 +13,9 @@
         <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
         <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
         <field name="disabled" type="boolean" nullable="true"/>
-        <field name="firstName" column="first_name" type="string" length="55" nullable="true"/>
-        <field name="lastName" column="last_name" type="string" length="55" nullable="true"/>
-        <field name="email" column="email" type="string" length="255" nullable="true"/>
+        <field name="name" column="name" type="string" length="255" nullable="true"/>
+        <field name="login" column="login" type="string" length="255"/>
         <field name="password" column="password" type="string" length="255"/>
-        <field name="parentFirstName" column="parent_first_name" type="string" length="55" nullable="true"/>
-        <field name="parentLastName" column="parent_last_name" type="string" length="55" nullable="true"/>
-        <field name="parentEmail" column="parent_email" type="string" length="255" nullable="true"/>
         <field name="address" column="address" type="string" length="255" nullable="true"/>
         <field name="city" column="city" type="string" length="55" nullable="true"/>
         <field name="state" column="state" type="string" length="2" nullable="true"/>

@@ -22,6 +22,8 @@ use Zend\EventManager\EventManager;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
 use SmartAccounts\Service\CustomerService;
+use SmartAccounts\Service\AccountsService;
+use SmartAccounts\Service\PlansService;
 
 /**
  * Service injecting all lund product services.
@@ -39,20 +41,36 @@ class SmartAccountsService implements EventManagerAwareInterface
     protected $objectManager;
 
     /**
-     * @var GradesService
+     * @var CustomerService
      */
     protected $customerService;
 
     /**
-     * @param ObjectManager                        	$objectManager
-     * @param CustomerService                   	$customerServie
+     * @var AccountsService
+     */
+    protected $accountsService;
+
+    /**
+     * @var PlansService
+     */
+    protected $plansService;
+
+    /**
+     * @param ObjectManager                     $objectManager
+     * @param CustomerService                   $customerService
+     * @param AccountsService                   $accountsService
+     * @param PlansService                   	$plansService
      */
     public function __construct(
-        ObjectManager $objectManager,
-        CustomerService $customerService
+        ObjectManager 	$objectManager,
+        CustomerService $customerService,
+        AccountsService $accountsService,
+        PlansService 	$plansService
     ) {
-        $this->objectManager = $objectManager;
-        $this->customerService = $customerService;
+        $this->objectManager 	= $objectManager;
+        $this->customerService 	= $customerService;
+        $this->accountsService 	= $accountsService;
+        $this->plansService 	= $plansService;
     }
     
     /**
@@ -63,6 +81,26 @@ class SmartAccountsService implements EventManagerAwareInterface
     public function getCustomerService()
     {
     	return $this->customerService;
+    }
+    
+    /**
+     * Return AccountsService
+     *
+     * @return AccountsService
+     */
+    public function getAccountsService()
+    {
+    	return $this->accountsService;
+    }
+    
+    /**
+     * Return PlansService
+     *
+     * @return PlansService
+     */
+    public function getPlansService()
+    {
+    	return $this->plansService;
     }
 
     /**

@@ -36,7 +36,9 @@ class SmartAccountsServiceFactory implements FactoryInterface
     {
         $smartCustomerService = new SmartAccountsService(
             $serviceLocator->get('SmartAccounts\ObjectManager'),
-            $serviceLocator->get('SmartAccounts\Service\CustomerService')
+            $serviceLocator->get('SmartAccounts\Service\CustomerService'),
+            $serviceLocator->get('SmartAccounts\Service\AccountsService'),
+            $serviceLocator->get('SmartAccounts\Service\PlansService')
         );
 
         return $smartCustomerService;

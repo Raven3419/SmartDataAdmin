@@ -51,42 +51,17 @@ class Customer implements CustomerInterface
     /**
      * @var string
      */
-    protected $firstName;
-
+    protected $name;
+    
     /**
      * @var string
      */
-    protected $lastName;
-
-    /**
-     * @var string
-     */
-    protected $email;
-
+    protected $login;
+    
     /**
      * @var string
      */
     protected $password;
-
-    /**
-     * @var string
-     */
-    protected $parentFirstName;
-
-    /**
-     * @var string
-     */
-    protected $parentLastName;
-
-    /**
-     * @var string
-     */
-    protected $parentEmail;
-
-    /**
-     * @var integer
-     */
-    protected $customerId;
 
     /**
      * @var string
@@ -127,6 +102,11 @@ class Customer implements CustomerInterface
      * @var string
      */
     protected $downloadUrl;
+
+    /**
+     * @var integer
+     */
+    protected $customerId;
 
     /**
      * Set createdAt
@@ -244,74 +224,51 @@ class Customer implements CustomerInterface
     }
 
     /**
-     * Set firstName
+     * Set name
      *
-     * @param  string $firstName
+     * @param  string $name
      * @return Customer
      */
-    public function setFirstName($firstName)
+    public function setName($name)
     {
-        $this->firstName = $firstName;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get firstName
+     * Get name
      *
      * @return string
      */
-    public function getFirstName()
+    public function getName()
     {
-        return $this->firstName;
+        return $this->name;
     }
-
+    
     /**
-     * Set lastName
+     * Set login
      *
-     * @param  string $lastName
+     * @param  string $login
      * @return Customer
      */
-    public function setLastName($lastName)
+    public function setLogin($login)
     {
-        $this->lastName = $lastName;
+        $this->login = $login;
 
         return $this;
     }
 
     /**
-     * Get lastName
+     * Get login
      *
      * @return string
      */
-    public function getLastName()
+    public function getLogin()
     {
-        return $this->lastName;
+        return $this->login;
     }
-
-    /**
-     * Set email
-     *
-     * @param  string $email
-     * @return Customer
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
+    
     /**
      * Set password
      *
@@ -333,85 +290,6 @@ class Customer implements CustomerInterface
     public function getPassword()
     {
         return $this->password;
-    }
-
-    /**
-     * Set parentEmail
-     *
-     * @param  string $parentEmail
-     * @return Customer
-     */
-    public function setParentEmail($parentEmail)
-    {
-        $this->parentEmail = $parentEmail;
-
-        return $this;
-    }
-
-    /**
-     * Get parentEmail
-     *
-     * @return string
-     */
-    public function getParentEmail()
-    {
-        return $this->parentEmail;
-    }
-
-    /**
-     * Set parentFirstName
-     *
-     * @param  string $parentFirstName
-     * @return Customer
-     */
-    public function setParentFirstName($parentFirstName)
-    {
-        $this->parentFirstName = $parentFirstName;
-
-        return $this;
-    }
-
-    /**
-     * Get parentFirstName
-     *
-     * @return string
-     */
-    public function getParentFirstName()
-    {
-        return $this->parentFirstName;
-    }
-
-    /**
-     * Set parentLastName
-     *
-     * @param  string $parentLastName
-     * @return Customer
-     */
-    public function setParentLastName($parentLastName)
-    {
-        $this->parentLastName = $parentLastName;
-
-        return $this;
-    }
-
-    /**
-     * Get parentLastName
-     *
-     * @return string
-     */
-    public function getParentLastName()
-    {
-        return $this->parentLastName;
-    }
-    
-    /**
-     * Get customerId
-     *
-     * @return integer
-     */
-    public function getCustomerId()
-    {
-        return $this->customerId;
     }
 
     /**
@@ -596,6 +474,16 @@ class Customer implements CustomerInterface
     public function getDownloadUrl()
     {
         return $this->downloadUrl;
+    }
+    
+    /**
+     * Get customerId
+     *
+     * @return integer
+     */
+    public function getCustomerId()
+    {
+        return $this->customerId;
     }
 
 }

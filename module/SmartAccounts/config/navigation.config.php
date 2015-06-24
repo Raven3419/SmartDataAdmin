@@ -51,6 +51,32 @@ return array(
                             ),
                         ),
                     ),
+                    array(
+                        'label'      => 'Plans',
+                        'route'      => 'rocket-admin/accounts/plans',
+                        'permission' => 'SmartAccounts\Controller\Plans:index',
+                        'order'      => 302,
+                        'pages'      => array(
+                            array(
+                                'label'           => 'Create Plans',
+                                'route'           => 'rocket-admin/accounts/plans/create',
+                                'permission'      => 'SmartAccounts\Controller\Plans:create',
+                                'use_route_match' => true,
+                            ),
+                            array(
+                                'label'           => 'Edit Plans',
+                                'route'           => 'rocket-admin/accounts/plans/edit',
+                                'permission'      => 'SmartAccounts\Controller\Plans:edit',
+                                'use_route_match' => true,
+                            ),
+                            array(
+                                'label'           => 'View Plans',
+                                'route'           => 'rocket-admin/education/plans/view',
+                                'permission'      => 'SmartAccounts\Controller\Plans:view',
+                                'use_route_match' => true,
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),

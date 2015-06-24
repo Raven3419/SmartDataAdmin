@@ -39,8 +39,11 @@ class CustomerControllerFactory implements FactoryInterface
 
         $cn = new \SmartRestServices\Controller\CustomerController(
             $sm->get('SmartAccounts\Service\CustomerService'),
+            $sm->get('SmartAccounts\Service\AccountsService'),
             $sm->get('SmartQuestions\Service\ResultsService'),
-            $sm->get('SmartQuestions\Service\QuestionsService')
+            $sm->get('SmartQuestions\Service\QuestionsService'),
+            $sm->get('SmartAccounts\Service\EmailsService'),
+            $sm->get('SmartAccounts\Service\PlansService')
         );
 
         $em->attach('dispatch', function ($e) use ($cn) {

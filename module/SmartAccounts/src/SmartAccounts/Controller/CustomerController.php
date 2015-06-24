@@ -21,6 +21,8 @@ use Zend\View\Model\ViewModel;
 use SmartAccounts\Form\CustomerForm;
 use SmartAccounts\Service\CustomerService;
 use SmartAccounts\Service\CustomerProductCategoryService;
+use SmartAccounts\Service\AccountsService;
+use SmartAccounts\Service\AccountsProductCategoryService;
 use RocketAdmin\Service\MessageService;
 
 /**
@@ -39,6 +41,11 @@ class CustomerController extends AbstractActionController
      * @var CustomerService
      */
     protected $customerService;
+    
+    /**
+     * @var AccountsService
+     */
+    protected $accountsService;
 
     /**
      * @var HelperPluginManager
@@ -47,14 +54,17 @@ class CustomerController extends AbstractActionController
 
     /**
      * @param CustomerService  $customerService
+     * @param AccountsService  $accountsService
      * @param HelperPluginManager $viewHelperManager
      */
     public function __construct(
         CustomerService  $customerService,
+    	AccountsService  $accountsService,
         ViewHelperManager $viewHelperManager
     )
     {
         $this->customerService  = $customerService;
+        $this->accountsService  = $accountsService;
         $this->viewHelperManager = $viewHelperManager;
     }
 
@@ -81,7 +91,7 @@ class CustomerController extends AbstractActionController
 
         if (null === $recordId) {
             $this->flashMessenger()->setNamespace('error')
-                                   ->addMessage('You have attempted to access an invalid record.');
+            	->addMessage('You have attempted to access an invalid record.');
 
             return $this->redirect()->toRoute('rocket-admin/accounts/customer');
         }
@@ -90,18 +100,20 @@ class CustomerController extends AbstractActionController
 
         if (null === $record) {
             $this->flashMessenger()->setNamespace('error')
-                                   ->addMessage('You have attempted to access an invalid record.');
+            	->addMessage('You have attempted to access an invalid record.');
 
             return $this->redirect()->toRoute('rocket-admin/accounts/customer');
         }
 
         $form = $this->customerService->getEditCustomerForm($recordId);
+        
+        $recordAccount = $this->accountsService->getAccountsByCustomerId($recordId);
 
         return new ViewModel(array(
             'record'   => $record,
             'form'     => $form,
             'recordId' => $recordId,
-            'productCategories' => '',
+        	'account'  => $recordAccount->getAccountId(),
         ));
     }
 
@@ -121,14 +133,18 @@ class CustomerController extends AbstractActionController
             if ($form->isValid()) {
             	$data = $form->getData();
             	
-            	$record->setEmail($data->getEmail());
+            	$record->setLogin($data->getLogin());
             	$record->setPassword($data->getPassword());
-            	$record->setFirstName($data->getFirstName());
-            	$record->setLastName($data->getLastName());
+            	$record->setName($data->getName());
             	$record->setDisabled($data->getDisabled());
-            	$record->setParentFirstName($data->getParentFirstName());
-            	$record->setParentLastName($data->getParentLastName());
-            	$record->setParentEmail($data->getParentEmail());
+            	$record->setAddress($data->getAddress());
+            	$record->setCity($data->getCity());
+            	$record->setState($data->getState());
+            	$record->setZip($data->getZip());
+            	$record->setNotificationFree($data->getNotificationFree());
+            	$record->setNotificationGrade($data->getNotificationGrade());
+            	$record->setDownloadReady($data->getDownloadReady());
+            	$record->setDownloadUrl($data->getDownloadUrl());
             	
                 $this->customerService->createCustomer($record, $this->identity());
 
@@ -209,6 +225,8 @@ class CustomerController extends AbstractActionController
                      ->addMessage('There was an error trying to edit an existing Customer.');
             }
         }
+        
+        $recordAccount = $this->accountsService->getAccountsByCustomerId($recordId);
 
         $uri = $this->getRequest()->getUri();
         $base = sprintf('%s://%s', $uri->getScheme(), $uri->getHost());
@@ -221,6 +239,7 @@ class CustomerController extends AbstractActionController
             'record'   => $record,
             'form'     => $form,
             'recordId' => $recordId,
+        	'account'  => $recordAccount->getAccountId(),
         ));
     }
 

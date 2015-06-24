@@ -16,6 +16,9 @@ namespace SmartAccounts;
 
 return array(
     'factories' => array(
+        'SmartAccounts\InputFilter\AccountsFilter'                => 'SmartAccounts\InputFilter\Factory\AccountsFilterFactory',
         'SmartAccounts\InputFilter\CustomerFilter'                => 'SmartAccounts\InputFilter\Factory\CustomerFilterFactory',
+        'SmartAccounts\InputFilter\PlansFilter'                	  => 'SmartAccounts\InputFilter\Factory\PlansFilterFactory',
+        'SmartAccounts\InputFilter\EmailsFilter'                  => 'SmartAccounts\InputFilter\Factory\EmailsFilterFactory',
     ),
 );

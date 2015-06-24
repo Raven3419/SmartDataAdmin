@@ -16,6 +16,9 @@ namespace SmartAccounts;
 
 return array(
     'factories' => array(
+        'SmartAccounts\Controller\Accounts'		=> 'SmartAccounts\Controller\Factory\AccountsControllerFactory',
         'SmartAccounts\Controller\Customer'		=> 'SmartAccounts\Controller\Factory\CustomerControllerFactory',
+        'SmartAccounts\Controller\Plans'		=> 'SmartAccounts\Controller\Factory\PlansControllerFactory',
+        'SmartAccounts\Controller\Emails'		=> 'SmartAccounts\Controller\Factory\EmailsControllerFactory',
     ),
 );

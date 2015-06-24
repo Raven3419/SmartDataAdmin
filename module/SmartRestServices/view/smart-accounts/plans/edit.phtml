@@ -1,22 +1,20 @@
-                    <h5 class="widget-name"><i class="icon-pencil"></i>Edit Customer</h5>
+                    <h5 class="widget-name"><i class="icon-pencil"></i>Edit Plans</h5>
                     <div class="row-fluid">
                         <div class="span6">
                             <div class="widget">
                                 <div class="navbar">
                                     <div class="navbar-inner">
-                                        <h6><i class="icon-th-large"></i>Customer Details</h6>
-                                        <a class="btn btn-danger confirm pull-right" href="/admin/accounts/customer/delete/<?php echo $this->recordId; ?>"><b class="icon-trash"></b>Delete Customer</a>
+                                        <h6><i class="icon-th-large"></i>Plans Details</h6>
                                     </div>
                                 </div>
                                 <div class="well">
 <?php
 echo $this->partial('admin/form-partial', array(
     'form'     => $this->form,
-    'url'      => '/admin/accounts/customer/edit/' . $this->recordId,
-    'fieldset' => 'customer-fieldset',
+    'url'      => '/admin/accounts/plans/edit/' . $this->recordId,
+    'fieldset' => 'plans-fieldset',
 ));
-?>
-                                </div>
+?>                             </div>
                             </div>
                         </div>
                     </div>

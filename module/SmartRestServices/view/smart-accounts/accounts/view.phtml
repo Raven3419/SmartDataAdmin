@@ -1,0 +1,22 @@
+                    <h5 class="widget-name"><i class="icon-external-link"></i>View Accounts</h5>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <div class="widget">
+                                <div class="navbar">
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-th-large"></i>View Accounts</h6>
+                                        <a class="btn btn-info pull-right" href="/admin/accounts/accounts/edit/<?php echo $this->recordId; ?>"><b class="icon-pencil"></b>Edit Accounts</a>
+                                        <a class="btn btn-inverse pull-right" href="/admin/accounts/accounts"><b class="icon-table"></b>Return to List</a>
+                                    </div>
+                                </div>
+                                <div class="well">
+<?php
+echo $this->partial('admin/form-readonly-partial', array(
+    'form'     => $this->form,
+    'fieldset' => 'accountsfieldset',
+));
+?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

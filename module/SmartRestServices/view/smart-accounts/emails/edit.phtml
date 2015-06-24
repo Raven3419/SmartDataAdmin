@@ -1,19 +1,20 @@
-                    <h5 class="widget-name"><i class="icon-plus"></i>Create a New Customer</h5>
+                    <h5 class="widget-name"><i class="icon-pencil"></i>Edit Emails</h5>
                     <div class="row-fluid">
                         <div class="span6">
                             <div class="widget">
                                 <div class="navbar">
-                                    <div class="navbar-inner"><h6><i class="icon-th-large"></i>Customer Details</h6></div>
+                                    <div class="navbar-inner">
+                                        <h6><i class="icon-th-large"></i>Emails Details</h6>
+                                    </div>
                                 </div>
                                 <div class="well">
 <?php
 echo $this->partial('admin/form-partial', array(
     'form'     => $this->form,
-    'url'      => '/admin/accounts/customer/create',
-    'fieldset' => 'customer-fieldset',
+    'url'      => '/admin/accounts/emails/edit/' . $this->recordId,
+    'fieldset' => 'emails-fieldset',
 ));
-?>
-                                </div>
+?>                             </div>
                             </div>
                         </div>
                     </div>

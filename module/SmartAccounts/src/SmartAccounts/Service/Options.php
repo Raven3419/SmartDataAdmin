@@ -20,6 +20,21 @@ class Options extends AbstractOptions
         'customer-edit-success'     => 'You have successfully edited the customer.',
         'customer-edit-error'       => 'There was an error editing the customer.',
         'customer-delete-success'   => 'You have successfully deleted the customer.',
+        'accounts-creation-success' => 'You have successfully created a new accounts.',
+        'accounts-creation-error'   => 'There was an error creating a new accounts.',
+        'accounts-edit-success'     => 'You have successfully edited the accounts.',
+        'accounts-edit-error'       => 'There was an error editing the accounts.',
+        'accounts-delete-success'   => 'You have successfully deleted the accounts.',
+        'plans-creation-success' 	=> 'You have successfully created a new plans.',
+        'plans-creation-error'   	=> 'There was an error creating a new plans.',
+        'plans-edit-success'     	=> 'You have successfully edited the plans.',
+        'plans-edit-error'       	=> 'There was an error editing the plans.',
+        'plans-delete-success'   	=> 'You have successfully deleted the plans.',
+        'emails-creation-success' 	=> 'You have successfully created a new emails.',
+        'emails-creation-error'   	=> 'There was an error creating a new emails.',
+        'emails-edit-success'     	=> 'You have successfully edited the emails.',
+        'emails-edit-error'       	=> 'There was an error editing the emails.',
+        'emails-delete-success'   	=> 'You have successfully deleted the emails.',
     );
 
     /**

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="SmartAccounts\Entity\Emails" table="emails">
+        <id name="emailId" column="email_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+		<field name="email" column="email" type="string" length="255" nullable="false"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+		<many-to-one field="customerId" target-entity="SmartAccounts\Entity\Customer" fetch="EAGER">
+            <join-column name="customerId" referenced-column-name="customer_id"/>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

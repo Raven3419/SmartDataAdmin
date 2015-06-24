@@ -39,15 +39,10 @@ class CustomerFilter extends InputFilter
         ));
 
         $this->add(array(
-            'name'       => 'email',
+            'name'       => 'login',
             'required'   => true,
-            'filters'    => array(array('name' => 'StringTrim')),
-            'validators' => array(
-                array(
-                    'name'    => 'NotEmpty',
-                    'options' => array('type' => 'string')
-                ),
-            ),
+          	'allow_empty'=> false,
+            'filters'    => array(array('name' => 'StringTrim'))
         ));
 
         $this->add(array(
@@ -58,13 +53,7 @@ class CustomerFilter extends InputFilter
         ));
 
         $this->add(array(
-            'name'       => 'firstName',
-			'required'   => false,
-            'filters'    => array(array('name' => 'StringTrim'))
-        ));
-
-        $this->add(array(
-            'name'       => 'lastName',
+            'name'       => 'name',
 			'required'   => false,
           	'allow_empty'=> true,
             'filters'    => array(array('name' => 'StringTrim'))
@@ -78,26 +67,6 @@ class CustomerFilter extends InputFilter
         $this->add(array(
             'name'     => 'downloadReady',
             'required' => true,
-        ));
-
-        $this->add(array(
-            'name'       => 'parentEmail',
-            'required'   => true,
-          	'allow_empty'=> true,
-            'filters'    => array(array('name' => 'StringTrim'))
-        ));
-
-        $this->add(array(
-            'name'       => 'parentFirstName',
-			'required'   => false,
-            'filters'    => array(array('name' => 'StringTrim'))
-        ));
-
-        $this->add(array(
-            'name'       => 'parentLastName',
-			'required'   => false,
-          	'allow_empty'=> true,
-            'filters'    => array(array('name' => 'StringTrim'))
         ));
 
         $this->add(array(
