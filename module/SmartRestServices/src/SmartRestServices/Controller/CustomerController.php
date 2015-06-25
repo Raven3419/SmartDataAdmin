@@ -193,7 +193,6 @@ class CustomerController extends AbstractRestfulController
     				$editPassword = $data['smartdata']['editPassword'];
     				
     				$record = $this->customerService->getCustomerByLoginPassword($editPassword['login'], $editPassword['oldPassword']);
-    				$email2 = $this->emailsService->getEmailsByName($editCustomer['email']);
     				
     				if(empty($record))
     				{
@@ -223,7 +222,7 @@ class CustomerController extends AbstractRestfulController
     				 
     				$editForgotPassword = $data['smartdata']['forgotPassword'];
     				
-    				$record = $this->customerService->getCustomerByLoginPassword($editForgotPassword['login'], $editForgotPassword['password']);
+    				$record = $this->customerService->getCustomerByLogin($editForgotPassword['login']);
     				$email2 = $this->emailsService->getEmailsByName($editForgotPassword['email']);
     				
     				if(empty($record))
@@ -242,19 +241,29 @@ class CustomerController extends AbstractRestfulController
     				}
     				else 
     				{ 
-	    				$to = array($email2->getEmail());
-	    				
-	    				$from = 'admin@learningapplock.com';
-	    						
-	    				$subject = 'Learning App Lock Forgot Password';
-	
-	                	$message = '<p><b>' . $record->getName() . '</b></br> You have requested your password.  Your password is '. $record->getPassword() .'</p>';
-	     
-	    				$this->sendEmail($from, $to, $subject, $message);
-	    				 
-	    				$result = new JsonModel(array(
-	    						'status'	=> 'success'
-	    				));
+    					if($email2->getCustomerId()->getCustomerId() == $record->getCustomerId())
+    					{
+		    				$to = array($email2->getEmail());
+		    				
+		    				$from = 'admin@learningapplock.com';
+		    						
+		    				$subject = 'Learning App Lock Forgot Password';
+		
+		                	$message = '<p><b>' . $record->getName() . '</b></br> You have requested your password.  Your password is '. $record->getPassword() .'</p>';
+		     
+		    				$this->sendEmail($from, $to, $subject, $message);
+		    				 
+		    				$result = new JsonModel(array(
+		    						'status'	=> 'success'
+		    				));
+    					}
+    					else 
+    					{
+    						$result = new JsonModel(array(
+    								'status'	=> 'error',
+    								'message'	=> 'Email or login is invalid'
+    						));
+    					}
     				}
     				 
     			}
