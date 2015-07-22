@@ -133,6 +133,7 @@ class QuestionsController extends AbstractActionController
             	$record->setTextOptionOne($data->getTextOptionOne());
             	$record->setTextOptionTwo($data->getTextOptionTwo());
             	$record->setTextOptionThree($data->getTextOptionThree());
+            	$record->setYoutube($data->getYoutube());
             	$record->setImages($data->getImages());
             	$record->setParagraph($data->getParagraph());
             	$record->setIsImage($data->getIsImage());

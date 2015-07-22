@@ -447,6 +447,45 @@ class CustomerController extends AbstractRestfulController
     					
     				}
     			}
+    			else if(isset($data['smartdata']['getYoutube']))
+    			{
+
+    				$record = new \SmartAccounts\Entity\Customer();
+    				$results = new \SmartQuestions\Entity\Questions();
+    				$user = new \RocketUser\Entity\User();
+    				
+    				$youtube = $data['smartdata']['getYoutube'];
+    				
+    				$record = $this->customerService->getCustomerByLoginPassword($youtube['login'], $youtube['password']);
+    				
+    				if(empty($record))
+    				{
+    					$result = new JsonModel(array(
+    							'status'	=> 'error',
+    							'message'	=> 'Login or password is invalid'
+    					));
+    				}
+    				else
+    				{
+    					$question = $this->questionService->getQuestion($youtube['questionId']);
+    					 
+    					if(empty($question))
+    					{
+    						$result = new JsonModel(array(
+    								'status'	=> 'error',
+    								'message'	=> 'The Question you scored does not exist'
+    						));
+    					}
+    					else
+    					{
+    						 
+    						$result = new JsonModel(array(
+    							'status'	=> 'success',
+					    		'message' 	=> urlencode($question->getYoutube())
+    						));
+    					}
+    				}
+    			}
 	    		else 
 	    		{
 	    			$result = new JsonModel(array(

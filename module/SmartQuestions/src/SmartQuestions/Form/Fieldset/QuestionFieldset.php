@@ -59,9 +59,9 @@ class QuestionFieldset extends Fieldset
             'options' => array(
                 'label'         => 'Does the Question have an Image or Paragraph',
                 'value_options' => array(
-                    '0' => 'None',
-                    '1'  => 'Image',
-                    '2'  => 'Paragraph',
+                    '1' => 'None',
+                    '2'  => 'Image',
+                    '3'  => 'Paragraph',
                 ),
             ),
             'attributes' => array(
@@ -184,6 +184,18 @@ class QuestionFieldset extends Fieldset
                 'class'       => 'span12',
                 'placeholder' => 'Enter a Paragraph',
             ),
+        ));
+        
+        $this->add(array(
+        		'type'    => 'Zend\Form\Element\Text',
+        		'name'    => 'youtube',
+        		'options' => array(
+        				'label' => 'Youtube Video',
+        		),
+        		'attributes' => array(
+        				'class'       => 'span12',
+        				'placeholder' => 'Enter a youtube video',
+        		),
         ));
 
         $this->add(array(

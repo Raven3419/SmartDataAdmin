@@ -76,6 +76,11 @@ class Questions implements QuestionsInterface
     /**
      * @var string
      */
+    protected $youtube;
+
+    /**
+     * @var string
+     */
     protected $images;
 
     /**
@@ -336,6 +341,29 @@ class Questions implements QuestionsInterface
     public function getTextOptionThree()
     {
     	return $this->textOptionThree;
+    }
+
+    /**
+     * Set youtube
+     *
+     * @param  string $youtube
+     * @return Questions
+     */
+    public function setYoutube($youtube)
+    {
+        $this->youtube = $youtube;
+
+        return $this;
+    }
+
+    /**
+     * Get youtube
+     *
+     * @return string
+     */
+    public function getYoutube()
+    {
+        return $this->youtube;
     }
 
     /**

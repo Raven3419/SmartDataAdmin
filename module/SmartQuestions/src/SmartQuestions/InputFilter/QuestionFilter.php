@@ -112,6 +112,13 @@ class QuestionFilter extends InputFilter
           	'allow_empty' 	=> true,
             'filters'    	=> array(array('name' => 'StringTrim'))
         ));
+
+        $this->add(array(
+            'name'       	=> 'youtube',
+            'required'   	=> false,
+          	'allow_empty' 	=> true,
+            'filters'   	 => array(array('name' => 'StringTrim'))
+        ));
         
         $this->add(array(
             'name'     => 'disabled',

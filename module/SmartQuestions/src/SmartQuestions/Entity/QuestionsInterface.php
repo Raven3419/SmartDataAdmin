@@ -132,6 +132,17 @@ interface QuestionsInterface
     public function getTextOptionThree();
 
     /**
+     * @param  string $youtube
+     * @return Questions
+     */
+    public function setYoutube($youtube);
+
+    /**
+     * @return string
+     */
+    public function getYoutube();
+
+    /**
      * @param  string $images
      * @return Questions
      */

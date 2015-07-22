@@ -18,9 +18,14 @@
         <field name="textOptionOne" column="text_option_one" type="string" length="255" nullable="true"/>
         <field name="textOptionTwo" column="text_option_two" type="string" length="255" nullable="true"/>
         <field name="textOptionThree" column="text_option_three" type="string" length="255" nullable="true"/>
+        <field name="youtube" column="youtube" type="text" nullable="true"/>
         <field name="images" column="images" type="string" length="255" nullable="true"/>
         <field name="paragraph" column="paragraph" type="string" length="255" nullable="true"/>
-        <field name="isImage" column="is_image" type="integer" nullable="false"/>
+        <field name="isImage" column="is_image" type="integer" nullable="true">
+        	<options>
+	            <option name="default">0</option>
+	        </options>
+	    </field>
         <field name="schoolId" column="school_id"  type="integer"/>
         <many-to-one field="gradeId" target-entity="SmartQuestions\Entity\Grades" fetch="EAGER">
             <join-column name="grade_id" referenced-column-name="grade_id"/>
