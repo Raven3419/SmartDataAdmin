@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity name="SmartQuestions\Entity\Customers" table="customer_questions">
+        <id name="customerQuestionId" column="customer_question_id"  type="integer">
+            <generator strategy="IDENTITY"/>
+        </id>
+        <field name="createdAt" column="created_at" type="datetime" nullable="true"/>
+        <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
+        <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
+        <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="disabled" type="boolean" nullable="true"/>
+        <field name="textQuestion" column="text_question" type="text" nullable="true"/>
+        <field name="textCorrectAnswer" column="text_correct_answer" type="string" length="255" nullable="true"/>
+        <field name="textOptionOne" column="text_option_one" type="string" length="255" nullable="true"/>
+        <field name="textOptionTwo" column="text_option_two" type="string" length="255" nullable="true"/>
+        <field name="textOptionThree" column="text_option_three" type="string" length="255" nullable="true"/>
+        <field name="images" column="images" type="string" length="255" nullable="true"/>
+        <field name="paragraph" column="paragraph" type="string" length="255" nullable="true"/>
+        <field name="isImage" column="is_image" type="integer" nullable="true">
+        	<options>
+	            <option name="default">1</option>
+	        </options>
+	    </field>
+        <many-to-one field="customerId" target-entity="SmartAccounts\Entity\Customer" fetch="EAGER">
+            <join-column name="customer_id" referenced-column-name="customer_id"/>
+        </many-to-one>
+	</entity>
+</doctrine-mapping>

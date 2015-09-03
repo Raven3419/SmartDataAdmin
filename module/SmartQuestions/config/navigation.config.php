@@ -85,7 +85,7 @@ return array(
               			'pages'      => array(
                 			array(
                 				'label'           => 'Create Question',
-                				'route'           => 'rocket-admin/education/subjects/create',
+                				'route'           => 'rocket-admin/education/questions/create',
                 				'permission'      => 'SmartQuestions\Controller\Questions:create',
                 				'use_route_match' => true,
                 			),
@@ -103,11 +103,37 @@ return array(
                 			),
                 		),
                 	),
+                	array(
+                		'label'      => 'Customer',
+                		'route'      => 'rocket-admin/education/customers',
+             			'permission' => 'SmartQuestions\Controller\Customers:index',
+                		'order'      => 504,
+              			'pages'      => array(
+                			array(
+                				'label'           => 'Create Question',
+                				'route'           => 'rocket-admin/education/customers/create',
+                				'permission'      => 'SmartQuestions\Controller\Customers:create',
+                				'use_route_match' => true,
+                			),
+                			array(
+                				'label'           => 'Edit Question',
+                				'route'           => 'rocket-admin/education/customers/edit',
+                				'permission'      => 'SmartQuestions\Controller\Customers:edit',
+                				'use_route_match' => true,
+                			),
+                			array(
+               					'label'           => 'View Question',
+                				'route'           => 'rocket-admin/education/customers/view',
+                				'permission'      => 'SmartQuestions\Controller\Customers:view',
+                				'use_route_match' => true,
+                			),
+                		),
+                	),
                     array(
                         'label'      => 'Results',
                         'route'      => 'rocket-admin/education/results',
                         'permission' => 'SmartQuestions\Controller\Results:index',
-                        'order'      => 504,
+                        'order'      => 505,
                         'pages'      => array(
                             array(
                                 'label'           => 'Create Result',

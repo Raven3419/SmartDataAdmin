@@ -31,6 +31,10 @@ class Options extends AbstractOptions
         'result-create-error'              	=> 'There was an error creating a new result.',
         'result-edit-success'              	=> 'You have successfully edited the result.',
         'result-edit-error'                	=> 'There was an error editing the result.',
+        'customer-create-success'           => 'You have successfully created a new question.',
+        'customer-create-error'             => 'There was an error creating a new question.',
+        'customer-edit-success'             => 'You have successfully edited the question.',
+        'customer-edit-error'               => 'There was an error editing the question.',
     );
 
     /**

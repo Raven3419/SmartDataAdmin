@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+
+
+/* CSS used here will be applied after bootstrap.css */
+
+.image-container {
+    background:white; 	
+}
+
+img{ width: 100%;
+}
+
+.app-title{
+	
+}

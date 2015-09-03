@@ -25,6 +25,7 @@ use SmartQuestions\Service\GradesService;
 use SmartQuestions\Service\SubjectsService;
 use SmartQuestions\Service\QuestionsService;
 use SmartQuestions\Service\ResultsService;
+use SmartQuestions\Service\CustomersService;
 
 /**
  * Service injecting all lund product services.
@@ -61,25 +62,34 @@ class SmartQuestionService implements EventManagerAwareInterface
      */
     protected $resultsService;
 
+
+    /**
+     * @var CustomersService
+     */
+    protected $customersService;
+
     /**
      * @param ObjectManager                        	$objectManager
      * @param GradesService                   		$gradesServie
      * @param QuestionsService                   	$questionsServie
      * @param SubjectsService                   	$subjectsServie
      * @param ResultsService                   		$resultsServie
+     * @param CustomersService              		$customersService
      */
     public function __construct(
         ObjectManager $objectManager,
         GradesService $gradesService,
         QuestionsService $questionsService,
         SubjectsService $subjectsService,
-        ResultsService $resultsService
+        ResultsService $resultsService,
+        CustomersService $customersService
     ) {
         $this->objectManager = $objectManager;
         $this->gradesService = $gradesService;
         $this->questionsService = $questionsService;
         $this->subjectsService = $subjectsService;
         $this->resultsService = $resultsService;
+        $this->customersService = $customersService;
     }
     
     /**
@@ -120,6 +130,16 @@ class SmartQuestionService implements EventManagerAwareInterface
     public function getResultsService()
     {
     	return $this->resultsService;
+    }
+    
+    /**
+     * Return CustomersService
+     *
+     * @return CustomersService
+     */
+    public function getCustomersService()
+    {
+    	return $this->customersService;
     }
 
     /**

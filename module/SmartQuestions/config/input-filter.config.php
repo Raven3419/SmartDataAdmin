@@ -20,5 +20,6 @@ return array(
         'SmartQuestions\InputFilter\QuestionFilter'             => 'SmartQuestions\InputFilter\Factory\QuestionFilterFactory',
         'SmartQuestions\InputFilter\SubjectFilter'              => 'SmartQuestions\InputFilter\Factory\SubjectFilterFactory',
         'SmartQuestions\InputFilter\ResultFilter'               => 'SmartQuestions\InputFilter\Factory\ResultFilterFactory',
+        'SmartQuestions\InputFilter\CustomerFilter'     		=> 'SmartQuestions\InputFilter\Factory\CustomerFilterFactory',
     ),
 );

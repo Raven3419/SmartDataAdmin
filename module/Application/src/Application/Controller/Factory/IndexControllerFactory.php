@@ -50,14 +50,10 @@ class IndexControllerFactory implements FactoryInterface
             $sm->get('RocketCms\Service\MenuElementService'),
             $sm->get('RocketUser\Service\UserService'),
             $sm->get('RocketUser\Service\LoginService'),
-            $sm->get('LundCustomer\Service\CustomerService'),
-            $sm->get('LundProducts\Service\FileLogService'),
             $sm->get('RocketDam\Service\AssetService'),
-            $sm->get('LundSite\Service\LundSiteService'),
-            $sm->get('LundProducts\Service\LundProductService'),
-            $sm->get('LundCustomer\Service\RetailerService'),
             $sm->get('RocketEcom\Service\RocketEcomService'),
-            $sm->get('ViewHelperManager')
+            $sm->get('ViewHelperManager'),
+            $sm->get('SmartQuestions\Service\CustomerQuestionsService')
         );
 
         return $cn;

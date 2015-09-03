@@ -39,7 +39,8 @@ class SmartQuestionServiceFactory implements FactoryInterface
             $serviceLocator->get('SmartQuestions\Service\GradesService'),
             $serviceLocator->get('SmartQuestions\Service\QuestionsService'),
             $serviceLocator->get('SmartQuestions\Service\SubjectsService'),
-            $serviceLocator->get('SmartQuestions\Service\ResultsService')
+            $serviceLocator->get('SmartQuestions\Service\ResultsService'),
+            $serviceLocator->get('SmartQuestions\Service\CustomersService')
         );
 
         return $smartGradeService;

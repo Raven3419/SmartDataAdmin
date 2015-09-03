@@ -1288,7 +1288,7 @@ table { max-width: 100%; background-color: transparent; border-collapse: collaps
 
 /*===== Wells =====*/
 
-[class^="well"], [class*=" well"] { background: #fefefe; border: 1px solid #d5d5d5; position: relative; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; -ms-box-sizing: border-box; width: 175%;}
+[class^="well"], [class*=" well"] { background: #fefefe; border: 1px solid #d5d5d5; position: relative; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; -ms-box-sizing: border-box; width: 100%;}
 [class^="well"] blockquote, [class*=" well"] blockquote { border-color: rgba(0, 0, 0, 0.15); }
 .well-white { background: #ffffff; border: 1px solid #d5d5d5; position: relative; }
 .well-smoke { background: #f9f9f9; border: 1px solid #d5d5d5; }

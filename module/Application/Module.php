@@ -72,7 +72,10 @@ class Module implements
                 /** @var TemplateMapResolver $viewResolverMap */
                 $vtmr = $sm->get('ViewTemplateMapResolver');
 
+                //print_r($event->getParams());exit;
+                
                 $templateMap = array(
+                    $layout->getDirectory() . '/app'     	=> __DIR__ . '/view/layouts/' . $layout->getDirectory() . '/app.phtml',
                     $layout->getDirectory() . '/layout'     => __DIR__ . '/view/layouts/' . $layout->getDirectory() . '/page.phtml',
                     $layout->getDirectory() . '/header'     => __DIR__ . '/view/layouts/' . $layout->getDirectory() . '/header.phtml',
                     $layout->getDirectory() . '/footer'     => __DIR__ . '/view/layouts/' . $layout->getDirectory() . '/footer.phtml',

@@ -20,5 +20,6 @@ return array(
         'SmartQuestions\Controller\Questions'            => 'SmartQuestions\Controller\Factory\QuestionsControllerFactory',
     	'SmartQuestions\Controller\Subjects'             => 'SmartQuestions\Controller\Factory\SubjectsControllerFactory',
     	'SmartQuestions\Controller\Results'              => 'SmartQuestions\Controller\Factory\ResultsControllerFactory',
+        'SmartQuestions\Controller\Customers'    		 => 'SmartQuestions\Controller\Factory\CustomersControllerFactory',
     ),
 );

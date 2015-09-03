@@ -35,6 +35,11 @@ class Options extends AbstractOptions
         'result-edit-success'     	=> 'You have successfully edited the result.',
         'result-edit-error'       	=> 'There was an error editing the result.',
         'result-delete-success'   	=> 'You have successfully deleted the result.',
+        'customer_creation-success' => 'You have successfully created a new question.',
+        'customer_creation-error'   => 'There was an error creating a new question.',
+        'customer_edit-success'     => 'You have successfully edited the question.',
+        'customer_edit-error'       => 'There was an error editing the question.',
+        'customer_delete-success'   => 'You have successfully deleted the question.',
         'global-invalid-id'      => 'You have attempted to access an invalid record.',
     );
 
