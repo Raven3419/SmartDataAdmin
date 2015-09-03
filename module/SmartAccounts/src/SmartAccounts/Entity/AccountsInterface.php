@@ -64,6 +64,17 @@ interface AccountsInterface
      * @return string
      */
     public function getModifiedBy();
+
+    /**
+     * @param  string $token
+     * @return Accounts
+     */
+    public function setToken($token);
+
+    /**
+     * @return string
+     */
+    public function getToken();
     
     /**
      * @param  integer $status

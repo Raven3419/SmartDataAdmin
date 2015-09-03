@@ -12,6 +12,7 @@
         <field name="createdBy" column="created_by" type="string" length="255" nullable="true"/>
         <field name="modifiedAt" column="modified_at" type="datetime" nullable="true"/>
         <field name="modifiedBy" column="modified_by" type="string" length="255" nullable="true"/>
+        <field name="token" column="token" type="string" length="255" nullable="true"/>
 		<field name="status" column="status" type="integer"  nullable="false"/>
 		<many-to-one field="processingPlanId" target-entity="SmartAccounts\Entity\Plans" fetch="EAGER">
             <join-column name="processingPlanId" referenced-column-name="plan_id"/>

@@ -42,6 +42,11 @@ class Accounts implements AccountsInterface
      * @var string
      */
     protected $modifiedBy;
+
+    /**
+     * @var string
+     */
+    protected $token;
     
     /**
      *  @var integer
@@ -159,6 +164,29 @@ class Accounts implements AccountsInterface
     public function getModifiedBy()
     {
         return $this->modifiedBy;
+    }
+
+    /**
+     * Set token
+     *
+     * @param  string token
+     * @return Accounts
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 
     /**

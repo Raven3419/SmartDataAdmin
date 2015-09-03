@@ -304,7 +304,8 @@ class CustomerController extends AbstractRestfulController
 	    				
     					$result = new JsonModel(array(
     						'status'	=> 'success',
-    						'message'	=> $account->getPlanId()->getPlanDescription()
+    						'message'		=> $account->getPlanId()->getPlanDescription(),
+    						'token'		=> $account->getToken()
     					));
     					
     				}
@@ -432,12 +433,14 @@ class CustomerController extends AbstractRestfulController
     					{
     						$recordAccount->setStatus('0');
     						$recordAccount->setPlanId($plans);
+    						$recordAccount->setToken($updateProcess['purchase_token']);
     						$this->accountsService->editAccounts($recordAccount, $user);
     					}
     					else
     					{
     						$recordAccount->setStatus($status);
     						$recordAccount->setProcessingPlanId($plans);
+    						$recordAccount->setToken($updateProcess['purchase_token']);
     						$this->accountsService->editAccounts($recordAccount, $user);
     					}
     					
