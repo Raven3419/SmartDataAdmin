@@ -139,6 +139,7 @@ class QuestionsController extends AbstractActionController
             	$record->setIsImage($data->getIsImage());
             	$record->setGradeId($data->getGradeId());
             	$record->setSubjectId($data->getSubjectId());
+            	$record->setHelpId($data->getHelpId());
             	$record->setSchoolId($schoolId);
             	
                 $this->questionsService->createQuestion($record, $this->identity());
