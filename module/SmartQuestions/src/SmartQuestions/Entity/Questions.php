@@ -89,6 +89,11 @@ class Questions implements QuestionsInterface
     protected $paragraph;
 
     /**
+     * @var string
+     */
+    protected $helpId;
+
+    /**
      * @var integer
      */
     protected $isImage;
@@ -410,6 +415,29 @@ class Questions implements QuestionsInterface
     public function getParagraph()
     {
     	return $this->paragraph;
+    }
+    
+    /**
+     * Set helpId
+     *
+     * @param  string $helpId
+     * @return Questions
+     */
+    public function setHelpId($helpId)
+    {
+    	$this->helpId = $helpId;
+    
+    	return $this;
+    }
+    
+    /**
+     * Get helpId
+     *
+     * @return string
+     */
+    public function getHelpId()
+    {
+    	return $this->helpId;
     }
     
     /**

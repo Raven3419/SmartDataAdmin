@@ -185,6 +185,18 @@ class QuestionFieldset extends Fieldset
                 'placeholder' => 'Enter a Paragraph',
             ),
         ));
+
+        $this->add(array(
+            'type'    => 'Zend\Form\Element\Text',
+            'name'    => 'helpId',
+            'options' => array(
+                'label' => 'Helper Id',
+            ),
+            'attributes' => array(
+                'class'       => 'span12',
+                'placeholder' => 'Enter a Id',
+            ),
+        ));
         
         $this->add(array(
         		'type'    => 'Zend\Form\Element\Text',

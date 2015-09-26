@@ -165,6 +165,17 @@ interface QuestionsInterface
     public function getParagraph();
 
     /**
+     * @param  string $helpId
+     * @return Questions
+     */
+    public function setHelpId($helpId);
+
+    /**
+     * @return string
+     */
+    public function getHelpId();
+
+    /**
      * @param  string $isImage
      * @return Questions
      */

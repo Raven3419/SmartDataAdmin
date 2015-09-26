@@ -21,6 +21,7 @@
         <field name="youtube" column="youtube" type="text" nullable="true"/>
         <field name="images" column="images" type="string" length="255" nullable="true"/>
         <field name="paragraph" column="paragraph" type="string" length="255" nullable="true"/>
+        <field name="helpId" column="help_id" type="string" length="255" nullable="true"/>
         <field name="isImage" column="is_image" type="integer" nullable="true">
         	<options>
 	            <option name="default">0</option>

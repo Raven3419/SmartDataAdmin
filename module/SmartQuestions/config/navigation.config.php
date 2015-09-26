@@ -78,7 +78,7 @@ return array(
                 		),
                 	),
                 	array(
-                		'label'      => 'Middle School',
+                		'label'      => 'Questions',
                 		'route'      => 'rocket-admin/education/questions',
              			'permission' => 'SmartQuestions\Controller\Questions:index',
                 		'order'      => 503,
