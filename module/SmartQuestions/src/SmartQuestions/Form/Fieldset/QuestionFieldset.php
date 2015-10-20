@@ -175,7 +175,7 @@ class QuestionFieldset extends Fieldset
         ));
 
         $this->add(array(
-            'type'    => 'Zend\Form\Element\Text',
+            'type'    => 'Zend\Form\Element\Textarea',
             'name'    => 'paragraph',
             'options' => array(
                 'label' => 'Image Paragraph',
