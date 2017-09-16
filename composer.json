@@ -15,12 +15,6 @@
         }
     ],
     "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "http://packages.thesmartdata.com"
-        }
-    ],
     "require": {
         "php": ">=5.5.0",
         "zendframework/zendframework": "2.3.7",
@@ -31,17 +25,11 @@
         "evandotpro/edp-superluminal": "dev-master",
         "ocramius/ocra-cached-view-resolver": "1.0.*",
         "zf-commons/zfc-rbac": "0.2.2",
-        "Raven3419/rocketbase": "dev-master",
-        "Raven3419/rocketuser": "dev-master",
-        "Raven3419/rocketdam": "dev-master",
-        "Raven3419/rocketecom": "dev-master",
-        "Raven3419/rocketadmin": "dev-master",
         "aws/aws-sdk-php-zf2": "1.2.*",
         "imagine/Imagine": "0.5.*",
         "dg/ftp-php": "dev-master"
     },
     "require-dev": {
-        "zendframework/zend-developer-tools": "dev-master",
         "phpunit/PHPUnit": "3.7.*",
         "satooshi/php-coveralls": "dev-master",
         "squizlabs/php_codesniffer": "1.*"
